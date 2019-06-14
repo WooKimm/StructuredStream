@@ -1,0 +1,16 @@
+CREATE TABLE InputTable(
+    number Int
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,5 seconds',
+    port='9998'
+);
+
+CREATE SINK OutputTable(
+)WITH(
+    type='console',
+    outputmode='update'
+);
+
+insert into OutputTable select processwindow,number,count(*) from InputTable group by processwindow,number;
