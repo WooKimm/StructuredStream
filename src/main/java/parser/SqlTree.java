@@ -1,15 +1,20 @@
 package parser;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
+
+import static Util.SplitSql.newHashSet;
 
 //解析sql后获得的树形结构
 public class SqlTree {
-    private Set<CreateFuncParser.SqlParserResult> functionList;
-    private Map<String, CreateTableParser.SqlParserResult> preDealTableMap;
-    private Map<String, CreateTableParser.SqlParserResult> preDealSinkMap;
-    private Map<String, Object> preDealSparkEnvMap;
-    private Map<String, TableInfo> tableInfoMap;
-    private Set<InsertSqlParser.SqlParseResult> execSqlList;
+    private Set<CreateFuncParser.SqlParserResult> functionList = newHashSet();
+    private Map<String, CreateTableParser.SqlParserResult> preDealTableMap = new HashMap<>();
+    private Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = new HashMap<>();
+    private Map<String, Object> preDealSparkEnvMap = new HashMap<>();
+    private Map<String, TableInfo> tableInfoMap = new LinkedHashMap<>();
+    private Set<InsertSqlParser.SqlParseResult> execSqlList = newHashSet();
     private InsertSqlParser.SqlParseResult execSql;
     private String appInfo;
 
@@ -75,6 +80,25 @@ public class SqlTree {
 
     public void setAppInfo(String appInfo) {
         this.appInfo = appInfo;
+    }
+
+
+    public void addFunc(CreateFuncParser.SqlParserResult result) {
+        functionList.add(result);
+    }
+
+    public void addPreDealSparkEnvInfo(Map<String, Object> sparkEnv) {
+        sparkEnv.forEach((key,value)->{
+            preDealSparkEnvMap.put(key,value);
+        });
+    }
+
+    public void addPreDealTableInfo(String tableName, CreateTableParser.SqlParserResult table) {
+        preDealTableMap.put(tableName,table);
+    }
+
+    public void addPreDealSinkInfo(String tableName, CreateTableParser.SqlParserResult table) {
+        preDealSinkMap.put(tableName,table);
     }
 }
 
