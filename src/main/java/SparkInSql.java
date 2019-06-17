@@ -69,6 +69,7 @@ public class SparkInSql {
                 .master("local[2]")
                 .getOrCreate();
 
+        SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
 
 
