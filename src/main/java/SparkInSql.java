@@ -1,5 +1,7 @@
 import Util.BaseZookeeper;
+import Util.DataSender;
 import Util.SparkUtil;
+import org.apache.commons.io.IOUtils;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -8,6 +10,7 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -25,8 +28,9 @@ public class SparkInSql {
     static SparkSession spark = null;
 
     public static void main(String[] args) throws Exception {
-        BaseZookeeper zookeeper = new BaseZookeeper();
-        zookeeper.connectZookeeper("127.0.0.1:2181");
+//        BaseZookeeper zookeeper = new BaseZookeeper();
+//        zookeeper.connectZookeeper("127.0.0.1:2181");
+
 //        List<String> children = zookeeper.getChildren("/");
 
 //        Stat stat= zookeeper.setData("/sqlTest","create env spark(\n" +
@@ -52,6 +56,8 @@ public class SparkInSql {
 //                "\n" +
 //                "insert into OutputTable select processwindow,number,count(*) from InputTable group by processwindow,number;\n");
 ////        System.out.println(children);
+
+/*
         String testData = zookeeper.getData("/sqlTest");
         SqlParser.parseSql(testData);
         SqlTree sqlTree = SqlParser.sqlTree;
@@ -68,12 +74,13 @@ public class SparkInSql {
                 .appName(sqlTree.getAppInfo())
                 .master("local[2]")
                 .getOrCreate();
+*/
 
         SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
 
-
-
+        DataSender dataSender = new DataSender("sender");
+        dataSender.start();//向9999端口发送1-100随机数
 
     }
 }
