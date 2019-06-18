@@ -28,8 +28,8 @@ public class SparkInSql {
     static SparkSession spark = null;
 
     public static void main(String[] args) throws Exception {
-//        BaseZookeeper zookeeper = new BaseZookeeper();
-//        zookeeper.connectZookeeper("127.0.0.1:2181");
+        BaseZookeeper zookeeper = new BaseZookeeper();
+        zookeeper.connectZookeeper("127.0.0.1:2181");
 
 //        List<String> children = zookeeper.getChildren("/");
 
@@ -57,7 +57,7 @@ public class SparkInSql {
 //                "insert into OutputTable select processwindow,number,count(*) from InputTable group by processwindow,number;\n");
 ////        System.out.println(children);
 
-/*
+
         String testData = zookeeper.getData("/sqlTest");
         SqlParser.parseSql(testData);
         SqlTree sqlTree = SqlParser.sqlTree;
@@ -74,10 +74,24 @@ public class SparkInSql {
                 .appName(sqlTree.getAppInfo())
                 .master("local[2]")
                 .getOrCreate();
-*/
+
 
         SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
+        spark.streams().addListener(new StreamingQueryListener() {
+            @Override
+            public void onQueryStarted(QueryStartedEvent queryStarted) {
+                System.out.println("Query started: " + queryStarted.id());
+            }
+            @Override
+            public void onQueryTerminated(QueryTerminatedEvent queryTerminated) {
+                System.out.println("Query terminated: " + queryTerminated.id());
+            }
+            @Override
+            public void onQueryProgress(QueryProgressEvent queryProgress) {
+                System.out.println("Query made progress: " + queryProgress.progress());
+            }
+        });
 
         DataSender dataSender = new DataSender("sender");
         dataSender.start();//向9999端口发送1-100随机数
