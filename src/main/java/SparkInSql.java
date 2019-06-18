@@ -5,12 +5,14 @@ import org.apache.commons.io.IOUtils;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.StreamingQueryListener;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,8 +30,8 @@ public class SparkInSql {
     static SparkSession spark = null;
 
     public static void main(String[] args) throws Exception {
-        BaseZookeeper zookeeper = new BaseZookeeper();
-        zookeeper.connectZookeeper("127.0.0.1:2181");
+
+
 
 //        List<String> children = zookeeper.getChildren("/");
 
@@ -58,13 +60,22 @@ public class SparkInSql {
 ////        System.out.println(children);
 
 
+
+        DataSender dataSender = new DataSender("sender");
+        dataSender.start();//向9998端口发送1-100随机数
+
+        //第一阶段
+        BaseZookeeper zookeeper = new BaseZookeeper();
+        zookeeper.connectZookeeper("127.0.0.1:2181");
+
         String testData = zookeeper.getData("/sqlTest");
+        //第二阶段
         SqlParser.parseSql(testData);
         SqlTree sqlTree = SqlParser.sqlTree;
-        SparkConf sparkConf = new SparkConf();
-        //spark env配置加上
-        Map<String, Object> preDealSparkEnvMap = sqlTree.getPreDealSparkEnvMap();
 
+        //第三阶段
+        SparkConf sparkConf = new SparkConf();
+        Map<String, Object> preDealSparkEnvMap = sqlTree.getPreDealSparkEnvMap();//spark env配置加上
         preDealSparkEnvMap.forEach((key,value)->{
             sparkConf.set(key,value.toString());
         });
@@ -76,7 +87,6 @@ public class SparkInSql {
                 .getOrCreate();
 
 
-        SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
         spark.streams().addListener(new StreamingQueryListener() {
             @Override
@@ -93,8 +103,17 @@ public class SparkInSql {
             }
         });
 
-        DataSender dataSender = new DataSender("sender");
-        dataSender.start();//向9999端口发送1-100随机数
 
+        //第四阶段
+        Map<String,Dataset<Row>> tableList = SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
+
+
+        //第五阶段
+        StreamingQuery streamingQuery = null;
+        for (String key : tableList.keySet())
+        {
+            streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
+        }
+        
     }
 }
