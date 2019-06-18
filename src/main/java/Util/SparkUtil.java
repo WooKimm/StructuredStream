@@ -21,7 +21,7 @@ public class SparkUtil {
     static SparkSession spark = null;
 
 
-    public static void createDataFrame(SparkSession spark, SqlTree sqlTree) throws Exception{
+    public static Map<String,Dataset<Row>> createDataFrame(SparkSession spark, SqlTree sqlTree) throws Exception{
         if(sqlTree==null){
             //解析zk传过来的node，即sql语句
             BaseZookeeper zookeeper = new BaseZookeeper();
@@ -31,6 +31,7 @@ public class SparkUtil {
         }
         Map<String, Dataset<Row>> tableList = SparkUtil.getTableList(spark, sqlTree);
 
+        return tableList;
 
     }
     //添加window函数
@@ -69,4 +70,8 @@ public class SparkUtil {
         return inputBase;
     }
 
+    public static BaseOutput getSinkByClass()
+    {
+        return null;
+    }
 }
