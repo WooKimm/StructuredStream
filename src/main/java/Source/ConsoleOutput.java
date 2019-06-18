@@ -7,6 +7,7 @@ import parser.CreateTableParser;
 import parser.InsertSqlParser;
 import parser.SqlTree;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class ConsoleOutput implements BaseOutput{
         StreamingQuery streamingQuery = null;
 
         String querySql = execSql.getQuerySql();
-        String[] operators = querySql.split(" ");
+        String[] operators = querySql.split(" |\r\n");
         Map<String,String[]> operations = getOperation(operators);
 
         String[] selectors = null;
@@ -67,18 +68,22 @@ public class ConsoleOutput implements BaseOutput{
 
         }
         ArrayList<Column> groupColumns = new ArrayList<>();
+//        Column[] groupColumns = new Column[10];
         for(String columnName : groupers)
         {
             if(columnName.equals("processwindow")||columnName.equals("eventwindow"))
             {
                 groupColumns.add(functions.window(dataset.col("timestamp"), windowDuration, slideDuration));
+
             }
             else
             {
-                groupColumns.add(new Column(columnName));
+                groupColumns.add(dataset.col(columnName));
             }
         }
-        Dataset<Row> befSelectResult = dataset.groupBy((Column[])groupColumns.toArray()).count();
+        Column[] groupColumnArray = new Column[groupColumns.size()];
+
+        Dataset<Row> befSelectResult = dataset.groupBy(groupColumns.toArray(groupColumnArray)).count();
 
         //然后写select
         ArrayList<Column> selectColumns = new ArrayList<>();
@@ -86,14 +91,18 @@ public class ConsoleOutput implements BaseOutput{
         {
             if(columnName.equals("count(*)"))
             {
-                groupColumns.add(new Column("count"));
+                selectColumns.add(befSelectResult.col("count"));
+            }
+            else if(columnName.equals("processwindow")||columnName.equals("eventwindow")){
+                selectColumns.add(befSelectResult.col("window"));
             }
             else
             {
-                groupColumns.add(new Column(columnName));
+                selectColumns.add(befSelectResult.col(columnName));
             }
         }
-        Dataset<Row> aftSelectResult = befSelectResult.select((Column[])selectColumns.toArray());
+        Column[] selectColumnArray = new Column[selectColumns.size()];
+        Dataset<Row> aftSelectResult = befSelectResult.select(selectColumns.toArray(selectColumnArray));
 
         //生成query
         StreamingQuery query = aftSelectResult.writeStream()
@@ -102,7 +111,7 @@ public class ConsoleOutput implements BaseOutput{
                 .trigger(Trigger.ProcessingTime(windowDuration))
                 .start();
 
-        return streamingQuery;
+        return query;
     }
 
     @Override

@@ -35,9 +35,11 @@ public class InsertSqlParser implements IParser {
         SqlParseResult sqlParseResult = new SqlParseResult();
         parseNode(sqlNode, sqlParseResult);
 
-        sqlParseResult.setExecSql(sqlNode.toString());
+        sqlParseResult.setExecSql(sqlNode.toString().toLowerCase().replace("`","").replace(", ",","));
+        querySql = querySql.toLowerCase().replace("`","").replace(", ",",");
         sqlParseResult.setQuerySql(querySql);
         //sqlTree.addExecSql(sqlParseResult);
+
         sqlTree.setExecSql(sqlParseResult);
     }
 

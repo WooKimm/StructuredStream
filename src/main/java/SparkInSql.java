@@ -114,6 +114,8 @@ public class SparkInSql {
         {
             streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
         }
-        
+
+        streamingQuery.awaitTermination();
+
     }
 }

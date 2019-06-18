@@ -25,7 +25,7 @@ public class SocketInput implements BaseInput{
         //获取prepare后具有field的dataset
         Dataset<Row> lineRow = prepare(spark);
         //获取具有schema的dataset
-        lineRow = GetSchemaDataSet(lineRow);
+        lineRow = GetSchemaDataSet(lineRow,config);
         //获取window类型并处理后的dataset
 //        Dataset<Row> lineRowWithWindow = GetWindowDataset(lineRow,socketMap);
         return lineRow;
@@ -115,7 +115,7 @@ public class SocketInput implements BaseInput{
 
 
     //将生成的datastream转化为具有schema的形式
-    public static Dataset<Row> GetSchemaDataSet(Dataset<Row> lineRow){
+    public static Dataset<Row> GetSchemaDataSet(Dataset<Row> lineRow,CreateTableParser.SqlParserResult config){
         Dataset<Row> schemaRow = lineRow
                 .as(Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP()))
                 .flatMap((FlatMapFunction<Tuple2<String, Timestamp>, Tuple2<String, Timestamp>>) t -> {
@@ -126,7 +126,7 @@ public class SocketInput implements BaseInput{
                             return result.iterator();
                         },
                         Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())
-                ).toDF("word", "timestamp");
+                ).toDF("number", "timestamp");
         return schemaRow;
     }
 
