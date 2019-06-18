@@ -27,7 +27,7 @@ public class DataSender extends Thread {
             while (true) {
                 outputStreamWriter.write((int)(1+Math.random()*(100-1+1)));
                 //outputStreamWriter.flush();
-                System.out.println(1);
+//                System.out.println(1);
                 Thread.sleep(10);
             }
         } catch (IOException e) {
