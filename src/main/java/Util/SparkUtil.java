@@ -2,15 +2,21 @@ package Util;
 
 import Source.BaseInput;
 import Source.BaseOutput;
+import org.apache.arrow.vector.types.pojo.ArrowType;
 import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.streaming.StreamingQuery;
+import org.apache.spark.sql.streaming.StreamingQueryException;
 import parser.CreateTableParser;
 
+import parser.InsertSqlParser;
 import parser.SqlParser;
 import parser.SqlTree;
+import scala.Tuple2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +56,8 @@ public class SparkUtil {
             //创建BaseInput接口的实现类的对象sourceByClass
             BaseInput sourceByClass = SparkUtil.getSourceByClass(upperType);
             //使用对象的getDataSetStream转换成Dataset
-            rowTableList.put(key, sourceByClass.getDataSetStream(spark, preDealTableMap.get(key)));
+            Dataset<Row> dataset = sourceByClass.getDataSetStream(spark, preDealTableMap.get(key));
+            rowTableList.put(key, dataset);
         }
         return rowTableList;
     }
@@ -69,8 +76,32 @@ public class SparkUtil {
         return inputBase;
     }
 
-    public static BaseOutput getSinkByClass()
-    {
+    public static StreamingQuery createStreamingQuery(SparkSession spark, SqlTree sqlTree, Dataset<Row> inputDataset) throws StreamingQueryException {
+
+        Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
+        for (String key : preDealSinkMap.keySet()) {
+            String type = (String) sqlTree.getPreDealSinkMap().get(key).getPropMap().get("type");
+            String upperType = SplitSql.upperCaseFirstChar(type) + "Output";
+            BaseOutput sinkByClass = SparkUtil.getSinkByClass(upperType);
+            StreamingQuery streamingQuery = sinkByClass.process(spark,inputDataset,preDealSinkMap.get(key), sqlTree);
+            return streamingQuery;
+        }
         return null;
+    }
+
+
+    public static BaseOutput getSinkByClass(String className)
+    {
+        BaseOutput outputBase = null;
+        try {
+            outputBase = Class.forName(sourceBasePackage + className).asSubclass(BaseOutput.class).newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return outputBase;
     }
 }

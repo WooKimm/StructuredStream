@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.StreamingQueryListener;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
@@ -89,6 +90,11 @@ public class SparkInSql {
         Map<String,Dataset<Row>> tableList = SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
         //第五阶段
+        StreamingQuery streamingQuery = null;
+        for (String key : tableList.keySet())
+        {
+            streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
+        }
 
     }
 }
