@@ -60,7 +60,7 @@ public class SparkInSql {
 ////        System.out.println(children);
 
 
-
+//
 //        DataSender dataSender = new DataSender("sender");
 //        dataSender.start();//向9998端口发送1-100随机数
 
@@ -68,7 +68,7 @@ public class SparkInSql {
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
 
-        String testData = zookeeper.getData("/sqlTest");
+        String testData = zookeeper.getData("/csvSQL");
         //第二阶段
         SqlParser.parseSql(testData);
         SqlTree sqlTree = SqlParser.sqlTree;
@@ -105,17 +105,18 @@ public class SparkInSql {
 
 
         //第四阶段
-        Map<String,Dataset<Row>> tableList = SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
-
+//        Map<String,Dataset<Row>> tableList = SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
+        SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
         //第五阶段
-        StreamingQuery streamingQuery = null;
-        for (String key : tableList.keySet())
-        {
-            streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
-        }
-
-        streamingQuery.awaitTermination();
+//        StreamingQuery streamingQuery = null;
+//        for (String key : tableList.keySet())
+//        {
+//            streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
+//        }
+//
+//        streamingQuery.awaitTermination();
+        SparkUtil.streamingQuery.awaitTermination();
 
     }
 }

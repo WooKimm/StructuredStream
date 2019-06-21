@@ -11,6 +11,7 @@ import parser.SqlTree;
 
 public interface BaseOutput extends Base {
     StreamingQuery process(SparkSession spark, Dataset<Row> dataset, CreateTableParser.SqlParserResult config, SqlTree sqlTree);
+    StreamingQuery process2(SparkSession spark, Dataset<Row> dataset, CreateTableParser.SqlParserResult config);
 
 }
 

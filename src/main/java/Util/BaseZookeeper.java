@@ -124,7 +124,37 @@ public class BaseZookeeper implements Watcher{
         public void closeConnection() throws InterruptedException{
             if (zookeeper != null) {
                 zookeeper.close();
+            }
+
         }
-        }
+
+    public static void main(String[] args) throws Exception{
+        BaseZookeeper zookeeper = new BaseZookeeper();
+        zookeeper.connectZookeeper("127.0.0.1:2181");
+        Stat result = zookeeper.setData("/csvSQL","create env spark(\n" +
+                "    spark.default.parallelism='2',\n" +
+                "    spark.sql.shuffle.partitions='2'\n" +
+                ")WITH(\n" +
+                "    appname='CsvTest'\n" +
+                ");\n" +
+                "\n" +
+                "CREATE TABLE csvTable(\n" +
+                "    name string,\n" +
+                "    age int\n" +
+                ")WITH(\n" +
+                "    type='csv',\n" +
+                "    delimiter=';',\n" +
+                "    path='E:\\Woo\\2019summerPra\\spark1\\filepath'\n" +
+                ");\n" +
+                "\n" +
+                "create SINK console(\n" +
+                ")WITH(\n" +
+                "    type='console',\n" +
+                "    outputmode='complete',\n" +
+                ");\n" +
+                "\n" +
+                "insert into console select name,sum(age) from csvTable group by name;");
+        System.out.println(result);
+    }
 
 }

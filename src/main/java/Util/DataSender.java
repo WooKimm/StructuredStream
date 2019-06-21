@@ -25,8 +25,10 @@ public class DataSender extends Thread {
             outputStreamWriter = new OutputStreamWriter(p.getOutputStream(), "GBK");
             writer = new BufferedWriter(outputStreamWriter);
             while (true) {
-                outputStreamWriter.write((int)(1+Math.random()*(100-1+1)));
-                //outputStreamWriter.flush();
+                String num = String.valueOf((int)(1+Math.random()*(100-1+1)));
+                outputStreamWriter.write(num);
+                outputStreamWriter.write(",\n");
+                outputStreamWriter.flush();
 //                System.out.println(1);
                 Thread.sleep(10);
             }

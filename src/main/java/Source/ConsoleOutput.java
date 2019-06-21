@@ -12,9 +12,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.apache.spark.sql.streaming.Trigger.ProcessingTime;
+
 public class ConsoleOutput implements BaseOutput{
     String outputmode = "complete";
     Map<String, Object> consoleMap = null;
+    Map<String, Object> propMap = null;
     @Override
     public StreamingQuery process(SparkSession spark, Dataset<Row> dataset, CreateTableParser.SqlParserResult config, SqlTree sqlTree) {
         InsertSqlParser.SqlParseResult execSql = sqlTree.getExecSql();
@@ -108,17 +111,58 @@ public class ConsoleOutput implements BaseOutput{
         StreamingQuery query = aftSelectResult.writeStream()
                 .outputMode(outputmode)
                 .format("console")
-                .trigger(Trigger.ProcessingTime(windowDuration))
+                .trigger(ProcessingTime(windowDuration))
                 .start();
 
         return query;
     }
 
     @Override
+    public StreamingQuery process2(SparkSession spark, Dataset<Row> dataset, CreateTableParser.SqlParserResult config) {
+        StreamingQuery query = null;
+
+        propMap = config.getPropMap();
+        checkConfig();
+        //TODO 后面改进 情况可能更多trigger(Trigger.Continuous("1 second")) trigger(Trigger.Once())
+        if (propMap.containsKey("process")) {
+            String process = getProcessTime(propMap.get("process").toString());
+            query = dataset.writeStream()
+                    .outputMode(propMap.get("outputmode").toString())
+                    .format("console")
+                    .option("truncate", "false")
+                    .trigger(ProcessingTime(process))
+                    .start();
+        } else {
+            query = dataset.writeStream()
+                    .outputMode(propMap.get("outputmode").toString())
+                    .option("truncate", "false")
+                    .format("console")
+                    .start();
+        }
+
+        return query;
+    }
+    public static String getProcessTime(String proTimeStr) {
+        //String processTime = "2 seconds";
+        String number;
+        String time;
+        number = proTimeStr.replaceAll("[^(0-9)]", "");
+        time = proTimeStr.replaceAll("[^(A-Za-z)]", "");
+        switch (time) {
+            case "s":
+            case "S":
+                return number + " seconds";
+        }
+        throw new RuntimeException("process的时间是非法的");
+    }
+
+
+
+    @Override
     public void checkConfig() {
-        if(consoleMap.containsKey("outputmode"))
+        if(propMap.containsKey("outputmode"))
         {
-            outputmode = consoleMap.get("outputmode").toString();
+            outputmode = propMap.get("outputmode").toString();
         }
     }
 

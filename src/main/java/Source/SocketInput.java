@@ -130,7 +130,7 @@ public class SocketInput implements BaseInput{
         return schemaRow;
     }
 
-    //对窗口进行解析
+    //todo: 对窗口进行解析
 //    public static Dataset<Row> GetWindowDataset(Dataset<Row> lineRow,Map<String,Object> propMap){
 //        Dataset<Row> waterMarkData = null;
 //        String eventfield;
