@@ -63,7 +63,7 @@ public class SparkInSql {
                 "    outputmode='update'\n" +
                 ");\n" +
                 "\n" +
-                "insert into OutputTable select processwindow,number,str from InputTable group by processwindow,number,str;\n");
+                "insert into OutputTable select processwindow from InputTable group by processwindow;");
 
         String testData = zookeeper.getData("/sqlTest");
         //第二阶段

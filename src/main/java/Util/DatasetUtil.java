@@ -33,7 +33,7 @@ public class DatasetUtil {
             if (filedInfoArr.length < 2) {
                 throw new RuntimeException("the legth of " + fieldRow + " is not right");
             }
-            String filedName = filedInfoArr[0].toUpperCase();
+            String filedName = filedInfoArr[0].toLowerCase();
             String filedType = filedInfoArr[1].toLowerCase();
 
             columnList.add(new ColumnType(filedName,filedType));
@@ -120,6 +120,7 @@ public class DatasetUtil {
 
         Dataset<Row> result = getDatasetWithWindow(transDataSet, windowType, proMap);
 
+        //return transDataSet;
         return result;
     }
 
@@ -222,7 +223,7 @@ public class DatasetUtil {
             if (isProcess) {
                 waterMarkData = transDataSet.withWatermark("timestamp", proMap.get("watermark").toString());
             } else {
-                timeField = proMap.get("eventfield").toString();
+                timeField = proMap.get("eventfield").toString().toLowerCase();
                 waterMarkData = transDataSet.withWatermark(timeField, proMap.get("watermark").toString());
             }
         } else {
