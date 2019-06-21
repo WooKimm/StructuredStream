@@ -1,28 +1,24 @@
 package Util;
 
 import Source.BaseInput;
-import Source.BaseOutput;
-import org.apache.arrow.vector.types.pojo.ArrowType;
+import Target.BaseOutput;
 import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.StreamingQueryException;
 import parser.CreateTableParser;
 
-import parser.InsertSqlParser;
 import parser.SqlParser;
 import parser.SqlTree;
-import scala.Tuple2;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class SparkUtil {
     static String sourceBasePackage = "Source.";
+    static String targetBasePackage = "Target.";
     public static StreamingQuery streamingQuery = null;
     static SparkSession spark = null;
 
@@ -108,14 +104,14 @@ public class SparkUtil {
         return inputBase;
     }
 
-    public static StreamingQuery createStreamingQuery(SparkSession spark, SqlTree sqlTree, Dataset<Row> inputDataset) throws StreamingQueryException {
+    public static StreamingQuery createStreamingQuery(SparkSession spark, SqlTree sqlTree, Map<String,Dataset<Row>> tablelist) throws StreamingQueryException {
 
         Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
         for (String key : preDealSinkMap.keySet()) {
             String type = (String) sqlTree.getPreDealSinkMap().get(key).getPropMap().get("type");
             String upperType = SplitSql.upperCaseFirstChar(type) + "Output";
             BaseOutput sinkByClass = SparkUtil.getSinkByClass(upperType);
-            StreamingQuery streamingQuery = sinkByClass.process(spark,inputDataset,preDealSinkMap.get(key), sqlTree);
+            StreamingQuery streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlTree);
             return streamingQuery;
         }
         return null;
@@ -126,7 +122,7 @@ public class SparkUtil {
     {
         BaseOutput outputBase = null;
         try {
-            outputBase = Class.forName(sourceBasePackage + className).asSubclass(BaseOutput.class).newInstance();
+            outputBase = Class.forName(targetBasePackage + className).asSubclass(BaseOutput.class).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

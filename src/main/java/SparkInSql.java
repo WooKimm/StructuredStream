@@ -33,6 +33,7 @@ public class SparkInSql {
 
 
 
+<<<<<<< HEAD
 //        List<String> children = zookeeper.getChildren("/");
 
 //        Stat stat= zookeeper.setData("/sqlTest","create env spark(\n" +
@@ -63,12 +64,45 @@ public class SparkInSql {
 //
 //        DataSender dataSender = new DataSender("sender");
 //        dataSender.start();//向9998端口发送1-100随机数
+=======
+
+        //DataSender dataSender = new DataSender("sender");
+        //dataSender.start();//向9998端口发送1-100随机数
+>>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
 
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
 
+<<<<<<< HEAD
         String testData = zookeeper.getData("/csvSQL");
+=======
+                Stat stat= zookeeper.setData("/sqlTest","create env spark(\n" +
+                "    spark.default.parallelism='2',\n" +
+                "    spark.sql.shuffle.partitions='2'\n" +
+                ")WITH(\n" +
+                "    appname='WooTest'\n" +
+                ");" +
+                "CREATE TABLE InputTable(\n" +
+                "    number Int,\n" +
+                        "str String\n" +
+                ")WITH(\n" +
+                "    type='socket',\n" +
+                "    host='localhost',\n" +
+                "    processwindow='10 seconds,5 seconds',\n" +
+                "    port='9998'\n" +
+                ");\n" +
+                "\n" +
+                "CREATE SINK OutputTable(\n" +
+                ")WITH(\n" +
+                "    type='console',\n" +
+                "    outputmode='update'\n" +
+                ");\n" +
+                "\n" +
+                "insert into OutputTable select processwindow,number,str from InputTable group by processwindow,number,str;\n");
+
+        String testData = zookeeper.getData("/sqlTest");
+>>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
         //第二阶段
         SqlParser.parseSql(testData);
         SqlTree sqlTree = SqlParser.sqlTree;
@@ -109,6 +143,7 @@ public class SparkInSql {
         SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
         //第五阶段
+<<<<<<< HEAD
 //        StreamingQuery streamingQuery = null;
 //        for (String key : tableList.keySet())
 //        {
@@ -118,5 +153,17 @@ public class SparkInSql {
 //        streamingQuery.awaitTermination();
         SparkUtil.streamingQuery.awaitTermination();
 
+=======
+        StreamingQuery streamingQuery = null;
+        /*
+        for (String key : tableList.keySet())
+        {
+            streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
+        }
+        */
+        streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
+
+        streamingQuery.awaitTermination();
+>>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
     }
 }

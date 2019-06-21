@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Maven: commons-io:commons-io:2.4">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://D:/maven/apache-maven-3.6.1/repository/commons-io/commons-io/2.4/commons-io-2.4.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -8,6 +9,15 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://D:/maven/apache-maven-3.6.1/repository/commons-io/commons-io/2.4/commons-io-2.4-sources.jar!/" />
+=======
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.4/commons-io-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.4/commons-io-2.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.4/commons-io-2.4-sources.jar!/" />
+>>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
     </SOURCES>
   </library>
 </component>

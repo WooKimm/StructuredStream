@@ -6,7 +6,5 @@ import org.apache.spark.sql.SparkSession;
 
 public interface Base {
     void checkConfig();
-
-
     Dataset<Row> prepare(SparkSession spark);
 }

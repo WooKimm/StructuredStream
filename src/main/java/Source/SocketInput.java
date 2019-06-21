@@ -1,77 +1,35 @@
 package Source;
 
+import Util.DatasetUtil;
 import Util.SparkUtil;
+import org.aopalliance.reflect.Class;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.sql.*;
 import parser.CreateTableParser;
+import scala.Product;
 import scala.Tuple2;
+import scala.Tuple3;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SocketInput implements BaseInput{
 
     Map<String, Object> socketMap = null;
-    String windowType = "";
+    CreateTableParser.SqlParserResult config = null;
     Boolean isProcess = true;
+    Dataset<Row> result = null;
 
     public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
         socketMap = config.getPropMap();
+        this.config = config;
         checkConfig();
         beforeInput();
         //获取prepare后具有field的dataset
-        Dataset<Row> lineRow = prepare(spark);
-        //获取具有schema的dataset
-        lineRow = GetSchemaDataSet(lineRow,config);
-        //获取window类型并处理后的dataset
-//        Dataset<Row> lineRowWithWindow = GetWindowDataset(lineRow,socketMap);
-        return lineRow;
-    }
-
-    //提取窗口信息
-    @Override
-    public void beforeInput() {
-        String delimiter = null;
-        String proWindow = null;
-        String eventWindow = null;
-        try {
-            delimiter = socketMap.get("delimiter").toString();
-            //判断window类型
-        } catch (Exception e) {
-            System.out.println("分隔符未配置，默认为逗号");
-        }
-        try {
-            proWindow = socketMap.get("processwindow").toString();
-            eventWindow = socketMap.get("eventwindow").toString();
-            //判断window类型
-        } catch (Exception e) {
-
-        }
-        if (delimiter == null) {
-            socketMap.put("delimiter", ",");
-        }
-        if (proWindow != null) {
-            windowType = "process " + proWindow;
-        }
-        if (eventWindow != null) {
-            windowType = "event " + eventWindow;
-        }
-        if (socketMap.containsKey("processwindow")) {
-            isProcess = true;
-            socketMap.put("isProcess", true);
-        }
-        if (socketMap.containsKey("eventwindow")) {
-            isProcess = false;
-            socketMap.put("isProcess", false);
-        }
-    }
-
-    @Override
-    public void afterInput() {
-
+        result = prepare(spark);
+        //获取具有schema和window的dataset
+        afterInput();
+        return result;
     }
 
     //检查config
@@ -86,7 +44,31 @@ public class SocketInput implements BaseInput{
         }
     }
 
-    //将生成的datastream转化为具有field的形式
+    //提取窗口信息
+    @Override
+    public void beforeInput() {
+        String delimiter = null;
+        try {
+            delimiter = socketMap.get("delimiter").toString();
+            //判断window类型
+        } catch (Exception e) {
+            System.out.println("分隔符未配置，默认为逗号");
+        }
+
+        if (delimiter == null) {
+            socketMap.put("delimiter", ",");
+        }
+        if (socketMap.containsKey("processwindow")) {
+            isProcess = true;
+            socketMap.put("isProcess", true);
+        }
+        if (socketMap.containsKey("eventwindow")) {
+            isProcess = false;
+            socketMap.put("isProcess", false);
+        }
+    }
+
+    //注册生成最初始的dataframe，只有一列，列名value
     @Override
     public Dataset<Row> prepare(SparkSession spark) {
         Dataset<Row> lines = null;
@@ -109,11 +91,19 @@ public class SocketInput implements BaseInput{
         return lines;
     }
 
+    @Override
+    public void afterInput() {
+        //这里必须要用final，否则delimiter会被清空
+        final String delimiter = socketMap.get("delimiter").toString();
+        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, delimiter, config.getPropMap());
+    }
+
     public String getName() {
         return "name";
     }
 
 
+<<<<<<< HEAD
     //将生成的datastream转化为具有schema的形式
     public static Dataset<Row> GetSchemaDataSet(Dataset<Row> lineRow,CreateTableParser.SqlParserResult config){
         Dataset<Row> schemaRow = lineRow
@@ -193,6 +183,8 @@ public class SocketInput implements BaseInput{
 //
 //        return windowData;
 //    }
+=======
+>>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
 
 
 }

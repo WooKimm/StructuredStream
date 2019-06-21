@@ -152,11 +152,12 @@
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
-            <version>3.0.8</version>
+            <version>3.0.9</version>
 
         </dependency>
 
         <dependency>
+<<<<<<< HEAD
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka_2.11</artifactId>
             <version>1.5.1</version>
@@ -168,6 +169,57 @@
             <version>2.4.0</version>
         </dependency>
 
+=======
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+            <exclusions>
+
+                <exclusion>
+
+                    <groupId>org.codehaus.janino</groupId>
+
+                    <artifactId>janino</artifactId>
+
+                </exclusion>
+
+                <exclusion>
+
+                    <groupId>org.codehaus.janino</groupId>
+
+                    <artifactId>commons-compiler</artifactId>
+
+                </exclusion>
+
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+            <exclusions>
+
+                <exclusion>
+
+                    <groupId>org.codehaus.janino</groupId>
+
+                    <artifactId>janino</artifactId>
+
+                </exclusion>
+
+                <exclusion>
+
+                    <groupId>org.codehaus.janino</groupId>
+
+                    <artifactId>commons-compiler</artifactId>
+
+                </exclusion>
+
+            </exclusions>
+        </dependency>
+>>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
 
     </dependencies>
 
