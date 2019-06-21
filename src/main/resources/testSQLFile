@@ -11,7 +11,6 @@ CREATE TABLE InputTable(
     type='socket',
     host='localhost',
     processwindow='10 seconds,5 seconds',
-    eventwindow
     port='9998'
 );
 

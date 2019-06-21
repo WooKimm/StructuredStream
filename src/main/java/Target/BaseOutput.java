@@ -1,4 +1,4 @@
-package Source;
+package Target;
 
 import base.Base;
 import org.apache.spark.sql.Dataset;
@@ -9,8 +9,10 @@ import parser.CreateTableParser;
 import parser.InsertSqlParser;
 import parser.SqlTree;
 
+import java.util.Map;
+
 public interface BaseOutput extends Base {
-    StreamingQuery process(SparkSession spark, Dataset<Row> dataset, CreateTableParser.SqlParserResult config, SqlTree sqlTree);
+    StreamingQuery process(SparkSession spark, Map<String,Dataset<Row>> tablelist, CreateTableParser.SqlParserResult config, SqlTree sqlTree);
 
 }
 
