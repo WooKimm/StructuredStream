@@ -39,7 +39,6 @@ public class InsertSqlParser implements IParser {
         querySql = querySql.toLowerCase().replace("`","").replace(", ",",");
         sqlParseResult.setQuerySql(querySql);
         //sqlTree.addExecSql(sqlParseResult);
-
         sqlTree.setExecSql(sqlParseResult);
     }
 
@@ -96,7 +95,7 @@ public class InsertSqlParser implements IParser {
 
         private Set<String> sourceTableList = newHashSet();
 
-        private Set<String> targetTableList = newHashSet();
+        private Set<String> targetTableList = newHashSet();//输出池应该只支持一个
 
         private String targetTable;
 
@@ -104,13 +103,9 @@ public class InsertSqlParser implements IParser {
 
         private String querySql;
 
-        public void addSourceTable(String sourceTable) {
-            sourceTableList.add(sourceTable);
-        }
+        public void addSourceTable(String sourceTable) { sourceTableList.add(sourceTable); }
 
-        public void addTargetTable(String targetTable) {
-            targetTableList.add(targetTable);
-        }
+        public void addTargetTable(String targetTable) { targetTableList.add(targetTable); }
 
         public Set<String> getSourceTableList() {
             return sourceTableList;

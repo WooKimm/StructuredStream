@@ -17,7 +17,8 @@ CREATE TABLE InputTable(
 CREATE SINK OutputTable(
 )WITH(
     type='console',
-    outputmode='update'
+    outputmode='update',
+    trigger='2 seconds'
 );
 
 insert into OutputTable select processwindow,number,count(*) from InputTable group by processwindow,number;

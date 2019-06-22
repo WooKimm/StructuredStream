@@ -9,9 +9,13 @@ import parser.CreateTableParser;
 public interface BaseInput extends Base {
     /*无论是什么类型的输入，创建一个Dstream以供后者使用*/
     Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config);
+
+    //是对分隔符和isProcess的判断
     void beforeInput();
-    /*输出后要做的事情，例如更新偏移量*/
+
+    /*转为schame的数据，再加上window之后返回*/
     void afterInput();
+
     String getName();
 }
 

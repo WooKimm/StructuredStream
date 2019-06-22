@@ -23,6 +23,7 @@ import parser.InsertSqlParser;
 import parser.SqlParser;
 import parser.SqlTree;
 
+import static Util.SparkUtil.createStreamingQuery;
 import static parser.SqlParser.parseSql;
 
 public class SparkInSql {
@@ -40,30 +41,8 @@ public class SparkInSql {
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-
-                Stat stat= zookeeper.setData("/sqlTest","create env spark(\n" +
-                "    spark.default.parallelism='2',\n" +
-                "    spark.sql.shuffle.partitions='2'\n" +
-                ")WITH(\n" +
-                "    appname='WooTest'\n" +
-                ");" +
-                "CREATE TABLE InputTable(\n" +
-                "    number Int,\n" +
-                        "str String\n" +
-                ")WITH(\n" +
-                "    type='socket',\n" +
-                "    host='localhost',\n" +
-                "    processwindow='10 seconds,5 seconds',\n" +
-                "    port='9998'\n" +
-                ");\n" +
-                "\n" +
-                "CREATE SINK OutputTable(\n" +
-                ")WITH(\n" +
-                "    type='console',\n" +
-                "    outputmode='update'\n" +
-                ");\n" +
-                "\n" +
-                "insert into OutputTable select processwindow from InputTable group by processwindow;");
+        String sql = SparkUtil.getSqlFromSource();
+        zookeeper.setData("/sqlTest", sql);
 
         String testData = zookeeper.getData("/sqlTest");
         //第二阶段
@@ -106,15 +85,10 @@ public class SparkInSql {
 
 
         //第五阶段
-        StreamingQuery streamingQuery = null;
-        /*
-        for (String key : tableList.keySet())
-        {
-            streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList.get(key));//只支持一个sourse table
-        }
-        */
-        streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
 
+        StreamingQuery streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
         streamingQuery.awaitTermination();
+
+        //spark.streams().awaitAnyTermination();//todo:多个执行语句同时，有问题
     }
 }
