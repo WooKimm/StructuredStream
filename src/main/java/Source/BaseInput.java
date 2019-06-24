@@ -8,7 +8,7 @@ import parser.CreateTableParser;
 //输入源的超类
 public interface BaseInput extends Base {
     /*无论是什么类型的输入，创建一个Dstream以供后者使用*/
-    Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config);
+    Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config, int id);//id是为了用来确定是第几个源表
 
     //是对分隔符和isProcess的判断
     void beforeInput();

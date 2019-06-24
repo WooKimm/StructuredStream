@@ -11,7 +11,7 @@ CREATE TABLE orcTable(
 )WITH(
     type='orc',
     processwindow='10 seconds,10 seconds',
-    path='filepath/orc'
+    path='filepath/orc/people.orc'
 );
 
 create SINK console(

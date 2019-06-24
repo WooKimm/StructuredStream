@@ -20,11 +20,13 @@ public class CsvInput implements BaseInput {
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
     Boolean isProcess = true;
+    int id;
 
     //生成datastream
     @Override
-    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
+    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config, int id) {
         csvMap = config.getPropMap();
+        this.id = id;
         this.config = config;
         checkConfig();
         beforeInput();

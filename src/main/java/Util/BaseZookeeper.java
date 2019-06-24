@@ -155,8 +155,8 @@ public class BaseZookeeper implements Watcher{
     public static void main(String[] args) throws Exception{
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        String data = zookeeper.readToString("E:\\Woo\\2019summerPra\\spark1\\src\\main\\resources\\testJsonSQL");
-        String result = zookeeper.createNode("/jsonSQL",data);
+//        String data = zookeeper.readToString("E:\\Woo\\2019summerPra\\spark1\\src\\main\\resources\\testJsonSQL");
+//        String result = zookeeper.createNode("/jsonSQL",data);
 
 
 //        Stat result = zookeeper.setData("/csvSQL","create env spark(\n" +
@@ -185,7 +185,7 @@ public class BaseZookeeper implements Watcher{
 //                "insert into console select * from csvTable;");
 
 
-        System.out.println(result);
+        //System.out.println(result);
 //        List<String> children = zookeeper.getChildren("/");
 //        for(String child:children){
 //            System.out.println(child);
@@ -211,6 +211,9 @@ public class BaseZookeeper implements Watcher{
                 break;
             case "orc":
                 file = new File("src/main/resources/testOrcFile");
+                break;
+            case "parquet":
+                file = new File("src/main/resources/testParquetSQL");
                 break;
         }
         BufferedReader reader = null;

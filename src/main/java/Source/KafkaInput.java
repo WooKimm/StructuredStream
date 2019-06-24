@@ -19,10 +19,12 @@ public class KafkaInput implements BaseInput{
     CreateTableParser.SqlParserResult config = null;
     Boolean isProcess = true;
     Dataset<Row> result = null;
+    int id;
 
     @Override
-    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
+    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config, int id) {
         kafkaMap = config.getPropMap();
+        this.id = id;
         this.config = config;
         checkConfig();
         beforeInput();
@@ -58,7 +60,7 @@ public class KafkaInput implements BaseInput{
     public void afterInput() {
         //这里必须要用final，否则delimiter会被清空
         final String delimiter = kafkaMap.get("delimiter").toString();
-        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, delimiter, config.getPropMap());
+        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
     }
 
     @Override

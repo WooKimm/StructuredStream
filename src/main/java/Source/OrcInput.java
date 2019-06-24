@@ -21,11 +21,13 @@ public class OrcInput implements BaseInput{
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
     Boolean isProcess = true;
+    int id;
 
     //生成datastream
     @Override
-    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
+    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config,int id) {
         orcMap = config.getPropMap();
+        this.id = id;
         this.config = config;
         checkConfig();
         beforeInput();
@@ -39,6 +41,8 @@ public class OrcInput implements BaseInput{
         return result;
 
     }
+
+
 
     //给一个默认的分隔符
     @Override
