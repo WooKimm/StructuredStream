@@ -43,7 +43,7 @@ public class SparkInSql {
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        String sql = BaseZookeeper.getSqlFromSource("socket");
+        String sql = BaseZookeeper.getSqlFromSource("orc");
         zookeeper.setData("/sqlTest", sql);
 
 

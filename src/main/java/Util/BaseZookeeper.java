@@ -209,6 +209,9 @@ public class BaseZookeeper implements Watcher{
             case "socket":
                 file = new File("src/main/resources/testSQLFile");
                 break;
+            case "orc":
+                file = new File("src/main/resources/testOrcFile");
+                break;
         }
         BufferedReader reader = null;
         String sql = "";
