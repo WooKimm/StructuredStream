@@ -36,8 +36,9 @@ public class SparkInSql {
 
 
 
-        //DataSender dataSender = new DataSender("sender");
-        //dataSender.start();//向9998端口发送1-100随机数
+//        DataSender dataSender = new DataSender("sender");
+//        dataSender.start();//向9998端口发送1-100随机数
+
 
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
@@ -45,7 +46,11 @@ public class SparkInSql {
         String sql = BaseZookeeper.getSqlFromSource();
         zookeeper.setData("/sqlTest", sql);
 
-        String testData = zookeeper.getData("/sqlTest");
+
+
+        String testData = zookeeper.getData("/jsonSQL");
+
+
         //第二阶段
         SqlParser.parseSql(testData);
         SqlTree sqlTree = SqlParser.sqlTree;
@@ -82,14 +87,14 @@ public class SparkInSql {
 
 
         //第四阶段
-        Map<String,Dataset<Row>> tableList = SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
-
+        Map<String,Dataset<Row>> tableList = SparkUtil.getTableList(spark,SqlParser.sqlTree);
+//        SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
         //第五阶段
 
-        StreamingQuery streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
+        StreamingQuery streamingQuery = null;
+        streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
         streamingQuery.awaitTermination();
-
         //spark.streams().awaitAnyTermination();//todo:多个执行语句同时，有问题
     }
 }

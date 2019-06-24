@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21cdc3bb-c1d8-4f89-a204-e166979e527a" name="Default Changelist" comment="">
+    <list default="true" id="86a4aa40-ce97-4dd4-aa3b-6d65eb3736b5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_101tec_zkclient_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_yammer_metrics_metrics_core_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_kafka_kafka_2_11_0_8_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_spark_spark_streaming_kafka_2_11_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/filepath/people.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/filepath/people.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/filepath/people.orc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Source/CsvInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Source/JsonInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Source/KafkaInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Tests/KafkaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Util/OrcWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Util/SchemaDataset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testCsvSQL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testJsonSQL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testKafkaSQL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/testCsvSQL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/testJsonSQL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/testKafkaSQL" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_modules_scala_xml_2_11_1_0_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_modules_scala_xml_2_11_1_0_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spark1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spark1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Source/BaseInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Source/BaseInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SparkInSql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SparkInSql.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Target/BaseOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Target/BaseOutput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Util/BaseZookeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/BaseZookeeper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Util/DataSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/DataSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Util/DatasetUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/DatasetUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Util/SparkUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/SparkUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Util/SplitSql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/SplitSql.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SimpleApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Source/BaseInput.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Source/SocketInput.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SparkInSql$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SparkInSql.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Target/BaseOutput.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Target/ConsoleOutput.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/BaseZookeeper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/ColumnType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/DataSender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/DatasetUtil$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/DatasetUtil$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/DatasetUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/SparkUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/SplitSql.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/base/Base.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/CreateEnvParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/CreateFuncParser$SqlParserResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/CreateFuncParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/CreateSinkParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/CreateTableParser$SqlParserResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/CreateTableParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/IParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/InsertSqlParser$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/InsertSqlParser$SqlParseResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/InsertSqlParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/SqlParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/SqlTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/parser/TableInfo.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,75 +77,55 @@
     <session id="-920792669">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.6" value="2" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="0-SNAPSHOT" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="java" value="2" />
-          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="1" />
           <entry key="JAVA" value="2" />
-          <entry key="UML" value="1" />
-          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="32" />
+          <entry key="java" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="32" />
+          <entry key="JAVA" value="2" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SparkInSql.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="89" column="65" selection-start-line="89" selection-start-column="50" selection-end-line="89" selection-end-column="70" />
+            <state relative-caret-position="463">
+              <caret line="96" column="42" lean-forward="true" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Util/BaseZookeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-            </state>
-          </provider>
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Util/SparkUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            <state relative-caret-position="-2204">
+              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -102,8 +138,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Util/SparkUtil.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/SparkInSql.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Util/BaseZookeeper.java" />
       </list>
     </option>
   </component>
@@ -127,14 +164,16 @@
     <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,13 +215,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561342051514" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561342503206" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -201,30 +239,34 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="21cdc3bb-c1d8-4f89-a204-e166979e527a" name="Default Changelist" comment="" />
-      <created>1561340555182</created>
+      <changelist id="86a4aa40-ce97-4dd4-aa3b-6d65eb3736b5" name="Default Changelist" comment="" />
+      <created>1561342226376</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1561340555182</updated>
-      <workItem from="1561340560245" duration="881000" />
-      <workItem from="1561341553725" duration="203000" />
-      <workItem from="1561341806523" duration="244000" />
+      <updated>1561342226376</updated>
+      <workItem from="1561342228750" duration="266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1328000" />
+    <option name="totallyTimeSpent" value="266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19369973" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -232,22 +274,16 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" />
-      <window_info anchor="right" id="Key Promoter X" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Maven Projects" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Bean Validation" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Maven Projects" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,335 +293,22 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Util/SparkUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SparkInSql.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="89" column="65" selection-start-line="89" selection-start-column="50" selection-end-line="89" selection-end-column="70" />
+        <state relative-caret-position="463">
+          <caret line="96" column="42" lean-forward="true" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="uml://MAVEN/com.sparkstart:spark1:1.0-SNAPSHOT">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>MAVEN</ID>
-          <OriginalElement>com.sparkstart:spark1:1.0-SNAPSHOT</OriginalElement>
-          <nodes>
-            <node x="" y="">com.sparkstart:spark1:1.0-SNAPSHOT</node>
-            <node x="" y="">junit:junit:jar:4.11</node>
-            <node x="" y="">junit:junit:jar:4.11/org.hamcrest:hamcrest-core:jar:1.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/com.univocity:univocity-parsers:jar:2.7.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-sketch_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro:jar:1.8.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro:jar:1.8.2/com.thoughtworks.paranamer:paranamer:jar:2.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro:jar:1.8.2/org.xerial.snappy:snappy-java:jar:1.1.1.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro:jar:1.8.2/org.apache.commons:commons-compress:jar:1.8.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro:jar:1.8.2/org.tukaani:xz:jar:1.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro:jar:1.8.2/org.slf4j:slf4j-api:jar:1.7.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro-mapred:jar:hadoop2:1.8.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro-mapred:jar:hadoop2:1.8.2/org.apache.avro:avro-ipc:jar:1.8.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro-mapred:jar:hadoop2:1.8.2/org.apache.avro:avro-ipc:jar:1.8.2/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro-mapred:jar:hadoop2:1.8.2/commons-codec:commons-codec:jar:1.9</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.avro:avro-mapred:jar:hadoop2:1.8.2/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.twitter:chill_2.11:jar:0.9.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.twitter:chill_2.11:jar:0.9.3/com.esotericsoftware:kryo-shaded:jar:4.0.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.twitter:chill_2.11:jar:0.9.3/com.esotericsoftware:kryo-shaded:jar:4.0.2/com.esotericsoftware:minlog:jar:1.3.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.twitter:chill_2.11:jar:0.9.3/com.esotericsoftware:kryo-shaded:jar:4.0.2/org.objenesis:objenesis:jar:2.5.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.twitter:chill-java:jar:0.9.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/com.google.guava:guava:jar:11.0.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-cli:commons-cli:jar:1.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.commons:commons-math3:jar:3.1.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/xmlenc:xmlenc:jar:0.52</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-httpclient:commons-httpclient:jar:3.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-httpclient:commons-httpclient:jar:3.1/commons-codec:commons-codec:jar:1.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-codec:commons-codec:jar:1.4</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-io:commons-io:jar:2.4</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-collections:commons-collections:jar:3.2.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-lang:commons-lang:jar:2.6</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-configuration:commons-configuration:jar:1.6</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-configuration:commons-configuration:jar:1.6/commons-lang:commons-lang:jar:2.4</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-configuration:commons-configuration:jar:1.6/commons-digester:commons-digester:jar:1.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-configuration:commons-configuration:jar:1.6/commons-digester:commons-digester:jar:1.8/commons-beanutils:commons-beanutils:jar:1.7.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/commons-configuration:commons-configuration:jar:1.6/commons-beanutils:commons-beanutils-core:jar:1.8.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.avro:avro:jar:1.7.4</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/com.google.code.gson:gson:jar:2.2.4</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/commons-codec:commons-codec:jar:1.10</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.httpcomponents:httpclient:jar:4.2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.apache.directory.server:apacheds-i18n:jar:2.0.0-M15</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.apache.directory.server:apacheds-i18n:jar:2.0.0-M15/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.apache.directory.api:api-asn1-api:jar:1.0.0-M20</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.apache.directory.api:api-asn1-api:jar:1.0.0-M20/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.apache.directory.api:api-util:jar:1.0.0-M20</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.apache.directory.api:api-util:jar:1.0.0-M20/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.directory.server:apacheds-kerberos-codec:jar:2.0.0-M15/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.hadoop:hadoop-auth:jar:2.6.5/org.apache.zookeeper:zookeeper:jar:3.4.6</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.curator:curator-client:jar:2.6.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.curator:curator-client:jar:2.6.0/org.slf4j:slf4j-api:jar:1.7.6</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.curator:curator-client:jar:2.6.0/org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.curator:curator-client:jar:2.6.0/com.google.guava:guava:jar:16.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/com.google.code.findbugs:jsr305:jar:1.3.9</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.htrace:htrace-core:jar:3.0.4</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.htrace:htrace-core:jar:3.0.4/com.google.guava:guava:jar:12.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-common:jar:2.6.5/org.apache.commons:commons-compress:jar:1.4.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/org.mortbay.jetty:jetty-util:jar:6.1.26</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/commons-codec:commons-codec:jar:1.10</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/io.netty:netty:jar:3.6.2.Final</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/xerces:xercesImpl:jar:2.9.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-hdfs:jar:2.6.5/xerces:xercesImpl:jar:2.9.1/xml-apis:xml-apis:jar:1.3.04</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.apache.hadoop:hadoop-yarn-client:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.apache.hadoop:hadoop-yarn-client:jar:2.6.5/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.apache.hadoop:hadoop-yarn-client:jar:2.6.5/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.apache.hadoop:hadoop-yarn-server-common:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.apache.hadoop:hadoop-yarn-server-common:jar:2.6.5/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.apache.hadoop:hadoop-yarn-server-common:jar:2.6.5/org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-common:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-shuffle:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-shuffle:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-shuffle:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-app:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-yarn-api:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-yarn-api:jar:2.6.5/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-yarn-api:jar:2.6.5/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/javax.xml.bind:jaxb-api:jar:2.2.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/javax.xml.bind:jaxb-api:jar:2.2.2/javax.xml.stream:stax-api:jar:1.0-2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/javax.xml.bind:jaxb-api:jar:2.2.2/javax.activation:activation:jar:1.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/org.apache.commons:commons-compress:jar:1.8.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/commons-codec:commons-codec:jar:1.10</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/org.codehaus.jackson:jackson-jaxrs:jar:1.9.13</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/org.codehaus.jackson:jackson-xc:jar:1.9.13</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.apache.hadoop:hadoop-yarn-common:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-core:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:2.6.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:2.6.5/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.hadoop:hadoop-client:jar:2.6.5/org.apache.hadoop:hadoop-annotations:jar:2.6.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-launcher_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-kvstore_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-kvstore_2.11:jar:2.4.0/org.fusesource.leveldbjni:leveldbjni-all:jar:1.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-kvstore_2.11:jar:2.4.0/com.fasterxml.jackson.core:jackson-core:jar:2.6.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-kvstore_2.11:jar:2.4.0/com.fasterxml.jackson.core:jackson-annotations:jar:2.6.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-network-common_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-network-common_2.11:jar:2.4.0/com.fasterxml.jackson.core:jackson-annotations:jar:2.6.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-network-common_2.11:jar:2.4.0/com.google.code.findbugs:jsr305:jar:3.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-network-shuffle_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-unsafe_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.spark:spark-unsafe_2.11:jar:2.4.0/com.google.code.findbugs:jsr305:jar:3.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/javax.activation:activation:jar:1.1.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.curator:curator-recipes:jar:2.6.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.curator:curator-recipes:jar:2.6.0/org.apache.curator:curator-framework:jar:2.6.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.curator:curator-recipes:jar:2.6.0/org.apache.curator:curator-framework:jar:2.6.0/org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.curator:curator-recipes:jar:2.6.0/org.apache.curator:curator-framework:jar:2.6.0/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.curator:curator-recipes:jar:2.6.0/org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.curator:curator-recipes:jar:2.6.0/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/javax.servlet:javax.servlet-api:jar:3.1.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.commons:commons-math3:jar:3.4.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.google.code.findbugs:jsr305:jar:3.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.slf4j:slf4j-api:jar:1.7.16</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.slf4j:jul-to-slf4j:jar:1.7.16</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.slf4j:jul-to-slf4j:jar:1.7.16/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.slf4j:jcl-over-slf4j:jar:1.7.16</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.slf4j:jcl-over-slf4j:jar:1.7.16/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.slf4j:slf4j-log4j12:jar:1.7.16</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.ning:compress-lzf:jar:1.0.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.xerial.snappy:snappy-java:jar:1.1.7.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.lz4:lz4-java:jar:1.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.github.luben:zstd-jni:jar:1.3.2-2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.roaringbitmap:RoaringBitmap:jar:0.5.11</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/commons-net:commons-net:jar:3.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.scala-lang:scala-library:jar:2.11.11</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.scala-lang:scala-library:jar:2.11.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.json4s:json4s-ast_2.11:jar:3.5.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.json4s:json4s-ast_2.11:jar:3.5.3/org.scala-lang:scala-library:jar:2.11.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.json4s:json4s-scalap_2.11:jar:3.5.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.json4s:json4s-scalap_2.11:jar:3.5.3/org.scala-lang:scala-library:jar:2.11.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/com.thoughtworks.paranamer:paranamer:jar:2.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.scala-lang.modules:scala-xml_2.11:jar:1.0.6</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.json4s:json4s-jackson_2.11:jar:3.5.3/org.json4s:json4s-core_2.11:jar:3.5.3/org.scala-lang.modules:scala-xml_2.11:jar:1.0.6/org.scala-lang:scala-library:jar:2.11.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/javax.ws.rs:javax.ws.rs-api:jar:2.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/org.glassfish.hk2:hk2-api:jar:2.4.0-b34</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/org.glassfish.hk2:hk2-api:jar:2.4.0-b34/org.glassfish.hk2:hk2-utils:jar:2.4.0-b34</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/org.glassfish.hk2:hk2-api:jar:2.4.0-b34/org.glassfish.hk2.external:aopalliance-repackaged:jar:2.4.0-b34</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/org.glassfish.hk2.external:javax.inject:jar:2.4.0-b34</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/org.glassfish.hk2:hk2-locator:jar:2.4.0-b34</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-client:jar:2.22.2/org.glassfish.hk2:hk2-locator:jar:2.4.0-b34/org.javassist:javassist:jar:3.18.1-GA</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-common:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-common:jar:2.22.2/javax.annotation:javax.annotation-api:jar:1.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-common:jar:2.22.2/org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-common:jar:2.22.2/org.glassfish.hk2:osgi-resource-locator:jar:1.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-server:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-server:jar:2.22.2/org.glassfish.jersey.media:jersey-media-jaxb:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.core:jersey-server:jar:2.22.2/javax.validation:validation-api:jar:1.1.0.Final</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.containers:jersey-container-servlet:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.glassfish.jersey.containers:jersey-container-servlet-core:jar:2.22.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.netty:netty-all:jar:4.1.17.Final</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.netty:netty:jar:3.9.9.Final</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.clearspring.analytics:stream:jar:2.7.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-core:jar:3.1.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-core:jar:3.1.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-jvm:jar:3.1.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-jvm:jar:3.1.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-json:jar:3.1.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-json:jar:3.1.5/com.fasterxml.jackson.core:jackson-databind:jar:2.4.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-json:jar:3.1.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-graphite:jar:3.1.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/io.dropwizard.metrics:metrics-graphite:jar:3.1.5/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/org.scala-lang:scala-library:jar:2.11.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/org.scala-lang:scala-reflect:jar:2.11.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/com.fasterxml.jackson.core:jackson-core:jar:2.6.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/com.fasterxml.jackson.core:jackson-annotations:jar:2.6.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/com.fasterxml.jackson.core:jackson-databind:jar:2.6.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/com.fasterxml.jackson.module:jackson-module-paranamer:jar:2.7.9</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/com.fasterxml.jackson.module:jackson-module-scala_2.11:jar:2.6.7.1/com.fasterxml.jackson.module:jackson-module-paranamer:jar:2.7.9/com.thoughtworks.paranamer:paranamer:jar:2.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.ivy:ivy:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/oro:oro:jar:2.0.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/net.razorvine:pyrolite:jar:4.13</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/net.sf.py4j:py4j:jar:0.10.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-core_2.11:jar:2.4.0/org.apache.commons:commons-crypto:jar:1.0.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-catalyst_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-catalyst_2.11:jar:2.4.0/org.scala-lang:scala-reflect:jar:2.11.12</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-catalyst_2.11:jar:2.4.0/org.scala-lang.modules:scala-parser-combinators_2.11:jar:1.1.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-catalyst_2.11:jar:2.4.0/org.antlr:antlr4-runtime:jar:4.7</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-catalyst_2.11:jar:2.4.0/commons-codec:commons-codec:jar:1.10</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.spark:spark-tags_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2/org.apache.orc:orc-shims:jar:1.5.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2/org.apache.orc:orc-shims:jar:1.5.2/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2/com.google.protobuf:protobuf-java:jar:2.5.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2/io.airlift:aircompressor:jar:0.10</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-core:jar:nohive:1.5.2/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-mapreduce:jar:nohive:1.5.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-mapreduce:jar:nohive:1.5.2/commons-codec:commons-codec:jar:1.10</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.orc:orc-mapreduce:jar:nohive:1.5.2/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-column:jar:1.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-column:jar:1.10.0/org.apache.parquet:parquet-common:jar:1.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-column:jar:1.10.0/org.apache.parquet:parquet-common:jar:1.10.0/org.slf4j:slf4j-api:jar:1.7.22</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-column:jar:1.10.0/org.apache.parquet:parquet-encoding:jar:1.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0/org.apache.parquet:parquet-format:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0/org.apache.parquet:parquet-format:jar:2.4.0/org.slf4j:slf4j-api:jar:1.7.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0/org.apache.parquet:parquet-jackson:jar:1.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0/org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0/org.codehaus.jackson:jackson-core-asl:jar:1.9.13</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.parquet:parquet-hadoop:jar:1.10.0/org.xerial.snappy:snappy-java:jar:1.1.2.6</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/com.fasterxml.jackson.core:jackson-databind:jar:2.6.7.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/com.fasterxml.jackson.core:jackson-databind:jar:2.6.7.1/com.fasterxml.jackson.core:jackson-annotations:jar:2.6.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/com.fasterxml.jackson.core:jackson-databind:jar:2.6.7.1/com.fasterxml.jackson.core:jackson-core:jar:2.6.3</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/org.apache.arrow:arrow-format:jar:0.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/org.apache.arrow:arrow-memory:jar:0.10.0</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/org.apache.arrow:arrow-memory:jar:0.10.0/com.google.code.findbugs:jsr305:jar:3.0.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/joda-time:joda-time:jar:2.9.9</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/com.fasterxml.jackson.core:jackson-core:jar:2.7.9</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/com.carrotsearch:hppc:jar:0.7.2</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/com.vlkan:flatbuffers:jar:1.2.0-3f79e055</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.arrow:arrow-vector:jar:0.10.0/com.google.code.findbugs:jsr305:jar:3.0.1</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.apache.xbean:xbean-asm6-shaded:jar:4.8</node>
-            <node x="" y="">org.apache.spark:spark-sql_2.11:jar:2.4.0/org.spark-project.spark:unused:jar:1.0.0</node>
-            <node x="" y="">org.apache.spark:spark-streaming_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-streaming_2.11:jar:2.4.0/org.scala-lang:scala-library:jar:2.11.12</node>
-            <node x="" y="">org.apache.spark:spark-sql-kafka-0-10_2.11:jar:2.4.0</node>
-            <node x="" y="">org.apache.spark:spark-sql-kafka-0-10_2.11:jar:2.4.0/org.apache.kafka:kafka-clients:jar:2.0.0</node>
-            <node x="" y="">org.apache.spark:spark-sql-kafka-0-10_2.11:jar:2.4.0/org.apache.kafka:kafka-clients:jar:2.0.0/org.lz4:lz4-java:jar:1.4.1</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12/org.slf4j:slf4j-log4j12:jar:1.7.25</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12/log4j:log4j:jar:1.2.17</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12/jline:jline:jar:0.9.94</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12/org.apache.yetus:audience-annotations:jar:0.5.0</node>
-            <node x="" y="">org.apache.zookeeper:zookeeper:jar:3.4.12/io.netty:netty:jar:3.10.6.Final</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.apache.calcite.avatica:avatica-metrics:jar:1.10.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.apache.calcite.avatica:avatica-metrics:jar:1.10.0/org.slf4j:slf4j-api:jar:1.7.13</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/com.fasterxml.jackson.core:jackson-databind:jar:2.6.3</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/com.google.protobuf:protobuf-java:jar:3.1.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.apache.httpcomponents:httpclient:jar:4.5.2</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.apache.httpcomponents:httpclient:jar:4.5.2/commons-logging:commons-logging:jar:1.2</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.apache.httpcomponents:httpclient:jar:4.5.2/commons-codec:commons-codec:jar:1.10</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.apache.httpcomponents:httpcore:jar:4.4.4</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite.avatica:avatica-core:jar:1.10.0/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.calcite:calcite-linq4j:jar:1.13.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/commons-dbcp:commons-dbcp:jar:1.4</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/commons-dbcp:commons-dbcp:jar:1.4/commons-pool:commons-pool:jar:1.5.4</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.apache.commons:commons-lang3:jar:3.2</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/com.fasterxml.jackson.core:jackson-core:jar:2.6.3</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/com.fasterxml.jackson.core:jackson-annotations:jar:2.6.3</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/com.fasterxml.jackson.core:jackson-databind:jar:2.6.7.1</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/com.google.code.findbugs:jsr305:jar:3.0.1</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/com.google.guava:guava:jar:19.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/net.hydromatic:aggdesigner-algorithm:jar:6.0</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/net.hydromatic:aggdesigner-algorithm:jar:6.0/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/net.hydromatic:aggdesigner-algorithm:jar:6.0/commons-logging:commons-logging:jar:1.1.3</node>
-            <node x="" y="">org.apache.calcite:calcite-core:jar:1.13.0/org.slf4j:slf4j-api:jar:1.7.25</node>
-            <node x="" y="">org.codehaus.janino:janino:jar:3.0.9</node>
-            <node x="" y="">org.codehaus.janino:janino:jar:3.0.9/org.codehaus.janino:commons-compiler:jar:3.0.9</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4/commons-beanutils:commons-beanutils:jar:1.8.0</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4/commons-collections:commons-collections:jar:3.2.1</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4/commons-lang:commons-lang:jar:2.5</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4/commons-logging:commons-logging:jar:1.1.1</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4/net.sf.ezmorph:ezmorph:jar:1.0.6</node>
-            <node x="" y="">net.sf.json-lib:json-lib:jar:jdk15:2.4/net.sf.ezmorph:ezmorph:jar:1.0.6/commons-lang:commons-lang:jar:2.3</node>
-            <node x="" y="">org.apache.commons:commons-lang3:jar:3.5</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.1" x="8534.643777493966" y="834.0726973505571" />
-          <SelectedNodes />
-          <Categories />
-          <VISIBILITY>All</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Util/BaseZookeeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        <state relative-caret-position="-2204">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
         </state>
       </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
   </component>
   <component name="masterDetails">

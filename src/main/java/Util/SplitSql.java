@@ -1,5 +1,8 @@
 package Util;
 
+import org.apache.spark.sql.types.DataType;
+import org.apache.spark.sql.types.DataTypes;
+
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -85,4 +88,55 @@ public class SplitSql {
     public static String upperCaseFirstChar(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
+
+    public static String[] splitIgnoreQuotaBrackets(String str, String delimter) {
+        String splitPatternStr = delimter + "(?![^()]*+\\))(?![^{}]*+})(?![^\\[\\]]*+\\])(?=(?:[^\"]|\"[^\"]*\")*$)";
+        return str.split(splitPatternStr);
+    }
+
+    public static DataType strConverDataType(String filedType) {
+        switch (filedType) {
+            case "boolean":
+                return DataTypes.BooleanType;
+            case "int":
+                //2019.4.26
+            case "video":
+                return DataTypes.IntegerType;
+
+            case "bigint":
+                return DataTypes.LongType;
+
+            case "tinyint":
+            case "byte":
+                return DataTypes.ByteType;
+
+            case "short":
+            case "smallint":
+                return DataTypes.ShortType;
+
+            case "char":
+            case "varchar":
+            case "string":
+                return DataTypes.StringType;
+
+            case "float":
+                return DataTypes.FloatType;
+
+            case "double":
+                return DataTypes.DoubleType;
+
+            case "date":
+                return DataTypes.DateType;
+
+            case "timestamp":
+                return DataTypes.TimestampType;
+
+        }
+
+        throw new RuntimeException("不支持 " + filedType + " 类型");
+    }
+
+
+
+
 }

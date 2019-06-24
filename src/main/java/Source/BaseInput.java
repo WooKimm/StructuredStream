@@ -13,6 +13,7 @@ public interface BaseInput extends Base {
     //是对分隔符和isProcess的判断
     void beforeInput();
 
+
     /*转为schame的数据，再加上window之后返回*/
     void afterInput();
 

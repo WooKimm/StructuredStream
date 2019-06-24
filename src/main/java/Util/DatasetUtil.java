@@ -7,6 +7,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.functions;
 import org.apache.spark.sql.types.*;
 import net.sf.json.JSONObject;
+import parser.CreateTableParser;
 import scala.Tuple2;
 
 import java.sql.Date;
@@ -284,5 +285,29 @@ public class DatasetUtil {
             return new ColumnType("event",eventWindow);
         }
         return null;
+    }
+
+
+    public static List<StructField> GetField(CreateTableParser.SqlParserResult config){
+        List<StructField> fields = new ArrayList<>();
+
+        //get field and type info
+        String fieldsInfoStr = config.getFieldsInfoStr();
+        //获取具有schema的dataset
+        String[] fieldRows = SplitSql.splitIgnoreQuotaBrackets(fieldsInfoStr, ",");
+        MetadataBuilder b = new MetadataBuilder();
+        for (String fieldRow : fieldRows) {
+            fieldRow = fieldRow.trim();
+            String[] filedInfoArr = fieldRow.split("\\s+");
+            if (filedInfoArr.length < 2) {
+                throw new RuntimeException("the legth of " + fieldRow + " is not right");
+            }
+            //Compatible situation may arise in space in the fieldName
+            String filedName = filedInfoArr[0].toLowerCase();
+            String filedType = filedInfoArr[1].toLowerCase();
+            StructField field = DataTypes.createStructField(filedName, SplitSql.strConverDataType(filedType), true);
+            fields.add(field);
+        }
+        return fields;
     }
 }

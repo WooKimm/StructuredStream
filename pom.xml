@@ -40,6 +40,9 @@
             </exclusions>
 
         </dependency>
+
+
+
         <dependency> <!-- Spark dependency -->
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.11</artifactId>
@@ -157,6 +160,19 @@
         </dependency>
 
         <dependency>
+
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka_2.11</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql-kafka-0-10_2.11</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
             <version>2.4</version>
@@ -206,6 +222,7 @@
 
             </exclusions>
         </dependency>
+
 
     </dependencies>
 
