@@ -1,9 +1,8 @@
 package parser;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import net.sf.json.JSONObject;
+
+import java.util.*;
 
 import static Util.SplitSql.newHashSet;
 
@@ -17,6 +16,10 @@ public class SqlTree {
     private Set<InsertSqlParser.SqlParseResult> execSqlList = newHashSet();
     private InsertSqlParser.SqlParseResult execSql;//TODO：没用，主要是用list，建议修改
     private String appInfo;
+
+    //储存各源表的分隔符和列属性
+    public static ArrayList<String> delimiters = new ArrayList<>();
+    public static ArrayList<List> columnLists = new ArrayList<>();
 
     public Set<CreateFuncParser.SqlParserResult> getFunctionList() {
         return functionList;

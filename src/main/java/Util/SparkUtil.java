@@ -83,6 +83,7 @@ public class SparkUtil {
             sqlTree = SqlParser.sqlTree;
         }
         Map<String, CreateTableParser.SqlParserResult> preDealTableMap = sqlTree.getPreDealTableMap();
+        int id = 0;
         for (String key : preDealTableMap.keySet()) {
             //key是每个table的名字
             String type = (String) sqlTree.getPreDealTableMap().get(key).getPropMap().get("type");
@@ -90,7 +91,7 @@ public class SparkUtil {
             //创建BaseInput接口的实现类的对象sourceByClass
             BaseInput sourceByClass = SparkUtil.getSourceByClass(upperType);
             //使用对象的getDataSetStream转换成Dataset
-            Dataset<Row> dataset = sourceByClass.getDataSetStream(spark, preDealTableMap.get(key));
+            Dataset<Row> dataset = sourceByClass.getDataSetStream(spark, preDealTableMap.get(key), id++);
             rowTableList.put(key, dataset);
         }
         return rowTableList;

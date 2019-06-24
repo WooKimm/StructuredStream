@@ -8,6 +8,7 @@ import org.apache.spark.sql.functions;
 import org.apache.spark.sql.types.*;
 import net.sf.json.JSONObject;
 import parser.CreateTableParser;
+import parser.SqlTree;
 import scala.Tuple2;
 
 import java.sql.Date;
@@ -19,10 +20,11 @@ import static org.apache.spark.sql.functions.from_json;
 
 public class DatasetUtil {
     //将生成的datastream转化为具有schema的形式
-    static List<ColumnType> columnList = new ArrayList<>();
-    public static Dataset<Row> getSchemaDataSet(Dataset<Row> dataset, String fieldsString, Boolean isProcess, String lineDelimit, Map proMap){
+    public static Dataset<Row> getSchemaDataSet(Dataset<Row> dataset, String fieldsString, Boolean isProcess, Map proMap, int id){
 
-        columnList = new ArrayList<>();
+        List<ColumnType> column = new ArrayList<>();
+        SqlTree.columnLists.add(column);
+        List<ColumnType> columnList = SqlTree.columnLists.get(id);
         List<StructField> fields = new ArrayList<>();
         String[] fieldsArray = fieldsString.split("," + "(?![^()]*+\\))(?![^{}]*+})(?![^\\[\\]]*+\\])(?=(?:[^\"]|\"[^\"]*\")*$)");
 
@@ -60,9 +62,10 @@ public class DatasetUtil {
                         public Iterator<String> call(Iterator<Tuple2<String, Timestamp>> input) throws Exception {
                             List<String> recordList = new ArrayList<>();
                             JSONObject jsonObject = new JSONObject();
+                            List<ColumnType> columnList = SqlTree.columnLists.get(id);
                             while (input.hasNext()) {
                                 Tuple2<String, Timestamp> record = input.next();
-                                String[] split = record._1.split(lineDelimit);
+                                String[] split = record._1.split(SqlTree.delimiters.get(id));
                                 for (int i = 0; i < split.length; i++) {
                                     try {
                                         jsonObject.put(columnList.get(i).getName(), strConverType((split[i]), columnList.get(i).getAttribute()));
@@ -88,9 +91,10 @@ public class DatasetUtil {
                         public Iterator<String> call(Iterator<String> input) throws Exception {
                             List<String> recordList = new ArrayList<>();
                             JSONObject jsonObject = new JSONObject();
+                            List<ColumnType> columnList = SqlTree.columnLists.get(id);
                             while (input.hasNext()) {
                                 String record = input.next();
-                                String[] split = record.split(lineDelimit);
+                                String[] split = record.split(SqlTree.delimiters.get(id));
                                 for (int i = 0; i < split.length; i++) {
                                     try {
                                         jsonObject.put(columnList.get(i).getName(), strConverType((split[i]), columnList.get(i).getAttribute()));

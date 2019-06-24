@@ -24,7 +24,7 @@ public class JsonInput implements BaseInput{
 
     //生成datastream
     @Override
-    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
+    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config, int id) {
         jsonMap = config.getPropMap();
         this.config = config;
         checkConfig();

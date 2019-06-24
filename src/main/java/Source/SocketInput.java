@@ -6,6 +6,7 @@ import org.aopalliance.reflect.Class;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.sql.*;
 import parser.CreateTableParser;
+import parser.SqlTree;
 import scala.Product;
 import scala.Tuple2;
 import scala.Tuple3;
@@ -19,10 +20,12 @@ public class SocketInput implements BaseInput{
     CreateTableParser.SqlParserResult config = null;
     Boolean isProcess = true;
     Dataset<Row> result = null;
+    int id;
 
-    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
+    public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config, int id) {
         socketMap = config.getPropMap();
         this.config = config;
+        this.id = id;
         checkConfig();
         beforeInput();
         //获取prepare后具有field的dataset
@@ -94,8 +97,9 @@ public class SocketInput implements BaseInput{
     @Override
     public void afterInput() {
         //这里必须要用final，否则delimiter会被清空
-        final String delimiter = socketMap.get("delimiter").toString();
-        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, delimiter, config.getPropMap());
+        String delimiter = socketMap.get("delimiter").toString();
+        SqlTree.delimiters.add(delimiter);
+        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
     }
 
     public String getName() {
