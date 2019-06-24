@@ -34,4 +34,5 @@ CREATE SINK OutputTable(
     trigger='2 seconds'
 );
 
-insert into OutputTable select inputtable.id,number1,number2 from InputTable left join InputTable2 on InputTable.timestamp1 = InputTable2.timestamp1;
+insert into OutputTable select id,number1 from InputTable;
+insert into OutputTable select InputTable.id,number1,number2 from InputTable join InputTable2 on InputTable2.id = InputTable2.id;

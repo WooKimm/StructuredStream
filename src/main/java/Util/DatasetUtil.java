@@ -43,9 +43,9 @@ public class DatasetUtil {
         }
 
         if (isProcess) {
-            StructField field = DataTypes.createStructField("timestamp", strConverDataType("timestamp"), true, b.build());
+            StructField field = DataTypes.createStructField("mytimestamp", strConverDataType("timestamp"), true, b.build());
             fields.add(field);
-            columnList.add(new ColumnType("timestamp", "timestamp"));
+            columnList.add(new ColumnType("mytimestamp", "timestamp"));
         }
         StructType schema = DataTypes.createStructType(fields);
 
@@ -72,7 +72,7 @@ public class DatasetUtil {
                                     }
                                 }
                                 //process时，手动加上timestamp，所以这里schema加上timestamp
-                                jsonObject.put("timestamp", record._2.toString());
+                                jsonObject.put("mytimestamp", record._2.toString());
                                 recordList.add(jsonObject.toString());
                             }
                             return recordList.iterator();
@@ -214,7 +214,7 @@ public class DatasetUtil {
     public static Dataset<Row> getDatasetWithWindow(Dataset<Row> transDataSet, ColumnType windowType, Map<String, Object> proMap) {
 
         Dataset<Row> windowData = null;
-        String timeField = "timestamp";
+        String timeField = "mytimestamp";
         Dataset<Row> waterMarkData = null;
         Boolean isProcess = (Boolean) proMap.get("isProcess");
         if (proMap.containsKey("watermark")) {
@@ -222,7 +222,7 @@ public class DatasetUtil {
                 throw new RuntimeException("配置了event的watermark需要配置一个eventfield来和它配合呦");
             }
             if (isProcess) {
-                waterMarkData = transDataSet.withWatermark("timestamp", proMap.get("watermark").toString());
+                waterMarkData = transDataSet.withWatermark("mytimestamp", proMap.get("watermark").toString());
             } else {
                 timeField = proMap.get("eventfield").toString().toLowerCase();
                 waterMarkData = transDataSet.withWatermark(timeField, proMap.get("watermark").toString());
@@ -249,7 +249,7 @@ public class DatasetUtil {
                     windowData = waterMarkData.withColumn("eventwindow", functions.window(waterMarkData.col(timeField), windowDuration, slideDuration));
                     break;
                 case "process":
-                    windowData = waterMarkData.withColumn("processwindow", functions.window(waterMarkData.col("timestamp"), windowDuration, slideDuration));
+                    windowData = waterMarkData.withColumn("processwindow", functions.window(waterMarkData.col("mytimestamp"), windowDuration, slideDuration));
                     break;
                 default:
                     windowData = waterMarkData;
