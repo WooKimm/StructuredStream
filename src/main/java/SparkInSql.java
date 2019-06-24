@@ -23,6 +23,7 @@ import parser.InsertSqlParser;
 import parser.SqlParser;
 import parser.SqlTree;
 
+import static Util.SparkUtil.createStreamingQuery;
 import static parser.SqlParser.parseSql;
 
 public class SparkInSql {
@@ -43,7 +44,9 @@ public class SparkInSql {
         zookeeper.connectZookeeper("127.0.0.1:2181");
 
 
+
         String testData = zookeeper.getData("/jsonSQL");
+
 
         //第二阶段
         SqlParser.parseSql(testData);
@@ -103,6 +106,8 @@ public class SparkInSql {
         */
         streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
 
+
+//        StreamingQuery streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
         streamingQuery.awaitTermination();
 
     }

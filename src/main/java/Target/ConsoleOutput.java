@@ -12,6 +12,10 @@ import java.util.Map;
 
 public class ConsoleOutput implements BaseOutput {
     String outputmode = "complete";
+    Boolean isTrigger = false;
+    Boolean isOnce = false;
+    Boolean isContinue = false;
+    String triggerTime = "";
     Map<String, Object> consoleMap = null;
 
     @Override
@@ -29,11 +33,45 @@ public class ConsoleOutput implements BaseOutput {
         Dataset<Row> result = spark.sql(querySql);
 
         //生成query
-        StreamingQuery query = result.writeStream()
-                .outputMode(outputmode)
-                .format("console")
-                .trigger(Trigger.ProcessingTime("2 seconds"))//todo: 需要修改触发器生成方式
-                .start();
+        StreamingQuery query = null;
+        if(isTrigger)
+        {
+            if(isContinue)
+            {
+                query = result.writeStream()
+                        .outputMode(outputmode)
+                        .format("console")
+                        .trigger(Trigger.Continuous(triggerTime))
+                        .start();
+            }
+            else
+            {
+                if(isOnce)
+                {
+                    query = result.writeStream()
+                            .outputMode(outputmode)
+                            .format("console")
+                            .trigger(Trigger.Continuous(triggerTime))
+                            .start();
+                }
+                else
+                {
+                    query = result.writeStream()
+                            .outputMode(outputmode)
+                            .format("console")
+                            .trigger(Trigger.ProcessingTime(triggerTime))
+                            .start();
+                }
+            }
+        }
+        else
+        {
+            System.out.println("触发器未配置，使用默认触发器");
+            query = result.writeStream()
+                    .outputMode(outputmode)
+                    .format("console")
+                    .start();
+        }
         return query;
     }
 
@@ -46,6 +84,27 @@ public class ConsoleOutput implements BaseOutput {
         else
         {
             System.out.println("输出模式未配置，默认为完整模式");
+        }
+        if(consoleMap.containsKey("trigger")||consoleMap.containsKey("continuetrigger"))
+        {
+            isTrigger = true;
+            if(consoleMap.containsKey("trigger"))
+            {
+                String time = consoleMap.get("trigger").toString();
+                if(time.equals("once"))
+                {
+                    isOnce = true;
+                }
+                else
+                {
+                    triggerTime = time;
+                }
+            }
+            else
+            {
+                isContinue = true;
+                triggerTime = consoleMap.get("continuetrigger").toString();
+            }
         }
     }
 

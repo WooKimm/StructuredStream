@@ -15,7 +15,7 @@ public class SqlTree {
     private Map<String, Object> preDealSparkEnvMap = new HashMap<>();
     private Map<String, TableInfo> tableInfoMap = new LinkedHashMap<>();
     private Set<InsertSqlParser.SqlParseResult> execSqlList = newHashSet();
-    private InsertSqlParser.SqlParseResult execSql;
+    private InsertSqlParser.SqlParseResult execSql;//TODO：没用，主要是用list，建议修改
     private String appInfo;
 
     public Set<CreateFuncParser.SqlParserResult> getFunctionList() {
@@ -58,9 +58,7 @@ public class SqlTree {
         this.tableInfoMap = tableInfoMap;
     }
 
-    public Set<InsertSqlParser.SqlParseResult> getExecSqlList() {
-        return execSqlList;
-    }
+    public Set<InsertSqlParser.SqlParseResult> getExecSqlList() { return execSqlList; }
 
     public void setExecSqlList(Set<InsertSqlParser.SqlParseResult> execSqlList) {
         this.execSqlList = execSqlList;
@@ -72,6 +70,7 @@ public class SqlTree {
 
     public void setExecSql(InsertSqlParser.SqlParseResult execSql) {
         this.execSql = execSql;
+        this.execSqlList.add(execSql);
     }
 
     public String getAppInfo() {

@@ -13,6 +13,11 @@ import parser.InsertSqlParser;
 import parser.SqlParser;
 import parser.SqlTree;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -108,14 +113,22 @@ public class SparkUtil {
     public static StreamingQuery createStreamingQuery(SparkSession spark, SqlTree sqlTree, Map<String,Dataset<Row>> tablelist) throws StreamingQueryException {
 
         Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
-        for (String key : preDealSinkMap.keySet()) {
+
+        Set<InsertSqlParser.SqlParseResult> execSqlList = sqlTree.getExecSqlList();
+        ArrayList<String> execSqls = new ArrayList<>();
+        for(InsertSqlParser.SqlParseResult sqlParseResult : execSqlList)
+        {
+            execSqls.add(sqlParseResult.getTargetTable());
+        }
+
+        StreamingQuery streamingQuery = null;
+        for (String key : execSqls) {
             String type = (String) sqlTree.getPreDealSinkMap().get(key).getPropMap().get("type");
             String upperType = SplitSql.upperCaseFirstChar(type) + "Output";
             BaseOutput sinkByClass = SparkUtil.getSinkByClass(upperType);
-            StreamingQuery streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlTree);
-            return streamingQuery;
+            streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlTree);
         }
-        return null;
+        return streamingQuery;
     }
 
 
@@ -132,5 +145,31 @@ public class SparkUtil {
             e.printStackTrace();
         }
         return outputBase;
+    }
+
+    public static String getSqlFromSource()
+    {
+        File file = new File("src/main/resources/testSQLFile");
+        BufferedReader reader = null;
+        String sql = "";
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                tempString = tempString + "\n";
+                sql += tempString;
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                }
+            }
+        }
+        return sql;
     }
 }
