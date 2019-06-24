@@ -116,29 +116,5 @@ public class SparkUtil {
         return outputBase;
     }
 
-    public static String getSqlFromSource()
-    {
-        File file = new File("src/main/resources/testSQLFile");
-        BufferedReader reader = null;
-        String sql = "";
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            String tempString = null;
-            while ((tempString = reader.readLine()) != null) {
-                tempString = tempString + "\n";
-                sql += tempString;
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e1) {
-                }
-            }
-        }
-        return sql;
-    }
 }
+

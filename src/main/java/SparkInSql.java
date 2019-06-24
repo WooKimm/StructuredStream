@@ -1,6 +1,7 @@
 import Util.BaseZookeeper;
 import Util.DataSender;
 import Util.SparkUtil;
+import base.Base;
 import org.apache.commons.io.IOUtils;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -41,7 +42,7 @@ public class SparkInSql {
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        String sql = SparkUtil.getSqlFromSource();
+        String sql = BaseZookeeper.getSqlFromSource();
         zookeeper.setData("/sqlTest", sql);
 
         String testData = zookeeper.getData("/sqlTest");
