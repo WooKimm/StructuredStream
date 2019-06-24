@@ -12,7 +12,7 @@ CREATE TABLE jsonTable(
 )WITH(
     type='json',
     processwindow='10 seconds,10 seconds',
-    path='E:\Woo\2019summerPra\spark1\filepath'
+    path='filepath/json'
 );
 
 create SINK console(

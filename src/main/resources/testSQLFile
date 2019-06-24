@@ -6,19 +6,32 @@ create env spark(
 );
 
 CREATE TABLE InputTable(
-    number Int
+    id Int,
+    number1 Int
 )WITH(
     type='socket',
     host='localhost',
     processwindow='10 seconds,5 seconds',
+    watermark='30 seconds',
     port='9998'
+);
+
+CREATE TABLE InputTable2(
+    id Int,
+    number2 Int
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,5 seconds',
+    watermark='30 seconds',
+    port='9999'
 );
 
 CREATE SINK OutputTable(
 )WITH(
     type='console',
-    outputmode='update',
+    outputmode='Append',
     trigger='2 seconds'
 );
 
-insert into OutputTable select processwindow,number,count(*) from InputTable group by processwindow,number;
+insert into OutputTable select inputtable.id,number1,number2 from InputTable left join InputTable2 on InputTable.timestamp1 = InputTable2.timestamp1;

@@ -1,4 +1,4 @@
-package Util;
+/*package Util;
 
 import org.apache.orc.TypeDescription;
 import org.apache.hadoop.conf.Configuration;
@@ -56,3 +56,4 @@ public class OrcWriter {
     }
 
 }
+*/

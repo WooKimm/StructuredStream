@@ -12,7 +12,7 @@ CREATE TABLE csvTable(
     type='csv',
     delimiter=';',
     processwindow='10 seconds,10 seconds',
-    path='E:\Woo\2019summerPra\spark1\filepath'
+    path='filepath/csv'
 );
 
 create SINK console(
@@ -21,4 +21,5 @@ create SINK console(
     outputmode='update',
 );
 
-insert into console select * from csvTable;
+insert into console select age from csvTable;
+insert into console select name from csvTable;

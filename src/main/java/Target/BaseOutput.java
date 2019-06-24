@@ -13,7 +13,7 @@ import java.util.Map;
 
 public interface BaseOutput extends Base {
 
-    StreamingQuery process(SparkSession spark, Map<String,Dataset<Row>> tablelist, CreateTableParser.SqlParserResult config, SqlTree sqlTree);
+    StreamingQuery process(SparkSession spark, Map<String,Dataset<Row>> tablelist, CreateTableParser.SqlParserResult config, InsertSqlParser.SqlParseResult execSql);
 
 
 }

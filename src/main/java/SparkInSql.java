@@ -43,12 +43,12 @@ public class SparkInSql {
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        String sql = BaseZookeeper.getSqlFromSource();
+        String sql = BaseZookeeper.getSqlFromSource("socket");
         zookeeper.setData("/sqlTest", sql);
 
 
 
-        String testData = zookeeper.getData("/jsonSQL");
+        String testData = zookeeper.getData("/sqlTest");
 
 
         //第二阶段
@@ -94,7 +94,7 @@ public class SparkInSql {
 
         StreamingQuery streamingQuery = null;
         streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
-        streamingQuery.awaitTermination();
-        //spark.streams().awaitAnyTermination();//todo:多个执行语句同时，有问题
+        //streamingQuery.awaitTermination();
+        spark.streams().awaitAnyTermination();//todo:多个执行语句同时，socket有问题
     }
 }

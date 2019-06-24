@@ -115,18 +115,15 @@ public class SparkUtil {
         Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
 
         Set<InsertSqlParser.SqlParseResult> execSqlList = sqlTree.getExecSqlList();
-        ArrayList<String> execSqls = new ArrayList<>();
-        for(InsertSqlParser.SqlParseResult sqlParseResult : execSqlList)
-        {
-            execSqls.add(sqlParseResult.getTargetTable());
-        }
 
         StreamingQuery streamingQuery = null;
-        for (String key : execSqls) {
+        for(InsertSqlParser.SqlParseResult sqlParseResult : execSqlList)
+        {
+            String key = sqlParseResult.getTargetTable();
             String type = (String) sqlTree.getPreDealSinkMap().get(key).getPropMap().get("type");
             String upperType = SplitSql.upperCaseFirstChar(type) + "Output";
             BaseOutput sinkByClass = SparkUtil.getSinkByClass(upperType);
-            streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlTree);
+            streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlParseResult);
         }
         return streamingQuery;
     }

@@ -19,8 +19,7 @@ public class ConsoleOutput implements BaseOutput {
     Map<String, Object> consoleMap = null;
 
     @Override
-    public StreamingQuery process(SparkSession spark, Map<String,Dataset<Row>> tablelist, CreateTableParser.SqlParserResult config, SqlTree sqlTree) {
-        InsertSqlParser.SqlParseResult execSql = sqlTree.getExecSql();
+    public StreamingQuery process(SparkSession spark, Map<String,Dataset<Row>> tablelist, CreateTableParser.SqlParserResult config, InsertSqlParser.SqlParseResult execSql) {
         consoleMap = config.getPropMap();
         checkConfig();
 

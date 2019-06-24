@@ -192,9 +192,24 @@ public class BaseZookeeper implements Watcher{
 //        }
     }
 
-    public static String getSqlFromSource()
+    public static String getSqlFromSource(String type)
     {
-        File file = new File("src/main/resources/testSQLFile");
+        File file = null;
+        switch (type)
+        {
+            case "csv":
+                file = new File("src/main/resources/testCsvSQL");
+                break;
+            case "json":
+                file = new File("src/main/resources/testJsonSQL");
+                break;
+            case "kafka":
+                file = new File("src/main/resources/testKafkaSQL");
+                break;
+            case "socket":
+                file = new File("src/main/resources/testSQLFile");
+                break;
+        }
         BufferedReader reader = null;
         String sql = "";
         try {
