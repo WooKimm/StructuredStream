@@ -11,7 +11,7 @@ public interface BaseInput extends Base {
     Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config);
     void beforeInput();
     /*输出后要做的事情，例如更新偏移量*/
-    void afterInput();
+    void afterInput() throws Exception;
     String getName();
 }
 

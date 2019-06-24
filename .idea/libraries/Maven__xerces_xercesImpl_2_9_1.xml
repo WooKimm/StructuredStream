@@ -1,15 +1,6 @@
 <component name="libraryTable">
   <library name="Maven: xerces:xercesImpl:2.9.1">
     <CLASSES>
-<<<<<<< HEAD
-      <root url="jar://D:/maven/apache-maven-3.6.1/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar!/" />
-    </CLASSES>
-    <JAVADOC>
-      <root url="jar://D:/maven/apache-maven-3.6.1/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://D:/maven/apache-maven-3.6.1/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1-sources.jar!/" />
-=======
       <root url="jar://$MAVEN_REPOSITORY$/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -17,7 +8,6 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1-sources.jar!/" />
->>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a
     </SOURCES>
   </library>
 </component>

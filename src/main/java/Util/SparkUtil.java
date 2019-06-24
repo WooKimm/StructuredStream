@@ -9,6 +9,7 @@ import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.StreamingQueryException;
 import parser.CreateTableParser;
 
+import parser.InsertSqlParser;
 import parser.SqlParser;
 import parser.SqlTree;
 
@@ -23,52 +24,52 @@ public class SparkUtil {
     static SparkSession spark = null;
 
 
-    public static void createDataFrame(SparkSession spark, SqlTree sqlTree) throws Exception{
-        if(sqlTree==null){
-            //解析zk传过来的node，即sql语句
-            BaseZookeeper zookeeper = new BaseZookeeper();
-            zookeeper.connectZookeeper("127.0.0.1:2181");
-            SqlParser.parseSql(zookeeper.getData("/sqlTest"));
-            sqlTree = SqlParser.sqlTree;
-        }
-        Map<String, Dataset<Row>> tableList = SparkUtil.getTableList(spark, sqlTree);
-
-
-        InsertSqlParser.SqlParseResult sqlParseResult = sqlTree.getExecSql();
-        //获取插入语句中的 目标表
-        String targetTable = sqlParseResult.getTargetTable().toLowerCase();
-        //获取插入语句中的相关表(先create的表)
-        Set<String> sourceTableList = sqlParseResult.getSourceTableList();
-        //表是insert sql中target的时候才要注册成表
-        //表示sql中source部分的时候要另外处理
-        //spark.sessionState().catalog().dropTable();
-        tableList.forEach((tableName, dataRow) -> {
-            //if (sourceTableList.contains(tableName)) {
-            dataRow.printSchema();
-            //spark.sessionState().refreshTable(tableName);
-            dataRow.createOrReplaceTempView(tableName);
-
-        });
-
-        Dataset<Row> queryResult = spark.sql(sqlParseResult.getQuerySql());
-
-        Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
-
-        streamingQuery = SparkUtil.tableOutput(spark, targetTable, queryResult, preDealSinkMap);
-
-
-    }
-
-    private static StreamingQuery tableOutput(SparkSession spark, String targetTable, Dataset<Row> queryResult, Map<String, CreateTableParser.SqlParserResult> preDealSinkMap) {
-        String type = preDealSinkMap.get(targetTable).getPropMap().get("type").toString();
-        String outputName = SplitSql.upperCaseFirstChar(type.toLowerCase()) + "Output";
-        BaseOutput sinkByClass = getSinkByClass(outputName);
-        StreamingQuery process = sinkByClass.process2(spark, queryResult, preDealSinkMap.get(targetTable));
-        return process;
-    }
+//    public static void createDataFrame(SparkSession spark, SqlTree sqlTree) throws Exception{
+//        if(sqlTree==null){
+//            //解析zk传过来的node，即sql语句
+//            BaseZookeeper zookeeper = new BaseZookeeper();
+//            zookeeper.connectZookeeper("127.0.0.1:2181");
+//            SqlParser.parseSql(zookeeper.getData("/sqlTest"));
+//            sqlTree = SqlParser.sqlTree;
+//        }
+//        Map<String, Dataset<Row>> tableList = SparkUtil.getTableList(spark, sqlTree);
+//
+//
+//        InsertSqlParser.SqlParseResult sqlParseResult = sqlTree.getExecSql();
+//        //获取插入语句中的 目标表
+//        String targetTable = sqlParseResult.getTargetTable().toLowerCase();
+//        //获取插入语句中的相关表(先create的表)
+//        Set<String> sourceTableList = sqlParseResult.getSourceTableList();
+//        //表是insert sql中target的时候才要注册成表
+//        //表示sql中source部分的时候要另外处理
+//        //spark.sessionState().catalog().dropTable();
+//        tableList.forEach((tableName, dataRow) -> {
+//            //if (sourceTableList.contains(tableName)) {
+//            dataRow.printSchema();
+//            //spark.sessionState().refreshTable(tableName);
+//            dataRow.createOrReplaceTempView(tableName);
+//
+//        });
+//
+//        Dataset<Row> queryResult = spark.sql(sqlParseResult.getQuerySql());
+//
+//        Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
+//
+//        streamingQuery = SparkUtil.tableOutput(spark, targetTable, queryResult, preDealSinkMap);
+//
+//
+//    }
+//
+//    private static StreamingQuery tableOutput(SparkSession spark, String targetTable, Dataset<Row> queryResult, Map<String, CreateTableParser.SqlParserResult> preDealSinkMap) {
+//        String type = preDealSinkMap.get(targetTable).getPropMap().get("type").toString();
+//        String outputName = SplitSql.upperCaseFirstChar(type.toLowerCase()) + "Output";
+//        BaseOutput sinkByClass = getSinkByClass(outputName);
+//        StreamingQuery process = sinkByClass.process(spark, queryResult, preDealSinkMap.get(targetTable));
+//        return process;
+//    }
 
     //添加window函数
-    private static Map<String,Dataset<Row>> getTableList(SparkSession spark, SqlTree sqlTree) throws Exception{
+    public static Map<String,Dataset<Row>> getTableList(SparkSession spark, SqlTree sqlTree) throws Exception{
         Map<String, Dataset<Row>> rowTableList = new HashMap<>();
         if(sqlTree==null){
             BaseZookeeper zookeeper = new BaseZookeeper();

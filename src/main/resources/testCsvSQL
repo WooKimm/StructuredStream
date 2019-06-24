@@ -11,13 +11,14 @@ CREATE TABLE csvTable(
 )WITH(
     type='csv',
     delimiter=';',
+    processwindow='10 seconds,10 seconds',
     path='E:\Woo\2019summerPra\spark1\filepath'
 );
 
 create SINK console(
 )WITH(
     type='console',
-    outputmode='complete',
+    outputmode='update',
 );
 
-insert into console select name,sum(age) from csvTable group by name;
+insert into console select * from csvTable;

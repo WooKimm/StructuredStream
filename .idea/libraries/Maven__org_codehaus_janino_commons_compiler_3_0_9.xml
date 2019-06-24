@@ -1,15 +1,6 @@
 <component name="libraryTable">
   <library name="Maven: org.codehaus.janino:commons-compiler:3.0.9">
     <CLASSES>
-<<<<<<< HEAD:.idea/libraries/Maven__org_codehaus_janino_commons_compiler_3_0_8.xml
-      <root url="jar://D:/maven/apache-maven-3.6.1/repository/org/codehaus/janino/commons-compiler/3.0.8/commons-compiler-3.0.8.jar!/" />
-    </CLASSES>
-    <JAVADOC>
-      <root url="jar://D:/maven/apache-maven-3.6.1/repository/org/codehaus/janino/commons-compiler/3.0.8/commons-compiler-3.0.8-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://D:/maven/apache-maven-3.6.1/repository/org/codehaus/janino/commons-compiler/3.0.8/commons-compiler-3.0.8-sources.jar!/" />
-=======
       <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/janino/commons-compiler/3.0.9/commons-compiler-3.0.9.jar!/" />
     </CLASSES>
     <JAVADOC>
@@ -17,7 +8,6 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/janino/commons-compiler/3.0.9/commons-compiler-3.0.9-sources.jar!/" />
->>>>>>> 88c5745e408294a6833dd2f7ef2197e7f8d5203a:.idea/libraries/Maven__org_codehaus_janino_commons_compiler_3_0_9.xml
     </SOURCES>
   </library>
 </component>

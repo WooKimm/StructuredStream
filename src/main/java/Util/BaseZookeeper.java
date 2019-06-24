@@ -1,5 +1,7 @@
 package Util;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import org.apache.zookeeper.CreateMode;
@@ -128,33 +130,67 @@ public class BaseZookeeper implements Watcher{
 
         }
 
+    public String readToString(String fileName) {
+        String encoding = "UTF-8";
+        File file = new File(fileName);
+        Long filelength = file.length();
+        byte[] filecontent = new byte[filelength.intValue()];
+        try {
+            FileInputStream in = new FileInputStream(file);
+            in.read(filecontent);
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            return new String(filecontent, encoding);
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("The OS does not support " + encoding);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static void main(String[] args) throws Exception{
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        Stat result = zookeeper.setData("/csvSQL","create env spark(\n" +
-                "    spark.default.parallelism='2',\n" +
-                "    spark.sql.shuffle.partitions='2'\n" +
-                ")WITH(\n" +
-                "    appname='CsvTest'\n" +
-                ");\n" +
-                "\n" +
-                "CREATE TABLE csvTable(\n" +
-                "    name string,\n" +
-                "    age int\n" +
-                ")WITH(\n" +
-                "    type='csv',\n" +
-                "    delimiter=';',\n" +
-                "    path='E:\\Woo\\2019summerPra\\spark1\\filepath'\n" +
-                ");\n" +
-                "\n" +
-                "create SINK console(\n" +
-                ")WITH(\n" +
-                "    type='console',\n" +
-                "    outputmode='complete',\n" +
-                ");\n" +
-                "\n" +
-                "insert into console select name,sum(age) from csvTable group by name;");
+        String data = zookeeper.readToString("E:\\Woo\\2019summerPra\\spark1\\src\\main\\resources\\testJsonSQL");
+        String result = zookeeper.createNode("/jsonSQL",data);
+
+
+//        Stat result = zookeeper.setData("/csvSQL","create env spark(\n" +
+//                "    spark.default.parallelism='2',\n" +
+//                "    spark.sql.shuffle.partitions='2'\n" +
+//                ")WITH(\n" +
+//                "    appname='CsvTest'\n" +
+//                ");\n" +
+//                "\n" +
+//                "CREATE TABLE csvTable(\n" +
+//                "    name string,\n" +
+//                "    age int\n" +
+//                ")WITH(\n" +
+//                "    type='csv',\n" +
+//                "    delimiter=';',\n" +
+//                "    processwindow='10 seconds,10 seconds',\n" +
+//                "    path='E:\\Woo\\2019summerPra\\spark1\\filepath'\n" +
+//                ");\n" +
+//                "\n" +
+//                "create SINK console(\n" +
+//                ")WITH(\n" +
+//                "    type='console',\n" +
+//                "    outputmode='update',\n" +
+//                ");\n" +
+//                "\n" +
+//                "insert into console select * from csvTable;");
+
+
         System.out.println(result);
+//        List<String> children = zookeeper.getChildren("/");
+//        for(String child:children){
+//            System.out.println(child);
+//        }
     }
 
 }

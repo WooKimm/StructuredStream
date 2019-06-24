@@ -1,0 +1,24 @@
+create env spark(
+    spark.default.parallelism='2',
+    spark.sql.shuffle.partitions='2'
+)WITH(
+    appname='JsonTest'
+);
+
+CREATE TABLE jsonTable(
+    name string,
+    age int,
+    hobby string
+)WITH(
+    type='json',
+    processwindow='10 seconds,10 seconds',
+    path='E:\Woo\2019summerPra\spark1\filepath'
+);
+
+create SINK console(
+)WITH(
+    type='console',
+    outputmode='update',
+);
+
+insert into console select * from jsonTable;

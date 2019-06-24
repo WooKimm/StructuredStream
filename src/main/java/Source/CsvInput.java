@@ -1,58 +1,50 @@
 package Source;
 
+import Util.ColumnType;
+import Util.DatasetUtil;
 import Util.SplitSql;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.Row;
-import org.apache.spark.sql.types.DataTypes;
-import org.apache.spark.sql.types.MetadataBuilder;
-import org.apache.spark.sql.types.StructField;
-import org.apache.spark.sql.types.StructType;
+import org.apache.spark.sql.types.*;
 import parser.CreateTableParser;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static Util.DatasetUtil.getWindowType;
+
 
 public class CsvInput implements BaseInput {
 
     Map<String, Object> csvMap = null;
     StructType schema = null;
+    Dataset<Row> result = null;
+    CreateTableParser.SqlParserResult config = null;
+    Boolean isProcess = true;
 
     //生成datastream
     @Override
     public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config) {
         csvMap = config.getPropMap();
+        this.config = config;
         checkConfig();
         beforeInput();
+        List<StructField> fields = DatasetUtil.GetField(config);
 
-        List<StructField> fields = new ArrayList<>();
-        //get field and type info
-        String fieldsInfoStr = config.getFieldsInfoStr();
-        //获取具有schema的dataset
-        String[] fieldRows = SplitSql.splitIgnoreQuotaBrackets(fieldsInfoStr, ",");
-        MetadataBuilder b = new MetadataBuilder();
-        for (String fieldRow : fieldRows) {
-            fieldRow = fieldRow.trim();
-            String[] filedInfoArr = fieldRow.split("\\s+");
-            if (filedInfoArr.length < 2) {
-                throw new RuntimeException("the legth of " + fieldRow + " is not right");
-            }
-            //Compatible situation may arise in space in the fieldName
-        String filedName = filedInfoArr[0].toLowerCase();
-            String filedType = filedInfoArr[1].toLowerCase();
-            StructField field = DataTypes.createStructField(filedName, SplitSql.strConverDataType(filedType), true);
-            fields.add(field);
-        }
         //schema加上timestamp
-        StructField field = DataTypes.createStructField("timestamp", SplitSql.strConverDataType("timestamp"), true, b.build());
-        fields.add(field);
+//        if (isProcess) {
+//            StructField field = DataTypes.createStructField("timestamp", SplitSql.strConverDataType("timestamp"), true, b.build());
+//            fields.add(field);
+//        }
         //DataType stringType = DataTypes.StringType;
+
         schema = DataTypes.createStructType(fields);
 
+        //获取prepare后具有field的dataset
+        result = prepare(spark);
+        //获取具有schema和window的dataset
+//        afterInput();
+        return result;
 
-
-        Dataset<Row> lineRow = prepare(spark);
-        return lineRow;
     }
 
     //给一个默认的分隔符
@@ -70,7 +62,19 @@ public class CsvInput implements BaseInput {
     }
 
     @Override
-    public void afterInput() {
+    public void afterInput(){
+        final String delimiter = csvMap.get("delimiter").toString();
+        if(isProcess){
+            try {
+//                result.withColumn("timestamp",addCol.call(1));
+            } catch (Exception e) {
+
+
+            }
+            return;
+        }
+        ColumnType windowType = getWindowType(csvMap);
+        result = DatasetUtil.getDatasetWithWindow(result, windowType, csvMap);
 
     }
 
@@ -101,6 +105,7 @@ public class CsvInput implements BaseInput {
     public String getName() {
         return "name";
     }
+
 
 
 }
