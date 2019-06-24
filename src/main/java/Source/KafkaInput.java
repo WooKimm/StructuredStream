@@ -1,12 +1,16 @@
 package Source;
 
+import Util.ColumnType;
 import Util.DatasetUtil;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import parser.CreateTableParser;
+import parser.SqlTree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static Util.SchemaDataset.GetSchemaDataSet;
@@ -58,8 +62,10 @@ public class KafkaInput implements BaseInput{
 
     @Override
     public void afterInput() {
-        //这里必须要用final，否则delimiter会被清空
-        final String delimiter = kafkaMap.get("delimiter").toString();
+        String delimiter = kafkaMap.get("delimiter").toString();
+        SqlTree.delimiters.add(delimiter);
+        List<ColumnType> column = new ArrayList<>();
+        SqlTree.columnLists.add(column);
         result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
     }
 

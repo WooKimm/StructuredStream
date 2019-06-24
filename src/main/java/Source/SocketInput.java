@@ -1,5 +1,6 @@
 package Source;
 
+import Util.ColumnType;
 import Util.DatasetUtil;
 import Util.SparkUtil;
 import org.aopalliance.reflect.Class;
@@ -96,9 +97,10 @@ public class SocketInput implements BaseInput{
 
     @Override
     public void afterInput() {
-        //这里必须要用final，否则delimiter会被清空
         String delimiter = socketMap.get("delimiter").toString();
         SqlTree.delimiters.add(delimiter);
+        List<ColumnType> column = new ArrayList<>();
+        SqlTree.columnLists.add(column);
         result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
     }
 

@@ -7,6 +7,9 @@ import org.apache.spark.sql.*;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.types.*;
 import parser.CreateTableParser;
+import parser.SqlTree;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,18 +68,11 @@ public class CsvInput implements BaseInput {
 
     @Override
     public void afterInput(){
-        final String delimiter = csvMap.get("delimiter").toString();
-        if(isProcess){
-            try {
-//                result.withColumn("timestamp",addCol.call(1));
-            } catch (Exception e) {
-
-
-            }
-            return;
-        }
-        ColumnType windowType = getWindowType(csvMap);
-        result = DatasetUtil.getDatasetWithWindow(result, windowType, csvMap);
+        String delimiter = csvMap.get("delimiter").toString();
+        SqlTree.delimiters.add(delimiter);
+        List<ColumnType> column = new ArrayList<>();
+        SqlTree.columnLists.add(column);
+        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
 
     }
 
