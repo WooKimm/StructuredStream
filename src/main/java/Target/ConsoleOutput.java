@@ -50,7 +50,7 @@ public class ConsoleOutput implements BaseOutput {
                     query = result.writeStream()
                             .outputMode(outputmode)
                             .format("console")
-                            .trigger(Trigger.Continuous(triggerTime))
+                            .trigger(Trigger.Once())
                             .start();
                 }
                 else

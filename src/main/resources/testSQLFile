@@ -11,20 +11,9 @@ CREATE TABLE InputTable(
 )WITH(
     type='socket',
     host='localhost',
-    processwindow='10 seconds,5 seconds',
+    processwindow='10 seconds,10 seconds',
     watermark='30 seconds',
     port='9998'
-);
-
-CREATE TABLE InputTable2(
-    id Int,
-    number2 Int
-)WITH(
-    type='socket',
-    host='localhost',
-    processwindow='10 seconds,5 seconds',
-    watermark='30 seconds',
-    port='9999'
 );
 
 CREATE SINK OutputTable(
@@ -34,4 +23,14 @@ CREATE SINK OutputTable(
     trigger='2 seconds'
 );
 
-insert into OutputTable select InputTable.id,number1,number2 from InputTable join InputTable2 on InputTable.id = InputTable2.id;
+CREATE SINK OutputTable(
+)WITH(
+    type='console',
+    outputmode='Append',
+    trigger='2 seconds'
+);
+
+insert into OutputTable select number1 from InputTable;
+insert into OutputTable2 select number1 from InputTable;
+
+insert into OutputTable,OutputTable2 select number1 from InputTable;
