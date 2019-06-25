@@ -102,8 +102,8 @@ public class SplitSql {
                 //2019.4.26
             case "video":
                 return DataTypes.IntegerType;
-
             case "bigint":
+            case "int64":
                 return DataTypes.LongType;
 
             case "tinyint":
