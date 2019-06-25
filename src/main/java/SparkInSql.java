@@ -36,14 +36,14 @@ public class SparkInSql {
 
 
 
-//        DataSender dataSender = new DataSender("sender");
-//        dataSender.start();//向9998端口发送1-100随机数
+        DataSender dataSender = new DataSender("sender");
+        dataSender.start();//向9998端口发送1-100随机数
 
 
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        String sql = BaseZookeeper.getSqlFromSource("parquet");
+        String sql = BaseZookeeper.getSqlFromSource("kafkaOut");
         zookeeper.setData("/sqlTest", sql);
 
 

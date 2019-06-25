@@ -215,6 +215,12 @@ public class BaseZookeeper implements Watcher{
             case "parquet":
                 file = new File("src/main/resources/testParquetSQL");
                 break;
+            case "kafkaOut":
+                file = new File("src/main/resources/testKafkaOutput");
+                break;
+            case "csvOut":
+                file = new File("src/main/resources/testCsvOutput");
+                break;
         }
         BufferedReader reader = null;
         String sql = "";
