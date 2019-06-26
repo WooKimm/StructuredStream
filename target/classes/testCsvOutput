@@ -5,22 +5,23 @@ create env spark(
     appname='csvtest'
 );
 
-CREATE TABLE inputTable(
-    word string
+CREATE TABLE InputTable(
+    id Int,
+    number1 Int
 )WITH(
     type='socket',
-    processwindow='10 seconds,10 seconds',
-    watermark='10 seconds',
     host='localhost',
+    processwindow='10 seconds,10 seconds',
+    watermark='30 seconds',
     port='9998'
 );
 
 create SINK csvOut(
 )WITH(
     type='csv',
-    outputmode='update',
-    process='10s',
+    outputmode='Append',
+    trigger='2 seconds',
     path='path/to/destination/dir2'
 );
 
-insert into csvOut select * from inputTable;
+insert into csvOut select * from InputTable;

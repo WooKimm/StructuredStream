@@ -23,14 +23,4 @@ CREATE SINK OutputTable(
     trigger='2 seconds'
 );
 
-CREATE SINK OutputTable(
-)WITH(
-    type='console',
-    outputmode='Append',
-    trigger='2 seconds'
-);
-
-insert into OutputTable select number1 from InputTable;
-insert into OutputTable2 select number1 from InputTable;
-
-insert into OutputTable,OutputTable2 select number1 from InputTable;
+insert into OutputTable select * from InputTable;
