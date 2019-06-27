@@ -41,6 +41,7 @@ public class ConsoleOutput implements BaseOutput {
                         .outputMode(outputmode)
                         .format("console")
                         .trigger(Trigger.Continuous(triggerTime))
+                        .option("truncate", false)
                         .start();
             }
             else
@@ -50,7 +51,8 @@ public class ConsoleOutput implements BaseOutput {
                     query = result.writeStream()
                             .outputMode(outputmode)
                             .format("console")
-                            .trigger(Trigger.Continuous(triggerTime))
+                            .trigger(Trigger.Once())
+                            .option("truncate", false)
                             .start();
                 }
                 else
@@ -59,6 +61,7 @@ public class ConsoleOutput implements BaseOutput {
                             .outputMode(outputmode)
                             .format("console")
                             .trigger(Trigger.ProcessingTime(triggerTime))
+                            .option("truncate", false)
                             .start();
                 }
             }
@@ -69,6 +72,7 @@ public class ConsoleOutput implements BaseOutput {
             query = result.writeStream()
                     .outputMode(outputmode)
                     .format("console")
+                    .option("truncate", false)
                     .start();
         }
         return query;

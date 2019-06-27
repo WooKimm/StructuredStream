@@ -69,6 +69,7 @@ public class CsvInput implements BaseInput {
 
     @Override
     public void afterInput(){
+
         final String delimiter = csvMap.get("delimiter").toString();
         if(isProcess){
             try {
@@ -82,6 +83,7 @@ public class CsvInput implements BaseInput {
         }
         ColumnType windowType = getWindowType(csvMap);
         result = DatasetUtil.getDatasetWithWindow(result, windowType, csvMap);
+
 
     }
 

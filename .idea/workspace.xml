@@ -2,35 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cbb9df0-ce91-4922-9f6b-3e192a697a82" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Util/TestForeachWriter.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/path/to/HDFS/dir/commits/..0.5f6b91ab-0b75-46fa-b0a4-e02faaa940c4.tmp.crc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/path/to/HDFS/dir/commits/0" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/path/to/HDFS/dir/offsets/..0.ee227d8e-b0a4-4771-8ef2-28367f1fc80e.tmp.crc" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/path/to/HDFS/dir/.metadata.crc" afterPath="$PROJECT_DIR$/path/to/HDFS/dir/.metadata.crc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Source/CsvInput.class" afterPath="$PROJECT_DIR$/target/classes/Source/CsvInput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Source/JsonInput.class" afterPath="$PROJECT_DIR$/target/classes/Source/JsonInput.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Source/KafkaInput.class" afterPath="$PROJECT_DIR$/target/classes/Source/KafkaInput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Source/SocketInput.class" afterPath="$PROJECT_DIR$/target/classes/Source/SocketInput.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/SparkInSql.class" afterPath="$PROJECT_DIR$/target/classes/SparkInSql.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Target/CsvOutput.class" afterPath="$PROJECT_DIR$/target/classes/Target/CsvOutput.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Target/KafkaOutput.class" afterPath="$PROJECT_DIR$/target/classes/Target/KafkaOutput.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Util/DataSender.class" afterPath="$PROJECT_DIR$/target/classes/Util/DataSender.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Target/ConsoleOutput.class" afterPath="$PROJECT_DIR$/target/classes/Target/ConsoleOutput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Util/BaseZookeeper.class" afterPath="$PROJECT_DIR$/target/classes/Util/BaseZookeeper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Util/DatasetUtil$1.class" afterPath="$PROJECT_DIR$/target/classes/Util/DatasetUtil$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Util/DatasetUtil$2.class" afterPath="$PROJECT_DIR$/target/classes/Util/DatasetUtil$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Util/DatasetUtil.class" afterPath="$PROJECT_DIR$/target/classes/Util/DatasetUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/path/to/HDFS/dir/metadata" afterPath="$PROJECT_DIR$/path/to/HDFS/dir/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/path/to/HDFS/dir/offsets/0" afterPath="$PROJECT_DIR$/path/to/HDFS/dir/offsets/0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spark1.iml" afterPath="$PROJECT_DIR$/spark1.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Source/CsvInput.java" afterPath="$PROJECT_DIR$/src/main/java/Source/CsvInput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Source/JsonInput.java" afterPath="$PROJECT_DIR$/src/main/java/Source/JsonInput.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Source/KafkaInput.java" afterPath="$PROJECT_DIR$/src/main/java/Source/KafkaInput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Source/SocketInput.java" afterPath="$PROJECT_DIR$/src/main/java/Source/SocketInput.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SparkInSql.java" afterPath="$PROJECT_DIR$/src/main/java/SparkInSql.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Target/CsvOutput.java" afterPath="$PROJECT_DIR$/src/main/java/Target/CsvOutput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Target/KafkaOutput.java" afterPath="$PROJECT_DIR$/src/main/java/Target/KafkaOutput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Util/DataSender.java" afterPath="$PROJECT_DIR$/src/main/java/Util/DataSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Target/ConsoleOutput.java" afterPath="$PROJECT_DIR$/src/main/java/Target/ConsoleOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Util/DatasetUtil.java" afterPath="$PROJECT_DIR$/src/main/java/Util/DatasetUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/testCsvOutput" afterPath="$PROJECT_DIR$/src/main/resources/testCsvOutput" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/testCsvSQL" afterPath="$PROJECT_DIR$/src/main/resources/testCsvSQL" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/testKafkaOutput" afterPath="$PROJECT_DIR$/src/main/resources/testKafkaOutput" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/testSQLFile" afterPath="$PROJECT_DIR$/src/main/resources/testSQLFile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/testCsvOutput" afterPath="$PROJECT_DIR$/target/classes/testCsvOutput" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/testCsvSQL" afterPath="$PROJECT_DIR$/target/classes/testCsvSQL" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/testKafkaOutput" afterPath="$PROJECT_DIR$/target/classes/testKafkaOutput" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/testSQLFile" afterPath="$PROJECT_DIR$/target/classes/testSQLFile" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,29 +38,21 @@
       <file leaf-file-name="SparkInSql.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SparkInSql.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="45" column="61" lean-forward="false" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+            <state relative-caret-position="-418">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testCsvOutput" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/testCsvOutput">
+      <file leaf-file-name="CsvInput.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Source/CsvInput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testParquetSQL" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/testParquetSQL">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="943">
+              <caret line="38" column="27" lean-forward="true" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,16 +67,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestForeachWriter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TestForeachWriter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Util/TestForeachWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="50">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#987#988#0" expanded="true" />
                 <element signature="e#1077#1078#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KafkaInput.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Source/KafkaInput.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-932">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Target/KafkaOutput.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
-              <caret line="95" column="55" lean-forward="true" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
+              <caret line="95" column="55" lean-forward="false" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -178,10 +172,8 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Util/BaseZookeeper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/testJsonSQL" />
-        <option value="$PROJECT_DIR$/src/main/java/Source/KafkaInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/Target/CsvOutput.java" />
         <option value="$PROJECT_DIR$/src/main/resources/testCsvSQL" />
-        <option value="$PROJECT_DIR$/src/main/java/Source/CsvInput.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Target/ConsoleOutput.java" />
         <option value="$PROJECT_DIR$/src/main/resources/testCsvOutput" />
@@ -189,9 +181,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/testSQLFile" />
         <option value="$PROJECT_DIR$/src/main/java/Util/DataSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/Target/KafkaOutput.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SparkInSql.java" />
         <option value="$PROJECT_DIR$/src/main/resources/testKafkaOutput" />
         <option value="$PROJECT_DIR$/src/main/java/Util/TestForeachWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Source/KafkaInput.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SparkInSql.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Source/CsvInput.java" />
       </list>
     </option>
   </component>
@@ -207,12 +201,6 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -493,12 +481,12 @@
       <workItem from="1561428142242" duration="17909000" />
       <workItem from="1561513766250" duration="16429000" />
       <workItem from="1561541513372" duration="2218000" />
-      <workItem from="1561599687490" duration="8067000" />
+      <workItem from="1561599687490" duration="8378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49199000" />
+    <option name="totallyTimeSpent" value="49510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -726,29 +714,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Source/KafkaInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Source/BaseInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Source/CsvInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="107" column="52" lean-forward="false" selection-start-line="107" selection-start-column="52" selection-end-line="107" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -803,12 +773,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18125">
           <caret line="725" column="16" lean-forward="false" selection-start-line="725" selection-start-column="16" selection-end-line="725" selection-end-column="16" />
-          <folding>
-            <marker date="1561617855531" expanded="true" signature="59171:59188" ph="..." />
-            <marker date="1561617855531" expanded="true" signature="59171:59206" ph="..." />
-            <marker date="1561617855531" expanded="true" signature="59171:59219" ph="..." />
-            <marker date="1561617855531" expanded="true" signature="59171:59234" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -894,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/testCsvOutput">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="22" column="35" lean-forward="false" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="625">
+          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -904,14 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SparkInSql.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="45" column="61" lean-forward="false" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -959,7 +916,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Target/KafkaOutput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
-          <caret line="95" column="55" lean-forward="true" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
+          <caret line="95" column="55" lean-forward="false" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -968,12 +925,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Util/TestForeachWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="50">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#987#988#0" expanded="true" />
             <element signature="e#1077#1078#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Source/KafkaInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-932">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SparkInSql.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-418">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Source/CsvInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="38" column="27" lean-forward="true" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

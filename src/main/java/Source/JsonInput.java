@@ -9,7 +9,9 @@ import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import parser.CreateTableParser;
+import parser.SqlTree;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +23,13 @@ public class JsonInput implements BaseInput{
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
     Boolean isProcess = true;
+    int id;
 
     //生成datastream
     @Override
     public Dataset<Row> getDataSetStream(SparkSession spark, CreateTableParser.SqlParserResult config, int id) {
         jsonMap = config.getPropMap();
+        this.id = id;
         this.config = config;
         checkConfig();
         beforeInput();
@@ -56,18 +60,11 @@ public class JsonInput implements BaseInput{
 
     @Override
     public void afterInput(){
-        final String delimiter = jsonMap.get("delimiter").toString();
-        if(isProcess){
-            try {
-//                result.withColumn("timestamp",addCol.call(1));
-            } catch (Exception e) {
-
-
-            }
-            return;
-        }
-        ColumnType windowType = getWindowType(jsonMap);
-        result = DatasetUtil.getDatasetWithWindow(result, windowType, jsonMap);
+        String delimiter = jsonMap.get("delimiter").toString();
+        SqlTree.delimiters.add(delimiter);
+        List<ColumnType> column = new ArrayList<>();
+        SqlTree.columnLists.add(column);
+        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
 
     }
 

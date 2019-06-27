@@ -21,9 +21,6 @@ import static org.apache.spark.sql.functions.from_json;
 public class DatasetUtil {
     //将生成的datastream转化为具有schema的形式
     public static Dataset<Row> getSchemaDataSet(Dataset<Row> dataset, String fieldsString, Boolean isProcess, Map proMap, int id){
-
-        List<ColumnType> column = new ArrayList<>();
-        SqlTree.columnLists.add(column);
         List<ColumnType> columnList = SqlTree.columnLists.get(id);
         List<StructField> fields = new ArrayList<>();
         String[] fieldsArray = fieldsString.split("," + "(?![^()]*+\\))(?![^{}]*+})(?![^\\[\\]]*+\\])(?=(?:[^\"]|\"[^\"]*\")*$)");

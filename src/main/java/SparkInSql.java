@@ -35,7 +35,7 @@ public class SparkInSql {
 
 
 
-//
+
 //        DataSender dataSender = new DataSender("sender");
 //        dataSender.start();//向9998端口发送1-100随机数
 
@@ -43,7 +43,7 @@ public class SparkInSql {
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
-        String sql = BaseZookeeper.getSqlFromSource("kafkaOut");
+        String sql = BaseZookeeper.getSqlFromSource("socket");
         zookeeper.setData("/sqlTest", sql);
 
 
@@ -95,6 +95,6 @@ public class SparkInSql {
         StreamingQuery streamingQuery = null;
         streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
         //streamingQuery.awaitTermination();
-        spark.streams().awaitAnyTermination();//todo:多个执行语句同时，socket有问题
+        spark.streams().awaitAnyTermination();
     }
 }
