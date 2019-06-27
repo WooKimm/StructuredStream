@@ -6,13 +6,43 @@ create env spark(
 );
 
 CREATE TABLE InputTable(
-    id Int,
-    number1 Int
+    id int,
+    name string
 )WITH(
     type='socket',
     host='localhost',
     processwindow='10 seconds,10 seconds',
     watermark='30 seconds',
+    port='9998'
+);
+
+CREATE TABLE InputTable2(
+    id int,
+    name string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+    watermark='30 seconds',
+    port='9999'
+);
+
+CREATE TABLE RandomIntTable(
+    number int
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+    port='9999'
+);
+
+CREATE TABLE ImageTable(
+    image string
+)WITH(
+    type='socket',
+    host='localhost',
+    delimiter=';',
+    processwindow='1 seconds,1 seconds',
     port='9998'
 );
 
@@ -23,4 +53,10 @@ CREATE SINK OutputTable(
     trigger='2 seconds'
 );
 
-insert into OutputTable select * from InputTable;
+CREATE SINK ImageOutputTable(
+)WITH(
+    type='image',
+    outputmode='update'
+);
+
+insert into ImageOutputTable select * from ImageTable;

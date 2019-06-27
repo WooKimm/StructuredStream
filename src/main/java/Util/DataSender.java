@@ -18,20 +18,18 @@ public class DataSender extends Thread {
         Process p;
         OutputStreamWriter outputStreamWriter = null;
         BufferedWriter writer = null;
-        int port = 9998;
+        int port = 9999;
         try {
-            p = Runtime.getRuntime().exec("cmd /c nc -l -p " + String.valueOf(port));
-            p.waitFor();
+            p = Runtime.getRuntime().exec("cmd /k nc -l -p " + String.valueOf(port));
+            //p.waitFor();
             outputStreamWriter = new OutputStreamWriter(p.getOutputStream(), "UTF-8");
-//            writer = new BufferedWriter(outputStreamWriter);
+            writer = new BufferedWriter(outputStreamWriter);
             while (true) {
-
                 String num = String.valueOf((int)(1+Math.random()*(100-1+1)));
-                outputStreamWriter.write(num);
-                outputStreamWriter.write(",\n");
-                outputStreamWriter.flush();
+                writer.write(num);
+                writer.write("\n");
+                writer.flush();
 
-//                System.out.println(1);
                 Thread.sleep(100);
             }
         } catch (IOException e) {

@@ -14,7 +14,7 @@ public class SqlTree {
     private Map<String, Object> preDealSparkEnvMap = new HashMap<>();
     private Map<String, TableInfo> tableInfoMap = new LinkedHashMap<>();
     private Set<InsertSqlParser.SqlParseResult> execSqlList = newHashSet();
-    private InsertSqlParser.SqlParseResult execSql;//TODO：没用，主要是用list，建议修改
+    private InsertSqlParser.SqlParseResult execSql;
     private String appInfo;
 
     //储存各源表的分隔符和列属性

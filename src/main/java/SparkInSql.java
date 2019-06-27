@@ -88,13 +88,10 @@ public class SparkInSql {
 
         //第四阶段
         Map<String,Dataset<Row>> tableList = SparkUtil.getTableList(spark,SqlParser.sqlTree);
-//        SparkUtil.createDataFrame(spark,SqlParser.sqlTree);
 
         //第五阶段
 
-        StreamingQuery streamingQuery = null;
-        streamingQuery = SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
-        //streamingQuery.awaitTermination();
+        SparkUtil.createStreamingQuery(spark,sqlTree,tableList);
         spark.streams().awaitAnyTermination();
     }
 }
