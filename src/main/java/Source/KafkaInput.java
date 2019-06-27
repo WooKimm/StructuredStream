@@ -5,6 +5,7 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import parser.CreateTableParser;
+import parser.SqlTree;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,6 +61,8 @@ public class KafkaInput implements BaseInput{
     public void afterInput() {
         //这里必须要用final，否则delimiter会被清空
         final String delimiter = kafkaMap.get("delimiter").toString();
+        SqlTree.delimiters.add(delimiter);
+
         result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
     }
 

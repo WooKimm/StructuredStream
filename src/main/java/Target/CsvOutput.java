@@ -46,6 +46,7 @@ public class CsvOutput implements BaseOutput{
                         .format("csv")
                         .options(options)
                         .option("checkpointLocation", "path/to/HDFS/dir")
+                        .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
                         .trigger(Trigger.Continuous(triggerTime))
                         .start();
             }

@@ -4,13 +4,17 @@ import Util.ColumnType;
 import Util.DatasetUtil;
 import Util.SplitSql;
 import org.apache.spark.sql.*;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.types.*;
+import org.apache.spark.sql.types.DataType;
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.StructField;
+import org.apache.spark.sql.types.StructType;
 import parser.CreateTableParser;
+
 import java.util.List;
 import java.util.Map;
 
 import static Util.DatasetUtil.getWindowType;
+
 
 
 public class CsvInput implements BaseInput {
@@ -33,18 +37,18 @@ public class CsvInput implements BaseInput {
         List<StructField> fields = DatasetUtil.GetField(config);
 
         //schema加上timestamp
-//        if (isProcess) {
-//            StructField field = DataTypes.createStructField("timestamp", SplitSql.strConverDataType("timestamp"), true, b.build());
-//            fields.add(field);
-//        }
-        //DataType stringType = DataTypes.StringType;
+        if (isProcess) {
+            StructField field = DataTypes.createStructField("mytimestamp", SplitSql.strConverDataType("timestamp"), true);
+            fields.add(field);
+        }
+        DataType stringType = DataTypes.StringType;
 
         schema = DataTypes.createStructType(fields);
 
         //获取prepare后具有field的dataset
         result = prepare(spark);
         //获取具有schema和window的dataset
-//        afterInput();
+        afterInput();
         return result;
 
     }
@@ -68,12 +72,13 @@ public class CsvInput implements BaseInput {
         final String delimiter = csvMap.get("delimiter").toString();
         if(isProcess){
             try {
-//                result.withColumn("timestamp",addCol.call(1));
+
+                result = result.withColumn("mytimestamp",org.apache.spark.sql.functions.current_timestamp());
+
             } catch (Exception e) {
 
 
             }
-            return;
         }
         ColumnType windowType = getWindowType(csvMap);
         result = DatasetUtil.getDatasetWithWindow(result, windowType, csvMap);

@@ -6,8 +6,7 @@ create env spark(
 );
 
 CREATE TABLE InputTable(
-    id Int,
-    number1 Int
+    word int
 )WITH(
     type='socket',
     host='localhost',
@@ -16,22 +15,10 @@ CREATE TABLE InputTable(
     port='9998'
 );
 
-CREATE TABLE InputTable2(
-    id Int,
-    number2 Int
-)WITH(
-    type='socket',
-    host='localhost',
-    processwindow='10 seconds,5 seconds',
-    watermark='30 seconds',
-    port='9999'
-);
-
 CREATE SINK OutputTable(
 )WITH(
     type='console',
-    outputmode='Append',
-    trigger='2 seconds'
+    outputmode='update'
 );
 
-insert into OutputTable select InputTable.id,number1,number2 from InputTable join InputTable2 on InputTable.id = InputTable2.id;
+insert into OutputTable select * from InputTable;
