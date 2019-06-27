@@ -62,10 +62,12 @@ public class KafkaInput implements BaseInput{
 
     @Override
     public void afterInput() {
+
         String delimiter = kafkaMap.get("delimiter").toString();
         SqlTree.delimiters.add(delimiter);
         List<ColumnType> column = new ArrayList<>();
         SqlTree.columnLists.add(column);
+
         result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
     }
 

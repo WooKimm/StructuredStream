@@ -1,5 +1,6 @@
 package Target;
 
+import Util.TestForeachWriter;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -7,6 +8,7 @@ import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.Trigger;
 import parser.CreateTableParser;
 import parser.InsertSqlParser;
+import org.apache.spark.streaming.kafka.KafkaUtils.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +44,9 @@ public class KafkaOutput implements BaseOutput{
         {
             if(isContinue)
             {
-                query = result.writeStream()
+                query = result
+                        .selectExpr("CAST(word AS STRING)")
+                        .writeStream()
                         .outputMode(outputmode)
                         .format("kafka")
                         .options(options)
@@ -54,7 +58,9 @@ public class KafkaOutput implements BaseOutput{
             {
                 if(isOnce)
                 {
-                    query = result.writeStream()
+                    query = result
+                            .selectExpr("CAST(word AS STRING)")
+                            .writeStream()
                             .outputMode(outputmode)
                             .format("kafka")
                             .options(options)
@@ -64,12 +70,21 @@ public class KafkaOutput implements BaseOutput{
                 }
                 else
                 {
-                    query = result.writeStream()
-                            .outputMode(outputmode)
-                            .format("kafka")
-                            .options(options)
-                            .option("checkpointLocation", "path/to/HDFS/dir")
-                            .trigger(Trigger.ProcessingTime(triggerTime))
+//                    query = result
+//                            .selectExpr("CAST(word AS STRING)")
+//                            .writeStream()
+//                            .outputMode(outputmode)
+//                            .format("kafka")
+//                            .option("kafka.bootstrap.servers", kafkaMap.get("kafka.bootstrap.servers").toString())
+//                            .option("topic", kafkaMap.get("topic").toString())
+//                            .option("checkpointLocation", "path/to/HDFS/dir")
+//                            .trigger(Trigger.ProcessingTime(triggerTime))
+//                            .start();
+                    TestForeachWriter writer = new TestForeachWriter();
+                    query = result
+                            .writeStream()
+                            .foreach(writer)
+                            .outputMode("update")
                             .start();
                 }
             }
@@ -77,11 +92,14 @@ public class KafkaOutput implements BaseOutput{
         else
         {
             System.out.println("触发器未配置，使用默认触发器");
-            query = result.writeStream()
+            query = result
+                    .selectExpr("CAST(word AS STRING)")
+                    .writeStream()
                     .outputMode(outputmode)
                     .format("kafka")
                     .option("checkpointLocation", "path/to/HDFS/dir")
-                    .options(options)
+                    .option("kafka.bootstrap.servers", kafkaMap.get("kafka.bootstrap.servers").toString())
+                    .option("topic", kafkaMap.get("topic").toString())
                     .start();
         }
         return query;

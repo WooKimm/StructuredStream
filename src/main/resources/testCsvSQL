@@ -21,5 +21,4 @@ create SINK console(
     outputmode='update',
 );
 
-insert into console select age from csvTable;
-insert into console select name from csvTable;
+insert into console select * from csvTable;

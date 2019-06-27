@@ -6,12 +6,20 @@ create env spark(
 );
 
 CREATE TABLE InputTable(
+<<<<<<< HEAD
+    word int
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,5 seconds',
+=======
     id Int,
     number1 Int
 )WITH(
     type='socket',
     host='localhost',
     processwindow='10 seconds,10 seconds',
+>>>>>>> f757045d3eb2506ecd38e1303bf6b2f7a534b4b1
     watermark='30 seconds',
     port='9998'
 );
