@@ -1,5 +1,7 @@
 package Target;
 
+import Util.FileForeachWriter;
+import Util.TestForeachWriter;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -35,7 +37,7 @@ public class CsvOutput implements BaseOutput{
 
         Map<String, String> options = new HashMap<>();
         options.put("path", csvMap.get("path").toString());
-
+        String num = String.valueOf((int)(1+Math.random()*(100-1+1)));
         //生成query
         StreamingQuery query = null;
         if(isTrigger)
@@ -45,7 +47,7 @@ public class CsvOutput implements BaseOutput{
                 query = result.writeStream()
                         .format("csv")
                         .options(options)
-                        .option("checkpointLocation", "path/to/HDFS/dir")
+                        .option("checkpointLocation", "path/to/HDFS2/dir"+num)
                         .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
                         .trigger(Trigger.Continuous(triggerTime))
                         .start();
@@ -57,7 +59,8 @@ public class CsvOutput implements BaseOutput{
                     query = result.writeStream()
                             .format("csv")
                             .options(options)
-                            .option("checkpointLocation", "path/to/HDFS/dir")
+                            .option("checkpointLocation", "path/to/HDFS2/dir"+num)
+                            .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
                             .trigger(Trigger.Continuous(triggerTime))
                             .start();
                 }
@@ -66,7 +69,8 @@ public class CsvOutput implements BaseOutput{
                     query = result.writeStream()
                             .format("csv")
                             .options(options)
-                            .option("checkpointLocation", "path/to/HDFS/dir")
+                            .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
+                            .option("checkpointLocation", "path/to/HDFS2/dir"+num)
                             .trigger(Trigger.ProcessingTime(triggerTime))
                             .start();
                 }
@@ -77,7 +81,8 @@ public class CsvOutput implements BaseOutput{
             System.out.println("触发器未配置，使用默认触发器");
             query = result.writeStream()
                     .format("csv")
-                    .option("checkpointLocation", "path/to/HDFS/dir")
+                    .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
+                    .option("checkpointLocation", "path/to/HDFS2/dir"+num)
                     .options(options)
                     .start();
         }

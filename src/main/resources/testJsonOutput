@@ -1,0 +1,24 @@
+create env spark(
+    spark.default.parallelism='2',
+    spark.sql.shuffle.partitions='2'
+)WITH(
+    appname='jsontest'
+);
+
+CREATE TABLE InputTable(
+    word string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+    watermark='30 seconds',
+    port='9998'
+);
+
+create SINK jsonOut(
+)WITH(
+    type='json',
+    path='path/to/destination/json'
+);
+
+insert into jsonOut select word from InputTable;

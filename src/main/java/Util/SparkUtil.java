@@ -2,6 +2,7 @@ package Util;
 
 import Source.BaseInput;
 import Target.BaseOutput;
+import Target.UniteOutput;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -121,10 +122,12 @@ public class SparkUtil {
         for(InsertSqlParser.SqlParseResult sqlParseResult : execSqlList)
         {
             String key = sqlParseResult.getTargetTable();
-            String type = (String) sqlTree.getPreDealSinkMap().get(key).getPropMap().get("type");
-            String upperType = SplitSql.upperCaseFirstChar(type) + "Output";
-            BaseOutput sinkByClass = SparkUtil.getSinkByClass(upperType);
-            streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlParseResult);
+//            String type = (String) sqlTree.getPreDealSinkMap().get(key).getPropMap().get("type");
+//            String upperType = SplitSql.upperCaseFirstChar(type) + "Output";
+//            BaseOutput sinkByClass = SparkUtil.getSinkByClass(upperType);
+//            streamingQuery = sinkByClass.process(spark,tablelist,preDealSinkMap.get(key), sqlParseResult);
+            UniteOutput uniteOutput = new UniteOutput();
+            streamingQuery = uniteOutput.process(spark,tablelist,preDealSinkMap.get(key), sqlParseResult);
         }
         return streamingQuery;
     }
@@ -132,6 +135,7 @@ public class SparkUtil {
 
     public static BaseOutput getSinkByClass(String className)
     {
+//        if(className.equals("csv") || className)
         BaseOutput outputBase = null;
         try {
             outputBase = Class.forName(targetBasePackage + className).asSubclass(BaseOutput.class).newInstance();
