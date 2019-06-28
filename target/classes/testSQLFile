@@ -41,8 +41,6 @@ CREATE TABLE ImageTable(
 )WITH(
     type='socket',
     host='localhost',
-    delimiter=';',
-    processwindow='1 seconds,1 seconds',
     port='9998'
 );
 

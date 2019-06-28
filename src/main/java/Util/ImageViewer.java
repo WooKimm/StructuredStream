@@ -13,6 +13,7 @@ public class ImageViewer implements Serializable {
     public ImageViewer(String title) {
         this.title = title;
         canvas = new CanvasFrame(title);//新建一个窗口
+        canvas.setCanvasSize(Property.WIDTH,Property.HEIGHT);
         canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

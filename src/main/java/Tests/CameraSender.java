@@ -64,9 +64,9 @@ public class CameraSender {
             int startX = (bimg.getWidth() - Property.WIDTH) / 2;
             int startY = (bimg.getHeight() - Property.HEIGHT) / 2;
             arr = bimg.getRGB(startX, startY, Property.WIDTH, Property.HEIGHT, arr, 0, Property.WIDTH);
-            viewer.showImage(arr);
+            //viewer.showImage(arr);
             for (int i : arr) {
-                sb.append(i + ",");
+                sb.append(i + ";");
             }
             System.out.println("Send image:[" + bimg.getWidth() + ", " + bimg.getHeight() + "]");
 //            Raster raster = bimg.getData();
@@ -109,7 +109,7 @@ public class CameraSender {
                     try {
                         System.out.println("send a message.");
                         String img = getFrame();
-                        viewer.showImage(img.split(","));
+                        viewer.showImage(img.split(";"));
                         bw.write(img + "\n");
                         bw.flush();
                         Thread.sleep(1000 / Property.FPS);
