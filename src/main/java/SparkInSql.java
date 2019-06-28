@@ -33,13 +33,6 @@ public class SparkInSql {
 
     public static void main(String[] args) throws Exception {
 
-
-
-
-//        DataSender dataSender = new DataSender("sender");
-//        dataSender.start();//向9998端口发送1-100随机数
-
-
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");

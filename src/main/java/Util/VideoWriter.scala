@@ -13,7 +13,7 @@ class VideoWriter extends ForeachWriter[Row]{
         // pass the value
         //      compare.frame = str
 
-        val data = str.split(",")
+        val data = str.split(";")
         //      val newData = ImageProcess.watermark(ImageProcess.toGray(data))
         viewer.showImage(data)
         ()
