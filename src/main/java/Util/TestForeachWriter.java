@@ -10,15 +10,17 @@ import java.util.Properties;
 
 public class TestForeachWriter extends ForeachWriter<Row> {
 
-    public Properties kafkaProperties;
-    public KafkaProducer kafkaProducer;
+    private Properties kafkaProperties;
+    private KafkaProducer kafkaProducer;
+    private String topic;
 
-    public TestForeachWriter() {
+
+    public TestForeachWriter(String server,String topic) {
         this.kafkaProperties = new Properties();
-        kafkaProperties.put("bootstrap.servers", "localhost:9092");
+        kafkaProperties.put("bootstrap.servers", server);
         kafkaProperties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         kafkaProperties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-
+        this.topic = topic;
     }
 
 
@@ -31,7 +33,7 @@ public class TestForeachWriter extends ForeachWriter<Row> {
 
     @Override
     public void process(Row row) {
-        kafkaProducer.send(new ProducerRecord("test1", row.get(0)+":"+row.get(1)));
+        kafkaProducer.send(new ProducerRecord(this.topic, row.toString()));
     }
 
     @Override
