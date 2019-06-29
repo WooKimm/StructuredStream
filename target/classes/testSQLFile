@@ -1,6 +1,7 @@
 create env spark(
     spark.default.parallelism='2',
-    spark.sql.shuffle.partitions='2'
+    spark.sql.shuffle.partitions='2',
+    spark.scheduler.revive.interval='50ms'
 )WITH(
     appname='WooTest'
 );
@@ -28,11 +29,11 @@ CREATE TABLE InputTable2(
 );
 
 CREATE TABLE RandomIntTable(
-    number int
+    number String
 )WITH(
     type='socket',
     host='localhost',
-    processwindow='10 seconds,10 seconds',
+    processwindow='10 milliseconds,10 milliseconds',
     port='9999'
 );
 
@@ -47,14 +48,21 @@ CREATE TABLE ImageTable(
 CREATE SINK OutputTable(
 )WITH(
     type='console',
-    outputmode='Append',
-    trigger='2 seconds'
+    outputmode='update'
 );
+
 
 CREATE SINK ImageOutputTable(
 )WITH(
     type='image',
-    outputmode='update'
+    outputmode='append'
 );
 
-insert into ImageOutputTable select * from ImageTable;
+CREATE SINK ImageOutputTable2(
+)WITH(
+    type='image',
+    outputmode='append',
+    continuetrigger='2 seconds'
+);
+
+insert into OutputTable select number,processwindow from RandomIntTable group by number,processwindow;

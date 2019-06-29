@@ -21,7 +21,7 @@ public class ParquetInput implements BaseInput {
     StructType schema = null;
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
-    Boolean isProcess = true;
+    Boolean isProcess = false;
     int id;
 
     //生成datastream
@@ -56,6 +56,14 @@ public class ParquetInput implements BaseInput {
         }
         if (delimiter == null) {
             parquetMap.put("delimiter", ",");
+        }
+        if (parquetMap.containsKey("processwindow")) {
+            isProcess = true;
+            parquetMap.put("isProcess", true);
+        }
+        if (parquetMap.containsKey("eventwindow")) {
+            isProcess = false;
+            parquetMap.put("isProcess", false);
         }
     }
 

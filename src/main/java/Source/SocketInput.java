@@ -19,7 +19,7 @@ public class SocketInput implements BaseInput{
 
     Map<String, Object> socketMap = null;
     CreateTableParser.SqlParserResult config = null;
-    Boolean isProcess = true;
+    Boolean isProcess = false;
     Dataset<Row> result = null;
     int id;
 

@@ -22,7 +22,7 @@ public class JsonInput implements BaseInput{
     StructType schema = null;
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
-    Boolean isProcess = true;
+    Boolean isProcess = false;
     int id;
 
     //生成datastream
@@ -55,6 +55,14 @@ public class JsonInput implements BaseInput{
         }
         if (delimiter == null) {
             jsonMap.put("delimiter", ",");
+        }
+        if (jsonMap.containsKey("processwindow")) {
+            isProcess = true;
+            jsonMap.put("isProcess", true);
+        }
+        if (jsonMap.containsKey("eventwindow")) {
+            isProcess = false;
+            jsonMap.put("isProcess", false);
         }
     }
 

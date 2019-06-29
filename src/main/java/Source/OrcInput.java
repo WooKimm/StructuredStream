@@ -20,7 +20,7 @@ public class OrcInput implements BaseInput{
     StructType schema = null;
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
-    Boolean isProcess = true;
+    Boolean isProcess = false;
     int id;
 
     //生成datastream
@@ -55,6 +55,14 @@ public class OrcInput implements BaseInput{
         }
         if (delimiter == null) {
             orcMap.put("delimiter", ",");
+        }
+        if (orcMap.containsKey("processwindow")) {
+            isProcess = true;
+            orcMap.put("isProcess", true);
+        }
+        if (orcMap.containsKey("eventwindow")) {
+            isProcess = false;
+            orcMap.put("isProcess", false);
         }
     }
 
