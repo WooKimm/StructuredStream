@@ -77,8 +77,6 @@ public class CsvInput implements BaseInput {
                 result = result.withColumn("mytimestamp",org.apache.spark.sql.functions.current_timestamp());
 
             } catch (Exception e) {
-
-
             }
         }
         ColumnType windowType = getWindowType(csvMap);
@@ -95,6 +93,14 @@ public class CsvInput implements BaseInput {
         if (!isValid) {
             throw new RuntimeException("path are needed in csvinput input and cant be empty");
             //System.exit(-1);
+        }
+        if (csvMap.containsKey("processwindow")) {
+            isProcess = true;
+            csvMap.put("isProcess", true);
+        }
+        if (csvMap.containsKey("eventwindow")) {
+            isProcess = false;
+            csvMap.put("isProcess", false);
         }
     }
 

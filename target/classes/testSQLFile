@@ -33,7 +33,7 @@ CREATE TABLE RandomIntTable(
     type='socket',
     host='localhost',
     processwindow='10 seconds,10 seconds',
-    port='9998'
+    port='9999'
 );
 
 CREATE TABLE ImageTable(

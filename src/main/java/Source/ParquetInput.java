@@ -2,6 +2,7 @@ package Source;
 
 import Util.ColumnType;
 import Util.DatasetUtil;
+import Util.SplitSql;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -34,11 +35,14 @@ public class ParquetInput implements BaseInput {
         beforeInput();
         List<StructField> fields = DatasetUtil.GetField(config);
 
-
+        if (isProcess) {
+            StructField field = DataTypes.createStructField("mytimestamp", SplitSql.strConverDataType("timestamp"), true);
+            fields.add(field);
+        }
         schema = DataTypes.createStructType(fields);
 
         result = prepare(spark);
-
+        afterInput();
         return result;
 
     }
@@ -64,12 +68,11 @@ public class ParquetInput implements BaseInput {
         final String delimiter = parquetMap.get("delimiter").toString();
         if(isProcess){
             try {
-//                result.withColumn("timestamp",addCol.call(1));
+
+                result = result.withColumn("mytimestamp",org.apache.spark.sql.functions.current_timestamp());
+
             } catch (Exception e) {
-
-
             }
-            return;
         }
         ColumnType windowType = getWindowType(parquetMap);
         result = DatasetUtil.getDatasetWithWindow(result, windowType, parquetMap);
@@ -84,6 +87,14 @@ public class ParquetInput implements BaseInput {
         if (!isValid) {
             throw new RuntimeException("path are needed in csvinput input.txt and cant be empty");
             //System.exit(-1);
+        }
+        if (parquetMap.containsKey("processwindow")) {
+            isProcess = true;
+            parquetMap.put("isProcess", true);
+        }
+        if (parquetMap.containsKey("eventwindow")) {
+            isProcess = false;
+            parquetMap.put("isProcess", false);
         }
     }
 

@@ -2,6 +2,7 @@ package Source;
 
 import Util.ColumnType;
 import Util.DatasetUtil;
+import Util.SplitSql;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -35,11 +36,15 @@ public class JsonInput implements BaseInput{
         beforeInput();
         List<StructField> fields = DatasetUtil.GetField(config);
 
-
+        //schema加上timestamp
+        if (isProcess) {
+            StructField field = DataTypes.createStructField("mytimestamp", SplitSql.strConverDataType("timestamp"), true);
+            fields.add(field);
+        }
         schema = DataTypes.createStructType(fields);
 
         result = prepare(spark);
-
+        afterInput();
         return result;
 
     }
@@ -60,12 +65,17 @@ public class JsonInput implements BaseInput{
 
     @Override
     public void afterInput(){
-        String delimiter = jsonMap.get("delimiter").toString();
-        SqlTree.delimiters.add(delimiter);
-        List<ColumnType> column = new ArrayList<>();
-        SqlTree.columnLists.add(column);
-        result = DatasetUtil.getSchemaDataSet(result, config.getFieldsInfoStr(), isProcess, config.getPropMap(), id);
+        final String delimiter = jsonMap.get("delimiter").toString();
+        if(isProcess){
+            try {
 
+                result = result.withColumn("mytimestamp",org.apache.spark.sql.functions.current_timestamp());
+
+            } catch (Exception e) {
+            }
+        }
+        ColumnType windowType = getWindowType(jsonMap);
+        result = DatasetUtil.getDatasetWithWindow(result, windowType, jsonMap);
     }
 
     //检查config
@@ -76,6 +86,15 @@ public class JsonInput implements BaseInput{
         if (!isValid) {
             throw new RuntimeException("path are needed in csvinput input and cant be empty");
             //System.exit(-1);
+        }
+
+        if (jsonMap.containsKey("processwindow")) {
+            isProcess = true;
+            jsonMap.put("isProcess", true);
+        }
+        if (jsonMap.containsKey("eventwindow")) {
+            isProcess = false;
+            jsonMap.put("isProcess", false);
         }
     }
 

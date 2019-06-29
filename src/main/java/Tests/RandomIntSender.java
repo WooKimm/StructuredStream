@@ -13,7 +13,7 @@ public class RandomIntSender {
         System.out.println(System.currentTimeMillis());
         // TODO 增加 HTTP 服务端，实现分辨率、帧率的客户端读取
         // 能设置更好
-        int serverPort = 9998;
+        int serverPort = 9999;
         try {
             ServerSocket ss = new ServerSocket(serverPort);
             System.out.println("启动服务器....");

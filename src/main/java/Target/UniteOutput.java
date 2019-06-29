@@ -55,10 +55,6 @@ public class UniteOutput implements BaseOutput{
                 query = generateQueryWithImage(result);
                 break;
         }
-
-
-
-
         return query;
     }
 
