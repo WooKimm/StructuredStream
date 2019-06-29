@@ -25,9 +25,13 @@ public class ImageViewer implements Serializable {
     }
 
     public void showImage(String[] data) {
-        int[] ints = new int[data.length];
-        for (int i = 0; i < data.length; i++) {
-            ints[i] = Integer.parseInt(data[i]);
+
+        //图像处理
+        String[] tempdata = data;
+
+        int[] ints = new int[tempdata.length];
+        for (int i = 0; i < tempdata.length; i++) {
+            ints[i] = Integer.parseInt(tempdata[i]);
         }
         showImage(ints);
     }

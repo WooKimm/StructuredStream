@@ -7,5 +7,5 @@ public class Property {
     public static final int WIDTH = 320;
     public static final int HEIGHT = 240;
     public static final int Pixels = WIDTH * HEIGHT;
-    public static final int FPS = 40;
+    public static final int FPS = 20;
 }

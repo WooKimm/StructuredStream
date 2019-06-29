@@ -1,5 +1,6 @@
 package Util;
 
+import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.MapPartitionsFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoders;
@@ -7,6 +8,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.functions;
 import org.apache.spark.sql.types.*;
 import net.sf.json.JSONObject;
+import org.apache.spark.unsafe.types.UTF8String;
 import parser.CreateTableParser;
 import parser.SqlTree;
 import scala.Tuple2;
@@ -83,14 +85,13 @@ public class DatasetUtil {
         {
             schemaDataSet = dataset
                     .as(Encoders.STRING())
-                    .mapPartitions(new MapPartitionsFunction<String, String>() {
+                    .flatMap(new FlatMapFunction<String, String>() {
                         @Override
-                        public Iterator<String> call(Iterator<String> input) throws Exception {
+                        public Iterator<String> call(String input) throws Exception {
                             List<String> recordList = new ArrayList<>();
                             JSONObject jsonObject = new JSONObject();
                             List<ColumnType> columnList = SqlTree.columnLists.get(id);
-                            while (input.hasNext()) {
-                                String record = input.next();
+                                String record = input;
                                 String[] split = record.split(SqlTree.delimiters.get(id));
                                 for (int i = 0; i < split.length; i++) {
                                     try {
@@ -101,7 +102,6 @@ public class DatasetUtil {
                                     }
                                 }
                                 recordList.add(jsonObject.toString());
-                            }
                             return recordList.iterator();
                         }
                     }, Encoders.STRING());

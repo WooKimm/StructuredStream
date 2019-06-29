@@ -23,7 +23,7 @@ public class CsvInput implements BaseInput {
     StructType schema = null;
     Dataset<Row> result = null;
     CreateTableParser.SqlParserResult config = null;
-    Boolean isProcess = true;
+    Boolean isProcess = false;
     int id;
 
     //生成datastream
@@ -64,6 +64,14 @@ public class CsvInput implements BaseInput {
         }
         if (delimiter == null) {
             csvMap.put("delimiter", ",");
+        }
+        if (csvMap.containsKey("processwindow")) {
+            isProcess = true;
+            csvMap.put("isProcess", true);
+        }
+        if (csvMap.containsKey("eventwindow")) {
+            isProcess = false;
+            csvMap.put("isProcess", false);
         }
     }
 

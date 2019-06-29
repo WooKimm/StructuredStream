@@ -82,7 +82,6 @@ public class CameraSender {
 
     public static void main(String[] args) {
 //        System.out.println(saySomething());
-        System.out.println(System.currentTimeMillis());
         // TODO 增加 HTTP 服务端，实现分辨率、帧率的客户端读取
         // 能设置更好
 

@@ -21,7 +21,7 @@ public class KafkaInput implements BaseInput{
     Map<String, Object> kafkaMap = null;
     String windowType = "";
     CreateTableParser.SqlParserResult config = null;
-    Boolean isProcess = true;
+    Boolean isProcess = false;
     Dataset<Row> result = null;
     int id;
 
