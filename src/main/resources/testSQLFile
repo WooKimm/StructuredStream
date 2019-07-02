@@ -44,10 +44,21 @@ CREATE TABLE ImageTable(
     port='9998'
 );
 
+CREATE TABLE kafkaTable(
+    word string
+)WITH(
+    type='kafka',
+    kafka.bootstrap.servers='localhost:9092',
+    processwindow='10 seconds,10 seconds',
+    subscribe='test',
+    group='test'
+);
+
 CREATE SINK OutputTable(
 )WITH(
     type='console',
-    outputmode='update'
+    outputmode='update',
+    continuetrigger='2 seconds'
 );
 
 
@@ -64,4 +75,4 @@ CREATE SINK ImageOutputTable2(
     continuetrigger='2 seconds'
 );
 
-insert into OutputTable select number,processwindow from RandomIntTable group by number,processwindow;
+insert into OutputTable select word from kafkaTable;
