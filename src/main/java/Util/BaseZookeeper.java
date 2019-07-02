@@ -215,6 +215,9 @@ public class BaseZookeeper implements Watcher{
             case "parquet":
                 file = new File("src/main/resources/testParquetSQL");
                 break;
+            case "rate":
+                file = new File("src/main/resources/testRateSQL");
+                break;
             case "kafkaOut":
                 file = new File("src/main/resources/testKafkaOutput");
                 break;
