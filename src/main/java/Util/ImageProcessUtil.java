@@ -10,7 +10,7 @@ public class ImageProcessUtil {
     private static int[] getWatermark() {
         int[] result = new int[Property.HEIGHT * Property.WIDTH];
         try {
-            BufferedImage image = ImageIO.read(new File("/Users/haoxingxiao/Desktop/ImageProcess/watermark.png"));
+            BufferedImage image = ImageIO.read(new File("watermark.png"));
 
             result = image.getRGB(0, 0, Property.WIDTH, Property.HEIGHT, result, 0, Property.WIDTH);
             return result;

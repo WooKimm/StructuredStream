@@ -7,7 +7,7 @@ create env spark(
 
 CREATE TABLE InputTable(
     id int,
-    name string
+    name1 string
 )WITH(
     type='socket',
     host='localhost',
@@ -18,21 +18,21 @@ CREATE TABLE InputTable(
 
 CREATE TABLE InputTable2(
     id int,
-    name string
+    name2 string
 )WITH(
     type='socket',
     host='localhost',
     processwindow='10 seconds,10 seconds',
     watermark='30 seconds',
-    port='9999'
+    port='9998'
 );
 
 CREATE TABLE RandomIntTable(
-    number String
+    number Int
 )WITH(
     type='socket',
     host='localhost',
-    processwindow='10 milliseconds,10 milliseconds',
+    processwindow='10 seconds,10 seconds',
     port='9999'
 );
 
@@ -42,6 +42,17 @@ CREATE TABLE ImageTable(
     type='socket',
     host='localhost',
     port='9998'
+);
+
+CREATE TABLE kafkaTable(
+    word string
+)WITH(
+    type='kafka',
+    kafka.bootstrap.servers='localhost:9092',
+    processwindow='10 seconds,10 seconds',
+    watermark='10 seconds',
+    subscribe='Image',
+    group='test'
 );
 
 CREATE SINK OutputTable(
@@ -54,7 +65,7 @@ CREATE SINK OutputTable(
 CREATE SINK ImageOutputTable(
 )WITH(
     type='image',
-    outputmode='append'
+    outputmode='update'
 );
 
 CREATE SINK ImageOutputTable2(
@@ -64,4 +75,5 @@ CREATE SINK ImageOutputTable2(
     continuetrigger='2 seconds'
 );
 
-insert into OutputTable select number,processwindow from RandomIntTable group by number,processwindow;
+
+insert into ImageOutputTable select image from ImageTable;
