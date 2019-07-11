@@ -36,7 +36,7 @@ public class RandomIntSender {
                     try {
                         Date date = new Date();
                         //SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                        String num = String.valueOf((int)(1+Math.random()*(100-1+1)));
+                        String num = String.valueOf((int)(1+Math.random()*(10-1+1)));
                         bw.write(num + "\n");
                         //bw.write(dateFormat.format(date)+","+ num + "\n");
                         bw.flush();

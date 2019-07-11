@@ -1,6 +1,7 @@
 package Target;
 
 import Util.TestForeachWriter;
+import Util.VideoPlayer;
 import Util.VideoWriter;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -260,6 +261,10 @@ public class UniteOutput implements BaseOutput{
 
     private StreamingQuery generateQueryWithImage(Dataset<Row> result) {
         StreamingQuery query = null;
+
+//        VideoPlayer videoPlayer = new VideoPlayer("videoplayer");
+//        videoPlayer.start();
+
         if(isTrigger)
         {
             if(isContinue)
