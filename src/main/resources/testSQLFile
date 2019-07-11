@@ -6,18 +6,64 @@ create env spark(
 );
 
 CREATE TABLE InputTable(
+<<<<<<< Updated upstream
     number Int
 )WITH(
     type='socket',
     host='localhost',
     processwindow='10 seconds,5 seconds',
+=======
+    id int,
+    name1 string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+    watermark='30 seconds',
+    port='9999'
+);
+
+CREATE TABLE InputTable2(
+    id int,
+    name2 string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+    port='9998'
+);
+
+CREATE TABLE Imagetable(
+    image string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+>>>>>>> Stashed changes
     port='9998'
 );
 
 CREATE SINK OutputTable(
 )WITH(
     type='console',
+<<<<<<< Updated upstream
     outputmode='update'
 );
 
 insert into OutputTable select processwindow,number,count(*) from InputTable group by processwindow,number;
+=======
+    outputmode='update',
+    trigger='1 seconds'
+    trigger='once'
+    continuetrigger='2 seconds'
+);
+
+CREATE SINK OutputTable2(
+)WITH(
+    type='console',
+    outputmode='append',
+    continuetrigger='2 seconds'
+);
+insert into OutputTable select id,name1 from InputTable;
+insert into OutputTable2 select id from InputTable2;
+>>>>>>> Stashed changes

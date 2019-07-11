@@ -67,6 +67,10 @@ public class SparkInSql {
         //第一阶段
         BaseZookeeper zookeeper = new BaseZookeeper();
         zookeeper.connectZookeeper("127.0.0.1:2181");
+
+        String sql = BaseZookeeper.getSqlFromSource("json");
+        zookeeper.setData("/sqlTest", sql);
+
         String testData = zookeeper.getData("/sqlTest");
         //第二阶段
         SqlParser.parseSql(testData);
