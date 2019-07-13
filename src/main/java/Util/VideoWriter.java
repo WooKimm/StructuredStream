@@ -4,6 +4,13 @@ import org.apache.calcite.util.Static;
 import org.apache.spark.sql.ForeachWriter;
 import org.apache.spark.sql.Row;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,9 +33,26 @@ public class VideoWriter extends ForeachWriter<Row>{
                         // pass the value
                         //      compare.frame = str
 
-                        String[] data = str.split(";");
+        /*             String[] data = str.split(";");*/
+            if(value.length() == 2)
+            {
+                System.out.println(System.currentTimeMillis() - Long.valueOf(value.get(1).toString()));
+            }
                         //      val newData = ImageProcess.watermark(ImageProcess.toGray(data))
-                        viewer.showImage(data);
+
+
+
+        //if(str.length()!=0) str = str.substring(0,str.length()-1);
+            byte[] tempb = StringUtil.hexStringToBytes(str);
+            InputStream buffin = new ByteArrayInputStream(tempb);
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(buffin);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //if(str.length() == 0) System.err.println("空值！！！");
+            viewer.showImage(img);
 
 
         }

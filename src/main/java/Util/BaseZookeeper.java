@@ -1,6 +1,7 @@
 package Util;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import org.apache.zookeeper.CreateMode;
@@ -15,7 +16,7 @@ import org.apache.zookeeper.data.Stat;
 
 
 public class BaseZookeeper implements Watcher{
-
+    
         private ZooKeeper zookeeper;
         /**
       * 超时时间

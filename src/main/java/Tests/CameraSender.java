@@ -9,10 +9,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Util.ImageViewer;
+import Util.StringUtil;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
 import org.opencv.core.Mat;
+
+import javax.imageio.ImageIO;
 
 public class CameraSender {
     private static int count = 0;
@@ -58,7 +61,7 @@ public class CameraSender {
             Frame frame = grabber.grab();
             BufferedImage bimg = frameToImage(frame);
             int[] arr = new int[Property.WIDTH * Property.HEIGHT];
-            int[][] data = new int[Property.WIDTH][Property.HEIGHT];
+            //int[][] data = new int[Property.WIDTH][Property.HEIGHT];
             StringBuilder sb = new StringBuilder();
 
             int startX = (bimg.getWidth() - Property.WIDTH) / 2;
@@ -106,12 +109,28 @@ public class CameraSender {
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
                 while (true) {
                     try {
+                        Frame frame = grabber.grab();
+                        BufferedImage bimg = frameToImage(frame);
+                        viewer.showImage(bimg);
+
+                        ByteArrayOutputStream out = new ByteArrayOutputStream();
+                        ImageIO.write(bimg, "jpg", out);
+                        byte[] bs = out.toByteArray();
+
+                        String temp = StringUtil.bytesToHexString(bs);
+                        //bw.write(bs);
+                        bw.write(temp + "\n");
+                        bw.flush();
+
+                        Thread.sleep(1000 / Property.FPS);
+                        /*
                         System.out.println("send a message.");
                         String img = getFrame();
                         viewer.showImage(img.split(";"));
                         bw.write(img + "\n");
                         bw.flush();
                         Thread.sleep(1000 / Property.FPS);
+                        */
                     } catch (Exception e) {
                         // 连接被客户端中断了
                         System.out.println(e.getLocalizedMessage());

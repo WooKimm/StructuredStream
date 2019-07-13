@@ -4,6 +4,7 @@ import Tests.Property;
 import org.bytedeco.javacv.CanvasFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
@@ -15,6 +16,11 @@ public class ImageViewer implements Serializable {
         canvas = new CanvasFrame(title);//新建一个窗口
         canvas.setCanvasSize(Property.WIDTH,Property.HEIGHT);
         canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void showImage(Image image)
+    {
+        canvas.showImage(image);
     }
 
     public void showImage(int[] data) {
