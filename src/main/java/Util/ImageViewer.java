@@ -42,8 +42,11 @@ public class ImageViewer implements Serializable {
         showImage(ints);
     }
 
-    public void updateInfo(int delay) {
-        canvas.setTitle(title + "\tping:" + delay + "ms");
+    public void updateInfo(long delay, long fps) {
+        if(fps != 0) {
+            int realFps = (int) (1000 / fps);
+            canvas.setTitle(title + " ping:" + delay + "ms," + " fps:" + realFps);
+        }
     }
 
 }

@@ -15,8 +15,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class VideoWriter extends ForeachWriter<Row>{
-        public static Queue<Row> rows = new LinkedList<>();
-        public static boolean isFirstStart = true;
+        public static long lastTime = 0;
         ImageViewer viewer = new ImageViewer("ImageViewer");
 
         @Override
@@ -27,34 +26,25 @@ public class VideoWriter extends ForeachWriter<Row>{
 
         @Override
         public void process(Row value){
-//            rows.offer(value);
+            String str = value.get(0).toString();
 
-                        String str = value.get(0).toString();
-                        // pass the value
-                        //      compare.frame = str
-
-        /*             String[] data = str.split(";");*/
-            if(value.length() == 2)
-            {
-                System.out.println(System.currentTimeMillis() - Long.valueOf(value.get(1).toString()));
-            }
-                        //      val newData = ImageProcess.watermark(ImageProcess.toGray(data))
-
-
-
-        //if(str.length()!=0) str = str.substring(0,str.length()-1);
-            byte[] tempb = StringUtil.hexStringToBytes(str);
-            InputStream buffin = new ByteArrayInputStream(tempb);
+            byte[] bimg = StringUtil.hexStringToBytes(str);
+            InputStream buffin = new ByteArrayInputStream(bimg);
             BufferedImage img = null;
             try {
                 img = ImageIO.read(buffin);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //if(str.length() == 0) System.err.println("空值！！！");
             viewer.showImage(img);
 
-
+            if(value.length() == 2 && !((Long) lastTime).equals(0))
+            {
+                long currentTime = System.currentTimeMillis();
+                viewer.updateInfo((int)(currentTime - Long.valueOf(value.get(1).toString())), currentTime - lastTime);
+                lastTime = currentTime;
+            }
+            
         }
 
         @Override
