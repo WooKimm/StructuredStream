@@ -112,7 +112,7 @@ public class SparkUtil {
         return inputBase;
     }
 
-    public static StreamingQuery createStreamingQuery(SparkSession spark, SqlTree sqlTree, Map<String,Dataset<Row>> tablelist) throws StreamingQueryException {
+    public static StreamingQuery createStreamingQuery(SparkSession spark, SqlTree sqlTree, Map<String,Dataset<Row>> tablelist){
 
         Map<String, CreateTableParser.SqlParserResult> preDealSinkMap = sqlTree.getPreDealSinkMap();
 
