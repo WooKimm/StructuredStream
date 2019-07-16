@@ -10,7 +10,12 @@ import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 
 import com.amd.aparapi.Config;
+import org.apache.spark.api.java.function.MapFunction;
 import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Encoder;
+import org.apache.spark.sql.Encoders;
+import org.apache.spark.sql.types.StructType;
+import scala.reflect.ClassTag;
 
 
 public class SparkCL<T> implements Serializable
@@ -31,12 +36,14 @@ public class SparkCL<T> implements Serializable
     // data
     JavaRDDLike<T,?> m_data;
     Dataset<T> d_data;
+    T ds_data;
 
     public SparkCL(JavaRDDLike<T, ?> data)
     {
         m_data = data;
     }
-    public SparkCL(Dataset<T> data){d_data = data;};
+    public SparkCL(Dataset<T> data){d_data = data;}
+    public SparkCL(T data){ds_data=data;}
 
     private void exclusiveExecKernel(SparkKernelBase kernel) throws Exception
     {
@@ -137,5 +144,57 @@ public class SparkCL<T> implements Serializable
     }
 
     //todo: 尝试重载/重写以上方法，使得支持dataset
+    //传进带有T的kernel，返回Dataset<R>
+    public <R> Dataset<R> mapCL2(final SparkKernel<T,R> kernel)
+    {
+        MapFunction<T,R> funcX = new MapFunction<T,R>()
+        {
+
+            @Override
+            public R call(T v1) throws Exception
+            {
+                final SparkKernel<T,R> cachedKernel = (SparkKernel<T, R>) SparkCLCache.getInstance().tryGetCachedKernelVersion(kernel);
+                cachedKernel.mapParameters(v1);
+                exclusiveExecKernel(cachedKernel);
+                //传出R类型
+                return cachedKernel.mapReturnValue(v1);
+            }
+
+        };
+
+        return  d_data.map(funcX, new Encoder<R>() {
+            @Override
+            public StructType schema() {
+                //todo: 根据数据来进行指定
+                return null;
+            }
+
+            @Override
+            public ClassTag<R> clsTag() {
+                return null;
+            }
+        });
+    }
+
+    //传进来的kernel中T相当于Dataset，返回出去的R也相当于Dataset
+    public <R> R mapCL3(final SparkKernel<T,R> kernel)
+    {
+        MapFunction<T,R> funcX = new MapFunction<T,R>()
+        {
+
+            @Override
+            public R call(T v1) throws Exception
+            {
+                final SparkKernel<T,R> cachedKernel = (SparkKernel<T, R>) SparkCLCache.getInstance().tryGetCachedKernelVersion(kernel);
+                cachedKernel.mapParameters(v1);
+                exclusiveExecKernel(cachedKernel);
+                //传出R类型
+                return cachedKernel.mapReturnValue(v1);
+            }
+
+        };
+
+        return  null;
+    }
 
 }

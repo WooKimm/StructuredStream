@@ -50,8 +50,8 @@ CREATE TABLE kafkaTable(
 )WITH(
     type='kafka',
     kafka.bootstrap.servers='localhost:9092',
-    subscribe='test2',
-    group='test2'
+    subscribe='test1',
+    group='test1'
 );
 
 CREATE TABLE kafkaIntTable(
@@ -63,7 +63,7 @@ CREATE TABLE kafkaIntTable(
     group='test'
 );
 
-CREATE SINK OutputTable(
+CREATE SINK OutputTable(-
 )WITH(
     type='console',
     outputmode='update',

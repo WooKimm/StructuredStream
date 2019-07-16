@@ -96,7 +96,7 @@ public class KafakCameraSender {
 
                 long timestamp = System.currentTimeMillis();
                 img = img + "," + timestamp;
-                producer.send(new ProducerRecord<String, String>("test2", img));
+                producer.send(new ProducerRecord<String, String>("test1", img));
 
                 Thread.sleep(1000/Property.FPS);
             }

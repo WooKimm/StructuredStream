@@ -9,6 +9,7 @@ import org.apache.spark.api.java.function.Function2;
 
 
 import com.amd.aparapi.Range;
+import org.apache.spark.sql.Dataset;
 
 import java.util.ArrayList;
 import java.util.List;

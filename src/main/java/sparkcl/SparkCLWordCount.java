@@ -1,8 +1,7 @@
 package sparkcl;
 import org.apache.spark.api.java.function.Function;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.*;
+import org.apache.spark.sql.streaming.StreamingQuery;
 import scala.Serializable;
 import scala.Tuple2;
 
@@ -12,7 +11,6 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
-import org.apache.spark.sql.SQLContext;
 import com.amd.aparapi.Range;
 
 import java.util.Arrays;
@@ -33,42 +31,6 @@ public final class SparkCLWordCount
         // get number of slices if available
         int slices = (args.length >= 2) ? Integer.parseInt(args[1]) : 2;
         System.out.printf("WordCountCL running on: %s (num of slices=%d)\n",args[0],slices);
-
-//
-//        SparkConf sparkConf = new SparkConf().setAppName("JavaSparkSQL");
-//        JavaSparkContext ctx = new JavaSparkContext(sparkConf);
-//        SQLContext sqlCtx = new SQLContext(ctx);
-//
-//        // Load a text file and convert each line to a Java Bean.
-//        JavaRDD<Person> people = ctx.textFile("examples/src/main/resources/people.txt").map(
-//                new Function<String, Person>() {
-//                    public Person call(String line) throws Exception {
-//                        String[] parts = line.split(",");
-//
-//                        Person person = new Person();
-//                        person.setName(parts[0]);
-//                        person.setAge(Integer.parseInt(parts[1].trim()));
-//
-//                        return person;
-//                    }
-//                });
-//
-//        // Apply a schema to an RDD of Java Beans and register it as a table.
-//
-//        JavaSchemaRDD schemaPeople = sqlCtx.applySchema(people, Person.class);
-//        schemaPeople.registerAsTable("people");
-//
-//        // SQL can be run over RDDs that have been registered as tables.
-//        JavaSchemaRDD teenagers = sqlCtx.sql("SELECT name FROM people WHERE age >= 13 AND age <= 19");
-//
-//        // The results of SQL queries are SchemaRDDs and support all the normal RDD operations.
-//        // The columns of a row in the result can be accessed by ordinal.
-//        List<String> teenagerNames = teenagers.map(new Function<Row, String>() {
-//            public String call(Row row) {
-//                return "Name: " + row.getString(0);
-//            }
-//        }).collect();
-
 
         SparkConf sparkConf = new SparkConf();
 
@@ -211,26 +173,64 @@ public final class SparkCLWordCount
         }
 
         ctx.stop();
+
+        //streaming中wordcount的逻辑
+        SparkSession spark = SparkSession
+                .builder()
+                .appName("JavaStructuredNetworkWordCount")
+                .getOrCreate();
+        // Create DataFrame representing the stream of input lines from connection to host:port
+        Dataset<Row> linesStream = spark
+                .readStream()
+                .format("socket")
+                .option("host", "localhost")
+                .option("port", "9999")
+                .load();
+
+        // Split the lines into words
+        Dataset<String> wordsStream = linesStream.as(Encoders.STRING()).flatMap(
+                (FlatMapFunction<String, String>) x -> Arrays.asList(x.split(" ")).iterator(),
+                Encoders.STRING());
+
+        // Generate running word count
+//        Dataset<Row> wordCounts = wordsStream.groupBy("value").count();
+
+        //重写核函数
+        SparkKernel<Dataset<String>,Dataset<Row>> kernel2 = new SparkKernel<Dataset<String>, Dataset<Row>>()
+        {
+            // data
+            Dataset<Row> result;
+            Dataset<String> input;
+            @Override
+            public void mapParameters(Dataset<String> data) {
+                input = data;
+                // this.setExecutionMode(EXECUTION_MODE.JTP);
+            }
+
+            @Override
+            public void run() {
+                result = input.groupBy("value").count();
+            }
+
+            @Override
+            public Dataset<Row> mapReturnValue(Dataset<String> data) {
+                return result;
+            }
+
+        };
+
+        Dataset<Row> wordCounts = SparkUtil.genSparkCL3(wordsStream).mapCL3(kernel2);
+
+
+        // Start running the query that prints the running counts to the console
+        StreamingQuery query = wordCounts.writeStream()
+                .outputMode("complete")
+                .format("console")
+                .start();
+
+        query.awaitTermination();
+
+
     }
 
-    public static class Person implements Serializable {
-        private String name;
-        private int age;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-    }
 }

@@ -14,6 +14,9 @@ public class SparkUtil {
     public static <T> SparkCL<T> genSparkCL2(Dataset<T> data){
         return new SparkCL<T>(data);
     }
+    public static <T> SparkCL<T> genSparkCL3(T data){
+        return new SparkCL<T>(data);
+    }
 
     public static <T> ArrayList<T> getArrayFromIterator(Iterator<T> dataListItr)
     {
