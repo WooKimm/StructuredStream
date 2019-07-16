@@ -1,6 +1,7 @@
 package Tests;
 
 import Util.ImageViewer;
+import Util.StringUtil;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.bytedeco.javacv.Frame;
@@ -14,12 +15,17 @@ import java.awt.image.DataBufferByte;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+
+import javax.imageio.ImageIO;
 
 public class KafakCameraSender {
     private static int count = 0;
@@ -60,32 +66,6 @@ public class KafakCameraSender {
         return bufferedImage;
     }
 
-    public static String getFrame() {
-        try {
-            Frame frame = grabber.grab();
-            BufferedImage bimg = frameToImage(frame);
-            int[] arr = new int[Property.WIDTH * Property.HEIGHT];
-            int[][] data = new int[Property.WIDTH][Property.HEIGHT];
-            StringBuilder sb = new StringBuilder();
-
-            int startX = (bimg.getWidth() - Property.WIDTH) / 2;
-            int startY = (bimg.getHeight() - Property.HEIGHT) / 2;
-            arr = bimg.getRGB(startX, startY, Property.WIDTH, Property.HEIGHT, arr, 0, Property.WIDTH);
-            //viewer.showImage(arr);
-            for (int i : arr) {
-                sb.append(i + ";");
-            }
-            System.out.println("Send image:[" + bimg.getWidth() + ", " + bimg.getHeight() + "]");
-//            Raster raster = bimg.getData();
-            return sb.toString();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("抓取图像失败！");
-            return null;
-        }
-
-    }
 
     public static void main(String[] args) {
 //        System.out.println(saySomething());
@@ -105,10 +85,20 @@ public class KafakCameraSender {
         try {
             producer = new KafkaProducer<String, String>(properties);
             while (true){
-                String img = getFrame();
-                viewer.showImage(img.split(";"));
+                Frame frame = grabber.grab();
+                BufferedImage bimg = frameToImage(frame);
+                viewer.showImage(bimg);
+
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                ImageIO.write(bimg, "jpg", out);
+                byte[] bs = out.toByteArray();
+                String img = StringUtil.bytesToHexString(bs);
+
+                long timestamp = System.currentTimeMillis();
+                img = img + "," + timestamp;
                 producer.send(new ProducerRecord<String, String>("test2", img));
-                Thread.sleep(1000 / Property.FPS);
+
+                Thread.sleep(1000/Property.FPS);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import Util.ImageViewer;
 import Util.VideoWriter;
 
 public class VideoPlayer extends Thread {
+    /*
     private Thread thread;
     private String threadName;
     ImageViewer viewer;
@@ -53,4 +54,5 @@ public class VideoPlayer extends Thread {
             thread.start ();
         }
     }
+    */
 }

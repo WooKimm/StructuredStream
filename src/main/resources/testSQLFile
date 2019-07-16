@@ -37,7 +37,7 @@ CREATE TABLE RandomIntTable(
 );
 
 CREATE TABLE ImageTable(
-    image string
+    image String
 )WITH(
     type='socket',
     host='localhost',
@@ -45,13 +45,22 @@ CREATE TABLE ImageTable(
 );
 
 CREATE TABLE kafkaTable(
-    word string
+    word string,
+    time1 string
 )WITH(
     type='kafka',
     kafka.bootstrap.servers='localhost:9092',
-    processwindow='10 seconds,10 seconds',
     subscribe='test2',
     group='test2'
+);
+
+CREATE TABLE kafkaIntTable(
+    number string
+)WITH(
+    type='kafka',
+    kafka.bootstrap.servers='localhost:9092',
+    subscribe='test',
+    group='test'
 );
 
 CREATE SINK OutputTable(
@@ -75,4 +84,4 @@ CREATE SINK ImageOutputTable2(
     continuetrigger='2 seconds'
 );
 
-insert into ImageOutputTable2 select word from kafkaTable;
+insert into ImageOutputTable2 select word,time1 from kafkaTable;
