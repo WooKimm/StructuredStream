@@ -119,6 +119,8 @@ public class CameraSender {
 
                         String temp = StringUtil.bytesToHexString(bs);
                         //bw.write(bs);
+                        long timestamp = System.currentTimeMillis();
+                        temp = temp + "," + timestamp;
                         bw.write(temp + "\n");
                         bw.flush();
 
