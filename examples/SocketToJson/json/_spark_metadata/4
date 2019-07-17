@@ -1,0 +1,3 @@
+v1
+{"path":"file:///E:/Woo/2019summerPra/spark2/path/to/destination/json/part-00000-e002d60d-9331-4dc8-8e19-ad392ce242cd-c000.json","size":221,"isDir":false,"modificationTime":1562140477811,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///E:/Woo/2019summerPra/spark2/path/to/destination/json/part-00001-042c158a-3ac8-453b-aaab-412ed5621f35-c000.json","size":223,"isDir":false,"modificationTime":1562140478065,"blockReplication":1,"blockSize":33554432,"action":"add"}

@@ -194,7 +194,14 @@ public class SparkCL<T> implements Serializable
 
         };
 
-        return  null;
+        try {
+            return  funcX.call(ds_data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
+
 
 }

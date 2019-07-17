@@ -1,0 +1,3 @@
+v1
+{"path":"file:///E:/Woo/2019summerPra/spark2/path/to/destination/orc/part-00000-d4946056-edfe-4d65-9784-cab6ca685ce5-c000.snappy.orc","size":299,"isDir":false,"modificationTime":1561715525484,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///E:/Woo/2019summerPra/spark2/path/to/destination/orc/part-00001-7b7d6697-b9c2-43ab-bddb-bb1a24bb78c0-c000.snappy.orc","size":288,"isDir":false,"modificationTime":1561715525479,"blockReplication":1,"blockSize":33554432,"action":"add"}

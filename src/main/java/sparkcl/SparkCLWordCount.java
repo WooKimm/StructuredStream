@@ -42,141 +42,142 @@ public final class SparkCLWordCount
                     .set("spark.executor.memory","1g");
         }
 
-        JavaSparkContext ctx = new JavaSparkContext(sparkConf);
-
-
-
-        JavaRDD<String> lines = ctx.textFile(args[0], slices);
-
-
-        JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
-            @Override
-            public Iterator<String> call(String s) {
-                return Arrays.asList(SPACE.split(s)).iterator();
-            }
-        });
-
-        JavaPairRDD<String, Integer> ones = words.mapToPair(new PairFunction<String, String, Integer>() {
-            @Override
-            public Tuple2<String, Integer> call(String s) {
-                return new Tuple2<String, Integer>(s, 1);
-            }
-        });
-
-        //
-        // Define a somewhat more complex kernel then other demos, includes:
-        // OpenCL work groups, local memory and barriers.
-        // Conditional execution
-        // Device select
-
-        SparkKernel<Tuple2<String, Iterable<Integer>>, Tuple2<String, Integer>> kernel = new SparkKernel<Tuple2<String, Iterable<Integer>>, Tuple2<String, Integer>>()
-        {
-            // data
-            int []dataArray;
-            int []sumArray;
-
-            // minimum amount of data before using accelerator
-            // note this should be significantly large, but kept small for the purpose of the demo
-            final int MinDataSizeForAcceleration = 10;
-
-            @Override
-            public void mapParameters(Tuple2<String, Iterable<Integer>> data)
-            {
-                dataArray = SparkUtil.intArrayFromIterator(data._2.iterator());
-                // decide if to execute the kernel or not
-                ///////////////////////////////////////////////
-                if(dataArray.length<MinDataSizeForAcceleration)
-                {
-                    setShouldExecute(false);
-                    return;
-                }
-                else
-                    setShouldExecute(true);
-                //////////////////////////////////////////////
-                // !!! temp hack -> handle a case where size is not divisible by two. Needs more work...
-                //////////////////////////////////////////////
-                if(dataArray.length%2!=0)
-                {
-                    int []tempArray = dataArray.clone();
-                    dataArray = new int[dataArray.length+1];
-                    for(int i=0;i<tempArray.length; i++)
-                        dataArray[i] = tempArray[i];
-                }
-                int dataLength = dataArray.length;
-                sumArray = new int[dataLength];
-                setRange(Range.create(dataLength));
-                setExecutionMode(EXECUTION_MODE.GPU);
-                buffer_$local$ = new int[getRange().getLocalSize(0)];
-            }
-
-            //@Local symbol does not seem to be working yet in aparapi
-            // we use $local$ convention instead
-            // define local memory type to improve performance. For more info on local memory ->
-            // https://www.khronos.org/registry/cl/sdk/1.1/docs/man/xhtml/local.html
-            int[] buffer_$local$;
-
-            @Override
-            public void run()
-            {
-
-                int gid = getGlobalId();
-                int lid = getLocalId();
-                int localSize = getLocalSize();
-                int localGroupIndex = gid / localSize;
-
-                final int upperGlobalIndexBound = getGlobalSize() - 1;
-                final int maxValidLocalIndex=localSize>>1;
-
-                int baseGlobalIndex = 2 * localSize * localGroupIndex + lid;
-
-                if(baseGlobalIndex<upperGlobalIndexBound)
-                    buffer_$local$[lid] = dataArray[baseGlobalIndex] + dataArray[baseGlobalIndex + 1];
-
-                localBarrier();
-
-                if(lid==0)
-                {
-                    for(int i=0;i<maxValidLocalIndex;i++)
-                        sumArray[localGroupIndex] += buffer_$local$[i];
-                }
-            }
-
-            @Override
-            public Tuple2<String, Integer> mapReturnValue(Tuple2<String, Iterable<Integer>> data)
-            {
-                int sum = 0;
-                // if kernel was executed
-                if(shouldExecute())
-                {
-                    for(int i=0;i<dataArray.length/getRange().getLocalSize(0);i++)
-                        sum += sumArray[i];
-                }
-                // kernel was not executed, not enough data, so perform a CPU simple aggregation
-                else
-                {
-                    Iterator<Integer> itr = data._2.iterator();
-                    while(itr.hasNext())
-                        sum+=itr.next();
-                }
-
-                return  new Tuple2<String, Integer>(data._1,sum);
-            }
-        };
-
-        // first group by key to try to aggregate enough data for our kernel to be able to work on efficiently
-        JavaRDD<Tuple2<String, Integer>> countTuples = SparkUtil.genSparkCL(ones.groupByKey()).mapCL(kernel );
-
-        // display word count results
-        List<Tuple2<String, Integer>> output = countTuples.collect();
-        for (Tuple2<?,?> tuple : output) {
-            System.out.println(tuple._1() + ": " + tuple._2());
-        }
-
-        ctx.stop();
+//        JavaSparkContext ctx = new JavaSparkContext(sparkConf);
+//
+//
+//
+//        JavaRDD<String> lines = ctx.textFile(args[0], slices);
+//
+//
+//        JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
+//            @Override
+//            public Iterator<String> call(String s) {
+//                return Arrays.asList(SPACE.split(s)).iterator();
+//            }
+//        });
+//
+//        JavaPairRDD<String, Integer> ones = words.mapToPair(new PairFunction<String, String, Integer>() {
+//            @Override
+//            public Tuple2<String, Integer> call(String s) {
+//                return new Tuple2<String, Integer>(s, 1);
+//            }
+//        });
+//
+//        //
+//        // Define a somewhat more complex kernel then other demos, includes:
+//        // OpenCL work groups, local memory and barriers.
+//        // Conditional execution
+//        // Device select
+//
+//        SparkKernel<Tuple2<String, Iterable<Integer>>, Tuple2<String, Integer>> kernel = new SparkKernel<Tuple2<String, Iterable<Integer>>, Tuple2<String, Integer>>()
+//        {
+//            // data
+//            int []dataArray;
+//            int []sumArray;
+//
+//            // minimum amount of data before using accelerator
+//            // note this should be significantly large, but kept small for the purpose of the demo
+//            final int MinDataSizeForAcceleration = 10;
+//
+//            @Override
+//            public void mapParameters(Tuple2<String, Iterable<Integer>> data)
+//            {
+//                dataArray = SparkUtil.intArrayFromIterator(data._2.iterator());
+//                // decide if to execute the kernel or not
+//                ///////////////////////////////////////////////
+//                if(dataArray.length<MinDataSizeForAcceleration)
+//                {
+//                    setShouldExecute(false);
+//                    return;
+//                }
+//                else
+//                    setShouldExecute(true);
+//                //////////////////////////////////////////////
+//                // !!! temp hack -> handle a case where size is not divisible by two. Needs more work...
+//                //////////////////////////////////////////////
+//                if(dataArray.length%2!=0)
+//                {
+//                    int []tempArray = dataArray.clone();
+//                    dataArray = new int[dataArray.length+1];
+//                    for(int i=0;i<tempArray.length; i++)
+//                        dataArray[i] = tempArray[i];
+//                }
+//                int dataLength = dataArray.length;
+//                sumArray = new int[dataLength];
+//                setRange(Range.create(dataLength));
+//                setExecutionMode(EXECUTION_MODE.GPU);
+//                buffer_$local$ = new int[getRange().getLocalSize(0)];
+//            }
+//
+//            //@Local symbol does not seem to be working yet in aparapi
+//            // we use $local$ convention instead
+//            // define local memory type to improve performance. For more info on local memory ->
+//            // https://www.khronos.org/registry/cl/sdk/1.1/docs/man/xhtml/local.html
+//            int[] buffer_$local$;
+//
+//            @Override
+//            public void run()
+//            {
+//
+//                int gid = getGlobalId();
+//                int lid = getLocalId();
+//                int localSize = getLocalSize();
+//                int localGroupIndex = gid / localSize;
+//
+//                final int upperGlobalIndexBound = getGlobalSize() - 1;
+//                final int maxValidLocalIndex=localSize>>1;
+//
+//                int baseGlobalIndex = 2 * localSize * localGroupIndex + lid;
+//
+//                if(baseGlobalIndex<upperGlobalIndexBound)
+//                    buffer_$local$[lid] = dataArray[baseGlobalIndex] + dataArray[baseGlobalIndex + 1];
+//
+//                localBarrier();
+//
+//                if(lid==0)
+//                {
+//                    for(int i=0;i<maxValidLocalIndex;i++)
+//                        sumArray[localGroupIndex] += buffer_$local$[i];
+//                }
+//            }
+//
+//            @Override
+//            public Tuple2<String, Integer> mapReturnValue(Tuple2<String, Iterable<Integer>> data)
+//            {
+//                int sum = 0;
+//                // if kernel was executed
+//                if(shouldExecute())
+//                {
+//                    for(int i=0;i<dataArray.length/getRange().getLocalSize(0);i++)
+//                        sum += sumArray[i];
+//                }
+//                // kernel was not executed, not enough data, so perform a CPU simple aggregation
+//                else
+//                {
+//                    Iterator<Integer> itr = data._2.iterator();
+//                    while(itr.hasNext())
+//                        sum+=itr.next();
+//                }
+//
+//                return  new Tuple2<String, Integer>(data._1,sum);
+//            }
+//        };
+//
+//        // first group by key to try to aggregate enough data for our kernel to be able to work on efficiently
+//        JavaRDD<Tuple2<String, Integer>> countTuples = SparkUtil.genSparkCL(ones.groupByKey()).mapCL(kernel );
+//
+//        // display word count results
+//        List<Tuple2<String, Integer>> output = countTuples.collect();
+//        for (Tuple2<?,?> tuple : output) {
+//            System.out.println(tuple._1() + ": " + tuple._2());
+//        }
+//
+//        ctx.stop();
 
         //streaming中wordcount的逻辑
         SparkSession spark = SparkSession
                 .builder()
+                .config(sparkConf)
                 .appName("JavaStructuredNetworkWordCount")
                 .getOrCreate();
         // Create DataFrame representing the stream of input lines from connection to host:port
@@ -204,6 +205,7 @@ public final class SparkCLWordCount
             @Override
             public void mapParameters(Dataset<String> data) {
                 input = data;
+                setRange(Range.create(100));
                 // this.setExecutionMode(EXECUTION_MODE.JTP);
             }
 
@@ -214,7 +216,7 @@ public final class SparkCLWordCount
 
             @Override
             public Dataset<Row> mapReturnValue(Dataset<String> data) {
-                return result;
+                return data.groupBy("value").count();
             }
 
         };
