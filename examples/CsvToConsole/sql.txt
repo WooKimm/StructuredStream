@@ -1,0 +1,18 @@
+CREATE TABLE csvTable(
+    name string,
+    age int
+)WITH(
+    type='csv',
+    delimiter=';',
+    processwindow='10 seconds,10 seconds',
+    path='filepath/csv'
+);
+
+create SINK console(
+)WITH(
+    type='console',
+    outputmode='update',
+);
+
+insert into console select age from csvTable;
+insert into console select name from csvTable;

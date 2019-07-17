@@ -1,0 +1,21 @@
+CREATE TABLE inputTable(
+    word string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,5 seconds',
+    watermark='30 seconds',
+    port='9998'
+);
+
+create SINK kafkaOut(
+)WITH(
+    type='kafka',
+    outputmode='append',
+    process='10s',
+    kafka.bootstrap.servers='localhost:9092',
+    topic='test1',
+    trigger='2 seconds'
+);
+
+insert into kafkaOut select * from inputTable;

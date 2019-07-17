@@ -1,0 +1,17 @@
+CREATE TABLE InputTable(
+    word string
+)WITH(
+    type='socket',
+    host='localhost',
+    processwindow='10 seconds,10 seconds',
+    watermark='30 seconds',
+    port='9999'
+);
+
+create SINK jsonOut(
+)WITH(
+    type='json',
+    path='path/to/destination/json'
+);
+
+insert into jsonOut select word from InputTable;
