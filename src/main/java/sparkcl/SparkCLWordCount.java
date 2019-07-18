@@ -1,4 +1,5 @@
 package sparkcl;
+import com.amd.aparapi.internal.opencl.OpenCLLoader;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.streaming.StreamingQuery;
@@ -12,6 +13,9 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 import com.amd.aparapi.Range;
+import org.apache.spark.sql.streaming.Trigger;
+
+
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -39,6 +43,8 @@ public final class SparkCLWordCount
         {
             sparkConf.setAppName("WordCountCL")
                     .setMaster("local[2]")
+                    .set("spark.default.parallelism","2")
+                    .set("spark.sql.shuffle.partitions","2")
                     .set("spark.executor.memory","1g");
         }
 
@@ -206,6 +212,7 @@ public final class SparkCLWordCount
             public void mapParameters(Dataset<String> data) {
                 input = data;
                 setRange(Range.create(100));
+                setExecutionMode(EXECUTION_MODE.JTP);
                 // this.setExecutionMode(EXECUTION_MODE.JTP);
             }
 
@@ -222,12 +229,13 @@ public final class SparkCLWordCount
         };
 
         Dataset<Row> wordCounts = SparkUtil.genSparkCL3(wordsStream).mapCL3(kernel2);
-
+        System.out.println(OpenCLLoader.isOpenCLAvailable());
 
         // Start running the query that prints the running counts to the console
         StreamingQuery query = wordCounts.writeStream()
                 .outputMode("complete")
                 .format("console")
+                .trigger(Trigger.ProcessingTime("2 seconds"))
                 .start();
 
         query.awaitTermination();
