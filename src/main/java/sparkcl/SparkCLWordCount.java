@@ -212,7 +212,7 @@ public final class SparkCLWordCount
             public void mapParameters(Dataset<String> data) {
                 input = data;
                 setRange(Range.create(100));
-                setExecutionMode(EXECUTION_MODE.JTP);
+                setExecutionMode(EXECUTION_MODE.GPU);
                 // this.setExecutionMode(EXECUTION_MODE.JTP);
             }
 

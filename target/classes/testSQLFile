@@ -54,4 +54,4 @@ CREATE SINK OutputTable(
     trigger='2 seconds'
 );
 
-insert into OutputTable select * from InputTable;
+insert into ImageOutputTable2 select * from InputTable;
