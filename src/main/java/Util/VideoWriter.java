@@ -10,9 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class VideoWriter extends ForeachWriter<Row>{
         public static long lastTime = 0;
@@ -44,7 +42,6 @@ public class VideoWriter extends ForeachWriter<Row>{
                 viewer.updateInfo((int)(currentTime - Long.valueOf(value.get(1).toString())), currentTime - lastTime);
                 lastTime = currentTime;
             }
-            
         }
 
         @Override

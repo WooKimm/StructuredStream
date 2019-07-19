@@ -3,6 +3,7 @@ import com.amd.aparapi.internal.opencl.OpenCLLoader;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.streaming.StreamingQuery;
+import org.apache.spark.sql.streaming.Trigger;
 import scala.Serializable;
 import scala.Tuple2;
 
@@ -27,14 +28,14 @@ public final class SparkCLWordCount
 
     public static void main(String[] args) throws Exception {
 
-        if (args.length < 1) {
-            System.err.println("Usage: WordCountCL <file>");
-            System.exit(1);
-        }
-
-        // get number of slices if available
-        int slices = (args.length >= 2) ? Integer.parseInt(args[1]) : 2;
-        System.out.printf("WordCountCL running on: %s (num of slices=%d)\n",args[0],slices);
+//        if (args.length < 1) {
+//            System.err.println("Usage: WordCountCL <file>");
+//            System.exit(1);
+//        }
+//
+//        // get number of slices if available
+//        int slices = (args.length >= 2) ? Integer.parseInt(args[1]) : 2;
+//        System.out.printf("WordCountCL running on: %s (num of slices=%d)\n",args[0],slices);
 
         SparkConf sparkConf = new SparkConf();
 
@@ -46,7 +47,9 @@ public final class SparkCLWordCount
                     .set("spark.default.parallelism","2")
                     .set("spark.sql.shuffle.partitions","2")
                     .set("spark.executor.memory","1g");
+
         }
+
 
 //        JavaSparkContext ctx = new JavaSparkContext(sparkConf);
 //
@@ -213,7 +216,6 @@ public final class SparkCLWordCount
                 input = data;
                 setRange(Range.create(100));
                 setExecutionMode(EXECUTION_MODE.GPU);
-                // this.setExecutionMode(EXECUTION_MODE.JTP);
             }
 
             @Override
@@ -233,8 +235,9 @@ public final class SparkCLWordCount
 
         // Start running the query that prints the running counts to the console
         StreamingQuery query = wordCounts.writeStream()
-                .outputMode("complete")
+                .outputMode("update")
                 .format("console")
+                .option("truncate", false)
                 .trigger(Trigger.ProcessingTime("2 seconds"))
                 .start();
 

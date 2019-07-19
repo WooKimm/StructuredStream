@@ -5,13 +5,24 @@ create env spark(
     appname='WooTest'
 );
 
-CREATE TABLE ImageSocketTable(
-    image String,
-    currentTime String
+CREATE TABLE IntSocketTable(
+    id int,
+    name string
 )WITH(
     type='socket',
     host='localhost',
-    port='9998'
+    port='9998',
+    processwindow='5 seconds,5 seconds'
+);
+
+CREATE TABLE IntSocketTable2(
+    id int,
+    name string
+)WITH(
+    type='socket',
+    host='localhost',
+    port='9999',
+    processwindow='5 seconds,5 seconds'
 );
 
 CREATE TABLE ImageKafkaTable(
@@ -24,23 +35,14 @@ CREATE TABLE ImageKafkaTable(
     group='test3'
 );
 
-CREATE TABLE InputTable(
-    number int
+CREATE SINK IntOutputTable(
 )WITH(
-    type='socket',
-    host='localhost',
-    processwindow='2 seconds, 2 seconds',
-    port='9999'
-);
-
-CREATE SINK ImageOutputTable(
-)WITH(
-    type='image',
-    outputmode='update'，
+    type='console',
+    outputmode='append',
     trigger='2 seconds'
 );
 
-CREATE SINK ImageOutputTable2(
+CREATE SINK ImageOutputTable(
 )WITH(
     type='image',
     outputmode='append',
@@ -55,3 +57,5 @@ CREATE SINK OutputTable(
 );
 
 insert into ImageOutputTable2 select * from InputTable;
+
+

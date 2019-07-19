@@ -75,30 +75,27 @@ public class ImageProcessUtil {
     /**
      * 转化为黑白色图
      */
-    private static String toBnW(String cstr) {
+    private static void toBnW(byte[] image) {
         try {
-            int c = Integer.parseInt(cstr);
-            int a = c & 0xFF000000;
-            int r = (c >> 16) & 0xFF;
-            int g = (c >> 8) & 0xFF;
-            int b = c & 0xFF;
-            if (r + g + b > 300) {
-                return "" + 0xffffffff;
-            } else {
-                return "" + 0xff000000;
+            for(int i = 0; i < image.length; i+=3)
+            {
+                int r = image[i] & 0xFF000000;
+                int g = image[i+1] & 0xFF000000;
+                int b = image[i+2] & 0xFF000000;
+                if (r + g + b > 300) {
+                    image[i] = 0xffffffff;
+                    image[i+1] = 0xffffffff;
+                    image[i+2] = 0xffffffff;
+                } else {
+                    image[i] = (byte)0xff000000;
+                    image[i+1] = (byte)0xff000000;
+                    image[i+2] = (byte)0xff000000;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return cstr;
         }
 
-    }
-
-    public static String[] toBnW(String[] cstr) {
-        for (int i = 0; i < cstr.length; i++) {
-            cstr[i] = toBnW(cstr[i]);
-        }
-        return cstr;
     }
 
     /**

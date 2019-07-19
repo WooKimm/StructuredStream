@@ -67,6 +67,8 @@ public class KafakCameraSender {
     }
 
 
+
+
     public static void main(String[] args) {
 //        System.out.println(saySomething());
         // TODO 增加 HTTP 服务端，实现分辨率、帧率的客户端读取
@@ -85,6 +87,7 @@ public class KafakCameraSender {
         try {
             producer = new KafkaProducer<String, String>(properties);
             while (true){
+                //String s = getFrame();
                 Frame frame = grabber.grab();
                 BufferedImage bimg = frameToImage(frame);
                 viewer.showImage(bimg);
@@ -96,7 +99,7 @@ public class KafakCameraSender {
 
                 long timestamp = System.currentTimeMillis();
                 img = img + "," + timestamp;
-                producer.send(new ProducerRecord<String, String>("test1", img));
+                producer.send(new ProducerRecord<String, String>("test3", img));
 
                 Thread.sleep(1000/Property.FPS);
             }
