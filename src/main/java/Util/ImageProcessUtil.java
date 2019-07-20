@@ -1,6 +1,7 @@
 package Util;
 
 import Tests.Property;
+import org.opencv.ximgproc.Ximgproc;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -10,9 +11,9 @@ public class ImageProcessUtil {
     private static int[] getWatermark() {
         int[] result = new int[Property.HEIGHT * Property.WIDTH];
         try {
-            BufferedImage image = ImageIO.read(new File("watermark.png"));
+            BufferedImage image = ImageIO.read(new File("src/main/resources/watermark.png"));
 
-            result = image.getRGB(0, 0, Property.WIDTH, Property.HEIGHT, result, 0, Property.WIDTH);
+            result = image.getRGB(image.getWidth()-Property.WIDTH, image.getHeight()-Property.HEIGHT, Property.WIDTH, Property.HEIGHT, result, 0, Property.WIDTH);
             return result;
         } catch (Exception e) {
             e.printStackTrace();
@@ -23,6 +24,29 @@ public class ImageProcessUtil {
     /*
 
      */
+
+    public static BufferedImage reverse(int[] image) {
+        try {
+            int[] info = new int[Property.WIDTH*Property.HEIGHT];
+            for(int i = 0; i < image.length; i++)
+            {
+                int c = image[i];
+                int a = c & 0xFF000000;
+                int r = (c >> 16) & 0xFF;
+                int g = (c >> 8) & 0xFF;
+                int b = c & 0xFF;
+                info[i] = (a | ((255 - r) << 16) | ((255 - g) << 8) | (255 - b));
+            }
+            BufferedImage bufferedImage = new BufferedImage(Property.WIDTH, Property.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+            bufferedImage.setRGB(0, 0, Property.WIDTH, Property.HEIGHT, info, 0, Property.WIDTH);
+            return  bufferedImage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public static String reverse(String cstr) {
         try {
             int c = Integer.parseInt(cstr);
@@ -48,6 +72,30 @@ public class ImageProcessUtil {
     /**
      * 转化为灰度图
      */
+
+    public static BufferedImage toGray(int[] image) {
+        try {
+            int[] info = new int[Property.WIDTH*Property.HEIGHT];
+            for(int i = 0; i < image.length; i++)
+            {
+                int c = image[i];
+                int a = c & 0xFF000000;
+                int r = (c >> 16) & 0xFF;
+                int g = (c >> 8) & 0xFF;
+                int b = c & 0xFF;
+                int gray = (r + g + b) / 3;
+                info[i] = (a | (gray << 16) | (gray << 8) | gray);
+            }
+            BufferedImage bufferedImage = new BufferedImage(Property.WIDTH, Property.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+            bufferedImage.setRGB(0, 0, Property.WIDTH, Property.HEIGHT, info, 0, Property.WIDTH);
+            return  bufferedImage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public static String toGray(String cstr) {
         try {
             int c = Integer.parseInt(cstr);
@@ -75,25 +123,56 @@ public class ImageProcessUtil {
     /**
      * 转化为黑白色图
      */
-    public static void toBnW(byte[] image) {
+
+
+    private static String toBnW(String cstr) {
         try {
-            for(int i = 0; i < image.length-3; i+=3)
-            {
-                int r = image[i] & 0xFF000000;
-                int g = image[i+1] & 0xFF000000;
-                int b = image[i+2] & 0xFF000000;
-                if (r + g + b > 300) {
-                    image[i] = 0xffffffff;
-                    image[i+1] = 0xffffffff;
-                    image[i+2] = 0xffffffff;
-                } else {
-                    image[i] = (byte)0xff000000;
-                    image[i+1] = (byte)0xff000000;
-                    image[i+2] = (byte)0xff000000;
-                }
+            int c = Integer.parseInt(cstr);
+            int a = c & 0xFF000000;
+            int r = (c >> 16) & 0xFF;
+            int g = (c >> 8) & 0xFF;
+            int b = c & 0xFF;
+            if (r + g + b > 300) {
+                return "" + 0xffffffff;
+            } else {
+                return "" + 0xff000000;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return cstr;
+        }
+
+    }
+
+    public static String[] toBnW(String[] cstr) {
+        for (int i = 0; i < cstr.length; i++) {
+            cstr[i] = toBnW(cstr[i]);
+        }
+        return cstr;
+    }
+
+    public static BufferedImage toBnW(int[] image) {
+        try {
+            int[] info = new int[Property.WIDTH*Property.HEIGHT];
+            for(int i = 0; i < image.length; i++)
+
+            {
+                int c = image[i];
+                int r = (c >> 16) & 0xFF;
+                int g = (c >> 8) & 0xFF;
+                int b = c & 0xFF;
+                if (r + g + b > 300) {
+                    info[i] = 0xffffffff;
+                } else {
+                    info[i] = 0xff000000;
+                }
+            }
+            BufferedImage bufferedImage = new BufferedImage(Property.WIDTH, Property.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+            bufferedImage.setRGB(0, 0, Property.WIDTH, Property.HEIGHT, info, 0, Property.WIDTH);
+            return  bufferedImage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
 
     }
@@ -101,9 +180,38 @@ public class ImageProcessUtil {
     /**
      * 降低 R 值
      *
-     * @param cstr
+     * @param image
      * @return
      */
+    private static BufferedImage whiter(int[] image) {
+        try {
+            int[] info = new int[Property.WIDTH*Property.HEIGHT];
+            for(int i = 0; i < image.length; i++)
+            {
+                int c = image[i];
+                int a = c & 0xFF000000;
+                int r = (c >> 16) & 0xFF;
+                int g = (c >> 8) & 0xFF;
+                int b = c & 0xFF;
+                int newR = r > 100 ? r - 100 : r;
+                info[i] = (a | (newR << 16) | (g << 8) | b);
+            }
+            BufferedImage bufferedImage = new BufferedImage(Property.WIDTH, Property.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+            bufferedImage.setRGB(0, 0, Property.WIDTH, Property.HEIGHT, info, 0, Property.WIDTH);
+            return  bufferedImage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String[] whiter(String[] cstr) {
+        for (int i = 0; i < cstr.length; i++) {
+            cstr[i] = whiter(cstr[i]);
+        }
+        return cstr;
+    }
+
     private static String whiter(String cstr) {
         try {
             int c = Integer.parseInt(cstr);
@@ -120,16 +228,33 @@ public class ImageProcessUtil {
         }
     }
 
-    public static String[] whiter(String[] cstr) {
-        for (int i = 0; i < cstr.length; i++) {
-            cstr[i] = whiter(cstr[i]);
-        }
-        return cstr;
-    }
-
     /**
      * 添加水印
      */
+
+    private static BufferedImage watermark(int[] image) {
+        try {
+            int[] info = new int[Property.WIDTH*Property.HEIGHT];
+            int[] watermark = getWatermark();
+            for(int i = 0; i < image.length; i++)
+            {
+                if (watermark[i] != 0xffffff) {
+                    info[i] = watermark[i];
+                }
+                else
+                {
+                    info[i] = image[i];
+                }
+            }
+            BufferedImage bufferedImage = new BufferedImage(Property.WIDTH, Property.HEIGHT, BufferedImage.TYPE_INT_ARGB);
+            bufferedImage.setRGB(0, 0, Property.WIDTH, Property.HEIGHT, info, 0, Property.WIDTH);
+            return  bufferedImage;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static String[] watermark(String cstr[]) {
         int[] watermark = getWatermark();
         String[] result = cstr;
