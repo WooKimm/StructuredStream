@@ -1,5 +1,7 @@
 package sparkcl;
-import com.amd.aparapi.internal.opencl.OpenCLLoader;
+//import com.amd.aparapi.internal.opencl.OpenCLLoader;
+import com.aparapi.Kernel;
+import com.aparapi.internal.opencl.OpenCLLoader;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.streaming.StreamingQuery;
@@ -13,7 +15,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
-import com.amd.aparapi.Range;
+//import com.amd.aparapi.Range;
+import com.aparapi.Range;
 import org.apache.spark.sql.streaming.Trigger;
 
 
@@ -205,6 +208,18 @@ public final class SparkCLWordCount
         // Generate running word count
 //        Dataset<Row> wordCounts = wordsStream.groupBy("value").count();
 
+//        final int size = 10240;
+//
+//        final float[] a = new float[size];
+//        final float[] b = new float[size];
+//
+//        for (int i = 0; i < size; i++) {
+//            a[i] = (float) (Math.random() * 100);
+//            b[i] = (float) (Math.random() * 100);
+//        }
+//
+//        final float[] sum = new float[size];
+
         //重写核函数
         SparkKernel<Dataset<String>,Dataset<Row>> kernel2 = new SparkKernel<Dataset<String>, Dataset<Row>>()
         {
@@ -214,22 +229,30 @@ public final class SparkCLWordCount
             @Override
             public void mapParameters(Dataset<String> data) {
                 input = data;
-                setRange(Range.create(100));
-                setExecutionMode(EXECUTION_MODE.GPU);
+                result = null;
+                setRange(Range.create(1024));
+//                setExecutionMode(EXECUTION_MODE.GPU);
+                setExecutionModeWithoutFallback(EXECUTION_MODE.GPU);
             }
 
             @Override
             public void run() {
                 result = input.groupBy("value").count();
+//                int gid = getGlobalId();
+//                sum[gid] = a[gid] + b[gid];
             }
 
             @Override
             public Dataset<Row> mapReturnValue(Dataset<String> data) {
-                return data.groupBy("value").count();
+//                Dataset<Row> returnValue = result;
+                return input.groupBy("value").count();
+//                return returnValue;
             }
 
         };
-
+//        for (int i = 0; i < size; i++) {
+//            System.out.printf("%6.2f + %6.2f = %8.2f\n", a[i], b[i], sum[i]);
+//        }
         Dataset<Row> wordCounts = SparkUtil.genSparkCL3(wordsStream).mapCL3(kernel2);
         System.out.println(OpenCLLoader.isOpenCLAvailable());
 
@@ -241,9 +264,44 @@ public final class SparkCLWordCount
                 .trigger(Trigger.ProcessingTime("2 seconds"))
                 .start();
 
+
+
+        /*
+            size为1024时看不到GPU被调度，不知道原因是资源使用太少没显示还是没来得及调用GPU
+            size为10240可看到GPU占用0.2%左右
+         */
+
+//
+//        final int size = 10240;
+//
+//        final float[] a = new float[size];
+//        final float[] b = new float[size];
+//
+//        for (int i = 0; i < size; i++) {
+//            a[i] = (float) (Math.random() * 100);
+//            b[i] = (float) (Math.random() * 100);
+//        }
+//
+//        final float[] sum = new float[size];
+//
+//        Kernel kernel = new Kernel(){
+//            @Override public void run() {
+//                int gid = getGlobalId();
+//                sum[gid] = a[gid] + b[gid];
+//            }
+//        };
+////      kernel.setExecutionMode(Kernel.EXECUTION_MODE.GPU);
+//        kernel.setExecutionModeWithoutFallback(Kernel.EXECUTION_MODE.GPU);
+//        kernel.execute(Range.create(size));
+//
+//        for (int i = 0; i < size; i++) {
+//            System.out.printf("%6.2f + %6.2f = %8.2f\n", a[i], b[i], sum[i]);
+//        }
+//        System.out.println(kernel.getExecutionMode());
+//
+//        kernel.dispose();
+
         query.awaitTermination();
-
-
     }
 
 }

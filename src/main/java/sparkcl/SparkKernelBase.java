@@ -1,8 +1,10 @@
 package sparkcl;
 
-import com.amd.aparapi.Kernel;
-import com.amd.aparapi.Range;
-
+//import com.amd.aparapi.Kernel;
+//import com.amd.aparapi.Range;
+//
+import com.aparapi.Kernel;
+import com.aparapi.Range;
 public abstract class SparkKernelBase extends Kernel implements AutoCloseable
 {
     // data

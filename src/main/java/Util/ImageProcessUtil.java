@@ -75,9 +75,9 @@ public class ImageProcessUtil {
     /**
      * 转化为黑白色图
      */
-    private static void toBnW(byte[] image) {
+    public static void toBnW(byte[] image) {
         try {
-            for(int i = 0; i < image.length; i+=3)
+            for(int i = 0; i < image.length-3; i+=3)
             {
                 int r = image[i] & 0xFF000000;
                 int g = image[i+1] & 0xFF000000;
