@@ -31,8 +31,8 @@ CREATE TABLE ImageKafkaTable(
 )WITH(
     type='kafka',
     kafka.bootstrap.servers='localhost:9092',
-    subscribe='test3',
-    group='test3'
+    subscribe='test1',
+    group='test1'
 );
 
 CREATE SINK IntOutputTable(
@@ -49,4 +49,13 @@ CREATE SINK ImageOutputTable(
     continuetrigger='2 seconds'
 );
 
+CREATE SINK OutputTable(
+)WITH(
+    type='console',
+    outputmode='update',
+    trigger='2 seconds'
+);
+
 insert into ImageOutputTable select * from ImageKafkaTable;
+
+

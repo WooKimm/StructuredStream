@@ -8,7 +8,8 @@ import org.apache.spark.api.java.function.Function2;
 
 
 
-import com.amd.aparapi.Range;
+//import com.amd.aparapi.Range;
+import com.aparapi.Range;
 import org.apache.spark.sql.Dataset;
 
 import java.util.ArrayList;
@@ -229,7 +230,8 @@ public final class PiTest
                     sum = new int[data];
                 genRandomNumbers(sum.length * 2);
                 setRange(Range.create(sum.length));
-                setExecutionMode(EXECUTION_MODE.JTP);
+//                setExecutionMode(EXECUTION_MODE.JTP);
+                setExecutionModeWithoutFallback(EXECUTION_MODE.GPU);
                 // setExecutionMode(EXECUTION_MODE.JTP); // choose run mode i.e run on JTP/CPU/Accelerator etc.
             }
 

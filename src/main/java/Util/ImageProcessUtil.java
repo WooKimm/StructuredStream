@@ -129,6 +129,7 @@ public class ImageProcessUtil {
      * 转化为黑白色图
      */
 
+
     private static String toBnW(String cstr) {
         try {
             int c = Integer.parseInt(cstr);
@@ -159,6 +160,7 @@ public class ImageProcessUtil {
         try {
             int[] info = new int[Property.WIDTH*Property.HEIGHT];
             for(int i = 0; i < image.length; i++)
+
             {
                 int c = image[i];
                 int r = (c >> 16) & 0xFF;
