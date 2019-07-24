@@ -6,6 +6,9 @@ import org.opencv.ximgproc.Ximgproc;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ImageProcessUtil {
     private static int[] getWatermark() {
@@ -62,10 +65,12 @@ public class ImageProcessUtil {
         }
     }
 
+
     public static String[] reverse(String[] cstr) {
         for (int i = 0; i < cstr.length; i++) {
             cstr[i] = reverse(cstr[i]);
         }
+
         return cstr;
     }
 
